@@ -1,0 +1,4 @@
+<button type="button" class="c-trigger__button" (click)="clicked.emit()" [disabled]="disabled || processing">
+  <snapodds-spinner *ngIf="processing" class="c-trigger__spinner"></snapodds-spinner>
+  <snapodds-trigger-svg></snapodds-trigger-svg>
+</button>

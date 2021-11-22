@@ -2,12 +2,79 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Snapodds</title>
+    <title>Snapodds SDK Demo</title>
     <base href="/" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <style type="text/css">
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+      }
+
+      #openSnapodds {
+        background: none;
+        border: none;
+        position: absolute;
+        left: 50%;
+        bottom: 2rem;
+        transform: translateX(-50%);
+        z-index: 0;
+      }
+
+      snapodds-sdk {
+        z-index: 1;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+      }
+    </style>
   </head>
   <body>
-    <snapodds-root></snapodds-root>
+    <button id="openSnapodds">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="32" fill="#2DD4BF" />
+        <path
+          d="M27.276 16.092H35.46L38.188 18.82H43.644C44.0058 18.82 44.3527 18.9637 44.6085 19.2195C44.8643 19.4753 45.008 19.8223 45.008 20.184V39.284C45.008 39.6458 44.8643 39.9927 44.6085 40.2485C44.3527 40.5043 44.0058 40.648 43.644 40.648H19.092C18.9125 40.648 18.7348 40.6126 18.5691 40.5438C18.4033 40.475 18.2528 40.3742 18.1261 40.2471C17.9994 40.12 17.899 39.9692 17.8307 39.8032C17.7624 39.6373 17.7275 39.4595 17.728 39.28V20.184C17.728 19.8223 17.8717 19.4753 18.1275 19.2195C18.3833 18.9637 18.7302 18.82 19.092 18.82H24.548L27.276 16.092ZM31.368 37.916C32.9866 37.916 34.5689 37.436 35.9148 36.5368C37.2606 35.6375 38.3096 34.3593 38.929 32.8639C39.5485 31.3685 39.7105 29.7229 39.3947 28.1354C39.079 26.5479 38.2995 25.0896 37.155 23.945C36.0104 22.8005 34.5522 22.021 32.9646 21.7053C31.3771 21.3895 29.7316 21.5516 28.2361 22.171C26.7407 22.7904 25.4625 23.8394 24.5633 25.1852C23.664 26.5311 23.184 28.1134 23.184 29.732C23.184 31.9025 24.0462 33.9842 25.581 35.519C27.1158 37.0538 29.1975 37.916 31.368 37.916ZM31.368 35.188C30.2891 35.1872 29.2346 34.8666 28.3379 34.2666C27.4412 33.6666 26.7425 32.8142 26.3302 31.8172C25.9178 30.8201 25.8104 29.7232 26.0213 28.6651C26.2323 27.6071 26.7522 26.6353 27.5154 25.8726C28.2786 25.11 29.2508 24.5908 30.3091 24.3806C31.3673 24.1704 32.4641 24.2786 33.4608 24.6917C34.4576 25.1048 35.3094 25.8041 35.9088 26.7012C36.5081 27.5984 36.828 28.6531 36.828 29.732C36.8285 30.4492 36.6877 31.1594 36.4135 31.8221C36.1393 32.4848 35.7371 33.0869 35.23 33.594C34.7229 34.1011 34.1208 34.5033 33.4581 34.7775C32.7954 35.0517 32.0852 35.1925 31.368 35.192V35.188Z"
+          fill="white"
+        />
+        <path
+          d="M31.0469 49.2305H29.1953V54H28.2383V49.2305H26.3984V48.3281H31.0469V49.2305ZM34.0195 52.7422L35.6133 48.3281H36.6289L34.4844 54H33.5078L31.3945 48.3281H32.4375L34.0195 52.7422Z"
+          fill="white"
+        />
+      </svg>
+    </button>
   </body>
+
+  <script>
+    document.getElementById('openSnapodds').addEventListener('click', () => {
+      const sdk = document.createElement('snapodds-sdk');
+
+      sdk.language = 'en';
+      sdk.apiUrl = 'https://api-dev.us.snapscreen.com';
+      sdk.apiUrl = 'https://local.dev:3333/api';
+      sdk.autoSnap = false;
+      sdk.logLevel = 'error';
+
+      sdk.addEventListener('tokenRefresh', () => {
+        fetch('https://local.dev:3333/api/token', { mode: 'cors', cache: 'no-cache' })
+          .then((response) => response.json())
+          .then((tokenResponse) => (sdk.tokenResponse = tokenResponse))
+          .catch(console.error);
+      });
+
+      sdk.addEventListener('closed', () => document.body.removeChild(sdk));
+
+      sdk.addEventListener('results', ({ detail }) => (sdk.sportEvents = detail));
+
+      sdk.addEventListener('logger', ({ detail: { logLevel, data } }) => console.log('SDK:logger', logLevel, ...data));
+
+      document.body.appendChild(sdk);
+    });
+
+    document.getElementById('openSnapodds').click();
+  </script>
 </html>

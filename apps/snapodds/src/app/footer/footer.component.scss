@@ -1,0 +1,8 @@
+@use 'settings';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  margin-bottom: settings.$spacing-base * 2;
+}

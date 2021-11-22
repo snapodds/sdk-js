@@ -1,0 +1,8 @@
+@use 'sass:math';
+
+$spacing-base: 1rem;
+
+$spacing-xs: math.div($spacing-base, 4);
+$spacing-sm: math.div($spacing-base, 2);
+$spacing-lg: $spacing-base * 2;
+$spacing-xl: $spacing-base * 4;

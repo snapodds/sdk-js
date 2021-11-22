@@ -1,0 +1,32 @@
+@use 'settings';
+@use 'tools';
+
+:host {
+  align-items: baseline;
+  border-bottom: 1px solid settings.$color-accent;
+  display: flex;
+  padding: settings.$spacing-base * 3 settings.$spacing-base settings.$spacing-base settings.$spacing-base;
+
+  .c-header {
+    &--left {
+      flex: 1;
+      text-align: left;
+    }
+
+    &--title {
+      flex: 1;
+      font-size: settings.$font-xl;
+      text-align: center;
+    }
+
+    &--right {
+      flex: 1;
+      text-align: right;
+    }
+
+    &--cancel-button {
+      @include tools.button-reset;
+      font-size: settings.$font-base;
+    }
+  }
+}

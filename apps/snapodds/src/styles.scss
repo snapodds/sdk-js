@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+snapodds-sdk {
+  --snapodds__color--accent: #e5e7eb7f;
+  --snapodds__color--primary: #2dd4bf;
+  --snapodds__color--warn: #ea436e;
+  --snapodds__color-background: #fff;
+  --snapodds__color-text: #101010;
+  --snapodds__color-text--focus: #000;
+  --snapodds__font-family: 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  snapodds-sdk {
+    --snapodds__color--accent: #646464;
+    --snapodds__color-background: #09131d;
+    --snapodds__color-text: #fff;
+  }
+}

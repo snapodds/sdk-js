@@ -1,0 +1,11 @@
+{
+  "extends": "stylelint-config-sass-guidelines",
+  "plugins": ["stylelint-order"],
+  "variable-name-format:": { "convention": "hyphenatedbem" },
+  "rules": {
+    "function-parentheses-space-inside": null,
+    "block-opening-brace-space-before": "always-single-line",
+    "no-empty-source": true,
+    "max-nesting-depth": 3
+  }
+}

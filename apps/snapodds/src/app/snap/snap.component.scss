@@ -1,0 +1,77 @@
+@use 'tools';
+@use 'settings';
+@use 'sass:math';
+
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  snapodds-content {
+    margin: settings.$spacing-base * 2;
+  }
+
+  snapodds-trigger {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+  }
+
+  button {
+    @include tools.button-reset();
+    font-size: settings.$font-base;
+  }
+
+  .c-user-feedback {
+    text-align: center;
+
+    &--error {
+      color: settings.$color-warn;
+    }
+
+    &__headline {
+      font-size: settings.$font-xl;
+      margin-bottom: settings.$spacing-sm;
+    }
+  }
+
+  .c-footer {
+    &--row {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    &--row-spacing-top {
+      margin-top: settings.$spacing-base * 2;
+    }
+
+    &__switch-camera {
+      @include tools.button-reset;
+
+      color: settings.$color-primary;
+      display: flex;
+      flex: 1;
+    }
+
+    &__reload-button {
+      @include tools.button-reset;
+      background-color: settings.$color-primary;
+      color: settings.$color-text-focus;
+
+      font-size: settings.$font-lg;
+      font-weight: 500;
+      padding: settings.$spacing-base settings.$spacing-lg;
+    }
+
+    &__powered-by {
+      font-size: settings.$font-sm;
+    }
+
+    &__spacer {
+      display: flex;
+      flex: 1;
+    }
+  }
+}

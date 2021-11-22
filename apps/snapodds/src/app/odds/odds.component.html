@@ -1,0 +1,96 @@
+<snapodds-header>
+  {{ 'Snapodds_Title_Odds' | translate }}
+  <div right>
+    <button (click)="closeOddsView.next()">
+      {{ 'Snapodds_Title_Snap_TV' | translate }}
+    </button>
+  </div>
+</snapodds-header>
+
+<snapodds-content *ngIf="sportEventResult as result">
+  <p class="c-sport-event">
+    <span class="c-sport-event__tournament">{{ result.sportEvent.tournament }}</span>
+    <span class="c-sport-event__channel"
+      >{{ result.tvChannel.name }} since {{ result.sportEvent.startTime | date: 'hh:mm a' }}</span
+    >
+  </p>
+
+  <div class="c-competitors">
+    <ng-container *ngFor="let competitor of result.sportEvent.competitors; let first = first">
+      <span>{{ competitor.name }}</span>
+      <span *ngIf="first" class="c-competitors__separator"></span>
+    </ng-container>
+  </div>
+
+  <div *ngIf="loading" class="c-feedback">
+    <snapodds-spinner size="small" class="c-feedback__spinner"></snapodds-spinner>
+    {{ 'Snapodds_Lines_Loading' | translate }}
+  </div>
+
+  <div *ngIf="error" class="c-feedback">
+    {{ 'Snapodds_Lines_No_Results' | translate }}
+  </div>
+
+  <div class="c-game-container" *ngIf="lineOdds as lineOdds">
+    <div class="c-game" *ngFor="let sportBook of lineOdds.sportsBooks">
+      <div class="c-game-header">
+        <div class="c-game-header__sportbook">{{ sportBook.name }}</div>
+
+        <div class="c-game-header__lines">
+          <div class="c-game-header__line">Spread</div>
+          <div class="c-game-header__line">Money</div>
+          <div class="c-game-header__line">Total</div>
+        </div>
+      </div>
+
+      <ng-container *ngFor="let line of sportBook.lines; let i = index">
+        <a class="c-game-line" href="{{ sportBook.redirectUrl }}" rel="noopener noreferrer" target="_blank">
+          <div class="c-game-line__competitor">{{ lineOdds.competitors[i].name }}</div>
+
+          <div class="c-game-line__boxes">
+            <div
+              class="c-game-line__box"
+              [class.c-game-line__box--clickable]="line.spreadUrl"
+              [class.c-game-line__box--hidden]="!line.spreadOdds"
+              (click)="openOutcomeRedirectUrl($event, line.spreadUrl)"
+            >
+              <div class="c-game-line__target">{{ line.spread }}</div>
+              <div class="c-game-line__odds">{{ line.spreadOdds }}</div>
+            </div>
+            <div
+              class="c-game-line__box"
+              [class.c-game-line__box--clickable]="line.moneylineUrl"
+              [class.c-game-line__box--hidden]="!line.moneyline"
+              (click)="openOutcomeRedirectUrl($event, line.moneylineUrl)"
+            >
+              <div class="c-game-line__target"></div>
+              <div class="c-game-line__odds">{{ line.moneyline }}</div>
+            </div>
+            <div
+              class="c-game-line__box"
+              [class.c-game-line__box--clickable]="line.overUnderUrl"
+              [class.c-game-line__box--hidden]="!line.overUnderOdds"
+              (click)="openOutcomeRedirectUrl($event, line.overUnderUrl)"
+            >
+              <div class="c-game-line__target">
+                <ng-container *ngIf="i === 0">O</ng-container>
+                <ng-container *ngIf="i === 1">U</ng-container>
+                {{ line.overUnder }}
+              </div>
+              <div class="c-game-line__odds">{{ line.overUnderOdds }}</div>
+            </div>
+          </div>
+        </a>
+        <div class="c-game-line" *ngIf="i === 0">
+          <div class="c-game-line__competitor c-game-line__competitor--separator"></div>
+
+          <div class="c-game-line__boxes">
+            <div class="c-game-line__box c-game-line__box--separator"></div>
+            <div class="c-game-line__box c-game-line__box--separator"></div>
+            <div class="c-game-line__box c-game-line__box--separator"></div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</snapodds-content>

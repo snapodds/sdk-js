@@ -17,11 +17,11 @@
             "polyfills": "apps/snapodds/src/polyfills.ts",
             "tsConfig": "apps/snapodds/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "apps/snapodds/src/favicon.ico",
-              "apps/snapodds/src/assets"
-            ],
+            "assets": ["apps/snapodds/src/favicon.ico", "apps/snapodds/src/assets"],
             "styles": ["apps/snapodds/src/styles.scss"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["apps/snapodds/src/styles"]
+            },
             "scripts": []
           },
           "configurations": {
@@ -34,7 +34,7 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
+                  "maximumWarning": "3kb",
                   "maximumError": "4kb"
                 }
               ],
@@ -61,10 +61,12 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "snapodds:build:production"
+              "browserTarget": "snapodds:build:production",
+              "ssl": true
             },
             "development": {
-              "browserTarget": "snapodds:build:development"
+              "browserTarget": "snapodds:build:development",
+              "ssl": true
             }
           },
           "defaultConfiguration": "development"
@@ -78,10 +80,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/snapodds/src/**/*.ts",
-              "apps/snapodds/src/**/*.html"
-            ]
+            "lintFilePatterns": ["apps/snapodds/src/**/*.ts", "apps/snapodds/src/**/*.html"]
           }
         },
         "test": {
@@ -95,33 +94,57 @@
       },
       "tags": []
     },
-    "snapodds-e2e": {
-      "root": "apps/snapodds-e2e",
-      "sourceRoot": "apps/snapodds-e2e/src",
+    "snapodds-api": {
+      "root": "apps/snapodds-api",
+      "sourceRoot": "apps/snapodds-api/src",
       "projectType": "application",
       "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
           "options": {
-            "cypressConfig": "apps/snapodds-e2e/cypress.json",
-            "devServerTarget": "snapodds:serve:development"
+            "outputPath": "dist/apps/snapodds-api",
+            "main": "apps/snapodds-api/src/main.ts",
+            "tsConfig": "apps/snapodds-api/tsconfig.app.json",
+            "assets": ["apps/snapodds-api/src/assets"]
           },
           "configurations": {
             "production": {
-              "devServerTarget": "snapodds:serve:production"
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/snapodds-api/src/environments/environment.ts",
+                  "with": "apps/snapodds-api/src/environments/environment.prod.ts"
+                }
+              ]
             }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "snapodds-api:build"
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": ["apps/snapodds-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": ["apps/snapodds-api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/snapodds-api"],
+          "options": {
+            "jestConfig": "apps/snapodds-api/jest.config.js",
+            "passWithNoTests": true
           }
         }
       },
-      "tags": [],
-      "implicitDependencies": ["snapodds"]
+      "tags": []
     }
   }
 }

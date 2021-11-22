@@ -1,0 +1,26 @@
+@use 'tools';
+@use 'settings';
+
+:host {
+  .c-trigger {
+    &__button {
+      @include tools.button-reset;
+
+      color: settings.$color-primary;
+      position: relative;
+
+      &:disabled {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+    }
+
+    &__spinner {
+      color: settings.$color-background;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

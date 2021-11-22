@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@response/mocks": ["libs/response/mocks/index.ts"],
+      "@response/typings": ["libs/response/typings/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

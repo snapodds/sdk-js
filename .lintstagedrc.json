@@ -1,0 +1,5 @@
+{
+  "*.ts": ["eslint --fix", "nx format --write --files"],
+  "**/*.{html,svg,json,md}": ["nx format --write --files"],
+  "**/*.scss": ["stylelint --fix", "nx format --write --files"]
+}

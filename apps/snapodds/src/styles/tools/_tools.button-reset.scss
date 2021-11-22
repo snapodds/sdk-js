@@ -1,0 +1,12 @@
+@use 'settings';
+
+@mixin button-reset {
+  background-color: transparent;
+  border: 0;
+  box-shadow: none;
+  color: settings.$color-primary;
+  cursor: pointer;
+  font-family: inherit;
+  outline: none;
+  padding: 0;
+}

@@ -4,10 +4,11 @@ import { TvSearchResultEntry } from '@response/typings';
 import { mock, MockProxy } from 'jest-mock-extended';
 import { of, throwError } from 'rxjs';
 import { lineOddsMapped } from '../api/line-odds.mapped';
-import { TvSearchService } from '../api/tv-search.service';
 import { OddsService } from '../api/odds.service';
+import { TvSearchService } from '../api/tv-search.service';
 import { AuthService } from '../auth/auth.service';
 import { LoggerService } from '../logger/logger.service';
+import { GoogleAnalyticsService } from '../tracking/google-analytics.service';
 import { TvSearchNoResultError } from './snap-odds-errors';
 import { SnapOddsFacade } from './snap-odds-facade.service';
 
@@ -19,12 +20,14 @@ describe('SnapOddsFacadeService', () => {
   let oddsApi: MockProxy<OddsService>;
   let logger: MockProxy<LoggerService>;
   let authService: MockProxy<AuthService>;
+  let analyticsService: MockProxy<GoogleAnalyticsService>;
 
   beforeEach(() => {
     snapScreenApi = mock<TvSearchService>();
     oddsApi = mock<OddsService>();
     logger = mock<LoggerService>();
     authService = mock<AuthService>();
+    analyticsService = mock<GoogleAnalyticsService>();
 
     TestBed.configureTestingModule({
       providers: [
@@ -32,6 +35,7 @@ describe('SnapOddsFacadeService', () => {
         { provide: OddsService, useValue: oddsApi },
         { provide: LoggerService, useValue: logger },
         { provide: AuthService, useValue: authService },
+        { provide: GoogleAnalyticsService, useValue: analyticsService },
       ],
     });
 
@@ -43,20 +47,30 @@ describe('SnapOddsFacadeService', () => {
     it('should get odds via a webcam snapshot', (done) => {
       snapScreenApi.searchSport.mockReturnValue(of(sportEventTvSearchMock));
 
-      facade.getSnap(imageData, false).subscribe((sportEventsResult) => {
-        expect(sportEventsResult).toBe(sportEventTvSearchMock);
-        expect(snapScreenApi.searchSport).toHaveBeenCalledWith(imageData);
-        done();
+      facade.getSnap(imageData, false).subscribe({
+        next: (sportEventsResult) => {
+          expect(sportEventsResult).toBe(sportEventTvSearchMock);
+          expect(snapScreenApi.searchSport).toHaveBeenCalledWith(imageData);
+          expect(analyticsService.snapViewSnap).toHaveBeenCalled();
+          expect(analyticsService.snapViewSnapResult).toHaveBeenCalled();
+          done();
+        },
+        error: () => done.fail(),
       });
     });
 
     it('should get odds via a webcam snapshot near a timestamp', (done) => {
       snapScreenApi.autoSearchSport.mockReturnValue(of(sportEventTvSearchMock));
 
-      facade.getSnap(imageData, true).subscribe((sportEventResult) => {
-        expect(sportEventResult).toBe(sportEventTvSearchMock);
-        expect(snapScreenApi.autoSearchSport).toHaveBeenCalledWith(imageData);
-        done();
+      facade.getSnap(imageData, true).subscribe({
+        next: (sportEventResult) => {
+          expect(sportEventResult).toBe(sportEventTvSearchMock);
+          expect(snapScreenApi.autoSearchSport).toHaveBeenCalledWith(imageData);
+          expect(analyticsService.snapViewSnap).toHaveBeenCalled();
+          expect(analyticsService.snapViewSnapResult).toHaveBeenCalled();
+          done();
+        },
+        error: () => done.fail(),
       });
     });
 
@@ -68,11 +82,13 @@ describe('SnapOddsFacadeService', () => {
         next: () => done.fail(),
         error: (error) => {
           expect(error).toBeInstanceOf(TvSearchNoResultError);
+          expect(analyticsService.snapViewSnapNegative).toHaveBeenCalled();
           done();
         },
       });
     });
   });
+
   describe('lineOdds', () => {
     it('should load odds from an sportEventId', (done) => {
       const sportEventEntry: TvSearchResultEntry = sportEventTvSearchMock.resultEntries[0];

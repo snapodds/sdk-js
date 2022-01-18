@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TvSearchResult } from '@response/typings';
-import { catchError, map, Observable, of, switchMap, tap, throwError } from 'rxjs';
+import { map, Observable, of, switchMap, tap } from 'rxjs';
 import { ApplicationConfigService } from '../config/application-config.service';
 import { LoggerService } from '../logger/logger.service';
 import { GoogleAnalyticsService } from '../tracking/google-analytics.service';
@@ -49,11 +49,6 @@ export class TvSearchService {
       switchMap((headers) =>
         this.http.post<TvSearchResult>(`${this.baseUrl}${url}`, imageData, { headers, observe: 'response' })
       ),
-      catchError((error) => {
-        this.writeCallFailedAnalytics();
-        return throwError(error.error);
-      }),
-      tap((response) => this.writeSnapResulAnalytics(response)),
       tap((response) => this.writeTimeLag(response)),
       map((response) => response.body)
     );
@@ -69,18 +64,6 @@ export class TvSearchService {
     }
 
     return headers;
-  }
-
-  private writeCallFailedAnalytics(): void {
-    this.analyticsService.snapViewSnapFailed(this.currentSnapTimeOffset);
-  }
-
-  private writeSnapResulAnalytics(response: HttpResponse<TvSearchResult>): void {
-    if (response.body?.resultEntries.length) {
-      this.analyticsService.snapViewSnapResult(this.currentSnapTimeOffset);
-    } else {
-      this.analyticsService.snapViewSnapNegative(this.currentSnapTimeOffset);
-    }
   }
 
   private writeTimeLag(response: HttpResponse<TvSearchResult>): void {

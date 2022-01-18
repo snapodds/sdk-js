@@ -64,7 +64,7 @@ describe('OddsComponent', () => {
   });
 
   it('should open the outcomeUrl in a new tab', () => {
-    const redirectUrl = 'https://local.dev';
+    const redirectUrl = 'https://example.com';
     component.openOutcomeRedirectUrl(new MouseEvent('click'), redirectUrl);
     expect(window.open).toHaveBeenCalledWith(redirectUrl, '_blank');
   });

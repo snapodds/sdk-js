@@ -98,7 +98,7 @@ describe('SnapComponent', () => {
       component.ngOnDestroy();
 
       done();
-    }, 10);
+    }, 100);
   });
 
   describe('analytics', () => {

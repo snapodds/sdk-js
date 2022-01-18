@@ -14,7 +14,7 @@ describe('ApplicationConfig', () => {
   });
 
   it('should provide getters for the config values', () => {
-    const apiUrl = 'https://local.dev';
+    const apiUrl = 'https://example.com';
     const language = 'de';
     const logLevel = LogLevel.INFO;
     const vibrate = true;

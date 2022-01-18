@@ -6,6 +6,7 @@ import { sportEventsMock } from '@response/mocks';
 import { SportEventResultEntryResponse } from '@response/typings';
 import { mock, MockProxy } from 'jest-mock-extended';
 import { of, throwError } from 'rxjs';
+import { register } from 'timezone-mock';
 import { lineOddsMapped } from '../../services/api/line-odds.mapped';
 import { SnapOddsFacade } from '../../services/snap-odds/snap-odds-facade.service';
 import { WINDOW } from '../../services/tokens/window-token';
@@ -34,6 +35,8 @@ describe('OddsComponent', () => {
       ],
       declarations: [OddsComponent, HeaderComponent, ContentComponent],
     }).compileComponents();
+
+    register('UTC');
   });
 
   beforeEach(() => {
@@ -51,7 +54,7 @@ describe('OddsComponent', () => {
     expect(tournament?.textContent).toEqual(sportEventResult.sportEvent.tournament);
 
     const channel = element.querySelector('.c-sport-event__channel');
-    expect(channel?.textContent).toEqual(`${sportEventResult.tvChannel.name} since 03:40 AM`);
+    expect(channel?.textContent).toEqual(`${sportEventResult.tvChannel.name} since 01:40 AM`);
 
     const sportBook = element.querySelectorAll<HTMLElement>('.c-game');
     expect(sportBook).toHaveLength(lineOddsMapped.sportsBooks?.length ?? 0);

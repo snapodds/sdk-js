@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AuthResponse } from '@response/typings';
+import { AccessToken } from '@response/typings';
 import { addSeconds, differenceInSeconds } from 'date-fns';
 import { Observable, of, Subject, take } from 'rxjs';
 import { ApplicationConfigService } from '../config/application-config.service';
@@ -16,7 +16,7 @@ export class AuthService {
 
   constructor(private readonly applicationConfigService: ApplicationConfigService) {}
 
-  updateToken(authResponse: AuthResponse): void {
+  updateToken(authResponse: AccessToken): void {
     this.tokenExpirationDate = addSeconds(new Date(), authResponse.expires_in);
     this.accessToken = authResponse.access_token;
     this.accessTokenUpdated.next(this.accessToken);

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthResponse, SportEventsResponse } from '@response/typings';
+import { AccessToken, TvSearchResult } from '@response/typings';
 import { AuthService } from '../services/auth/auth.service';
 import { ApplicationConfigService } from '../services/config/application-config.service';
 import { toLogLevel } from '../services/logger/log-level';
@@ -14,7 +14,7 @@ import { AppState, AppStateStore } from '../states/app-state.store';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  sportEventsResponse: SportEventsResponse | null = null;
+  sportEventsResponse: TvSearchResult | null = null;
 
   @Input() apiUrl?: string;
   @Input() autoSnap?: boolean;
@@ -23,19 +23,19 @@ export class AppComponent implements OnInit {
   @Input() vibrate?: boolean;
 
   @Input()
-  set tokenResponse(authResponse: AuthResponse) {
+  set tokenResponse(authResponse: AccessToken) {
     this.authService.updateToken(authResponse);
   }
 
   @Input()
-  set sportEvents(sportEventsResponse: SportEventsResponse) {
+  set sportEvents(sportEventsResponse: TvSearchResult) {
     this.sportEventsResponse = sportEventsResponse;
     this.appStateStore.dispatch(AppState.SHOW_ODDS);
   }
 
   @Output() closed: EventEmitter<void> = new EventEmitter();
   @Output() log: EventEmitter<LoggerEvent> = new EventEmitter();
-  @Output() results: EventEmitter<SportEventsResponse> = new EventEmitter();
+  @Output() results: EventEmitter<TvSearchResult> = new EventEmitter();
   @Output() tokenRefresh: EventEmitter<void> = new EventEmitter();
 
   constructor(

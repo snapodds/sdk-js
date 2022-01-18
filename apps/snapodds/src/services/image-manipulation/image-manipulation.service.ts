@@ -27,8 +27,8 @@ export class ImageManipulationService {
     let preferredWidth = sourceWidth;
     let preferredHeight = sourceHeight;
 
-    if (this.shouldUpscale(preferredWidth, preferredHeight, maxDimension)) {
-      ({ preferredWidth, preferredHeight } = this.upscale(preferredWidth, preferredHeight, maxDimension));
+    if (this.shouldDownscale(preferredWidth, preferredHeight, maxDimension)) {
+      ({ preferredWidth, preferredHeight } = this.downscale(preferredWidth, preferredHeight, maxDimension));
     }
 
     const canvas = this.document.createElement('canvas');
@@ -105,11 +105,11 @@ export class ImageManipulationService {
     });
   }
 
-  private shouldUpscale(sourceWidth: number, sourceHeight: number, maxDimension: number) {
+  private shouldDownscale(sourceWidth: number, sourceHeight: number, maxDimension: number) {
     return (sourceWidth > sourceHeight && sourceWidth > maxDimension) || sourceHeight > maxDimension;
   }
 
-  private upscale(sourceWidth: number, sourceHeight: number, maxDimension: number) {
+  private downscale(sourceWidth: number, sourceHeight: number, maxDimension: number) {
     let preferredWidth = sourceWidth;
     let preferredHeight = sourceHeight;
 

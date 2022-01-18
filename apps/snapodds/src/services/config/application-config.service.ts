@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { SportEventsResponse } from '@response/typings';
+import { TvSearchResult } from '@response/typings';
 import { ApplicationConfig } from '../../config/application-config';
 import { fromLogLevel, LogLevel } from '../logger/log-level';
 import { LoggerEvent } from '../logger/logger-event';
@@ -13,7 +13,7 @@ const DEFAULT_APPLICATION_CONFIG: ApplicationConfig = {
   tokenRefreshEvent: new EventEmitter<void>(),
   loggerEvent: new EventEmitter<LoggerEvent>(),
   closeEvent: new EventEmitter<void>(),
-  resultsEvent: new EventEmitter<SportEventsResponse>(),
+  resultsEvent: new EventEmitter<TvSearchResult>(),
 };
 
 @Injectable({ providedIn: 'root' })
@@ -72,7 +72,7 @@ export class ApplicationConfigService {
     this.config.closeEvent.emit();
   }
 
-  emitResultsEvent(response: SportEventsResponse): void {
+  emitResultsEvent(response: TvSearchResult): void {
     this.config.resultsEvent.emit(response);
   }
 

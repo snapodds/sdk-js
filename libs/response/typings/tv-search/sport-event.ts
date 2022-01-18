@@ -1,4 +1,6 @@
-export interface SportEventResponse {
+import { Link } from '../link';
+
+export interface SportEvent {
   id: number;
   sportDataProviderCode: string;
   sportDataProviderMatchId: string;
@@ -11,14 +13,8 @@ export interface SportEventResponse {
   competitors: { name: string }[];
   externalId: string;
   _links: {
-    self: {
-      href: string;
-    };
-    tvChannel: {
-      href: string;
-    };
-    tvChannelLogo: {
-      href: string;
-    };
+    self?: Link;
+    tvChannel?: Link;
+    tvChannelLogo?: Link;
   };
 }

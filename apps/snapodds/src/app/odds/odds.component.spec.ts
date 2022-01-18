@@ -2,8 +2,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
-import { sportEventsMock } from '@response/mocks';
-import { SportEventResultEntryResponse } from '@response/typings';
+import { sportEventTvSearchMock } from '@response/mocks';
+import { TvSearchResultEntry } from '@response/typings';
 import { mock, MockProxy } from 'jest-mock-extended';
 import { of, throwError } from 'rxjs';
 import { register } from 'timezone-mock';
@@ -21,7 +21,7 @@ describe('OddsComponent', () => {
   let window: MockProxy<Window>;
   let snapOddsFacade: MockProxy<SnapOddsFacade>;
 
-  const sportEventResult: SportEventResultEntryResponse = sportEventsMock.resultEntries[0];
+  const sportEventResult: TvSearchResultEntry = sportEventTvSearchMock.resultEntries[0];
 
   beforeEach(async () => {
     window = mock<Window>();
@@ -72,7 +72,7 @@ describe('OddsComponent', () => {
   it('should load lineOdds when sportEvents are changed', () => {
     snapOddsFacade.getLineOdds.mockReturnValue(of(lineOddsMapped));
 
-    component.ngOnChanges({ sportEventsResponse: new SimpleChange(null, sportEventsMock, true) });
+    component.ngOnChanges({ sportEventsResponse: new SimpleChange(null, sportEventTvSearchMock, true) });
 
     expect(component.lineOdds).toBe(lineOddsMapped);
     expect(snapOddsFacade.getLineOdds).toHaveBeenCalledWith(sportEventResult.sportEvent.id);
@@ -83,7 +83,7 @@ describe('OddsComponent', () => {
   it('should show error if loading lineOdds failed', () => {
     snapOddsFacade.getLineOdds.mockReturnValue(throwError(() => new Error()));
 
-    component.ngOnChanges({ sportEventsResponse: new SimpleChange(null, sportEventsMock, true) });
+    component.ngOnChanges({ sportEventsResponse: new SimpleChange(null, sportEventTvSearchMock, true) });
 
     expect(snapOddsFacade.getLineOdds).toHaveBeenCalledWith(sportEventResult.sportEvent.id);
     expect(component.lineOdds).toBe(null);

@@ -1,6 +1,6 @@
-export class SnapOddsNoResultError extends Error {
+export class TvSearchNoResultError extends Error {
   constructor() {
     super('No sport events found');
-    this.name = 'SnapOddsNoResultError';
+    this.name = 'TvSearchNoResultError';
   }
 }

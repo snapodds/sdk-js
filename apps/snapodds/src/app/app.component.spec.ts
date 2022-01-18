@@ -1,7 +1,7 @@
 import { EventEmitter } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { TranslateService } from '@ngx-translate/core';
-import { authResponseMock, sportEventsMock } from '@response/mocks';
+import { authResponseMock, sportEventTvSearchMock } from '@response/mocks';
 import { mock, MockProxy } from 'jest-mock-extended';
 import { ApplicationConfig } from '../config/application-config';
 import { AuthService } from '../services/auth/auth.service';
@@ -93,9 +93,9 @@ describe('AppComponent', () => {
   });
 
   it('setting the sportEvents should set the state to SHOW_ODDS', () => {
-    component.sportEvents = sportEventsMock;
+    component.sportEvents = sportEventTvSearchMock;
 
-    expect(component.sportEventsResponse).toBe(sportEventsMock);
+    expect(component.sportEventsResponse).toBe(sportEventTvSearchMock);
     expect(appStateStore.dispatch).toHaveBeenCalledWith(AppState.SHOW_ODDS);
   });
 });

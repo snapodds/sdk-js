@@ -1,6 +1,6 @@
-import { AuthResponse } from '../typings';
+import { AccessToken } from '../typings';
 
-export const authResponseMock: AuthResponse = {
+export const authResponseMock: AccessToken = {
   access_token: 'ACCESS_TOKEN',
   token_type: 'bearer',
   refresh_token: 'REFRESH_TOKEN',

@@ -1,6 +1,6 @@
-import { LineOddsResponse } from '../typings';
+import { OddsResponse } from '../typings';
 
-export const lineOddsMock: LineOddsResponse = {
+export const lineOddsMock: OddsResponse = {
   startTime: '2021-09-06T01:40:00Z',
   competitors: [
     { id: 10207, name: 'Miami Heat' },

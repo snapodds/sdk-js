@@ -1,7 +1,7 @@
-import { AuthResponse } from '@response/typings';
+import { AccessToken } from '@response/typings';
 import { request, RequestOptions } from 'https';
 
-export function fetchAuthToken(): Promise<AuthResponse> {
+export function fetchAuthToken(): Promise<AccessToken> {
   const options: RequestOptions = {
     hostname: process.env.API_HOST,
     port: process.env.API_PORT,

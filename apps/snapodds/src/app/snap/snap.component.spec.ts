@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { sportEventsMock } from '@response/mocks';
+import { sportEventTvSearchMock } from '@response/mocks';
 import { mock, MockProxy } from 'jest-mock-extended';
 import { of, throwError } from 'rxjs';
 import { ApplicationConfigService } from '../../services/config/application-config.service';
 import { ManipulatedImage } from '../../services/image-manipulation/manipulated-image';
 import { LoggerService } from '../../services/logger/logger.service';
 import { NotificationService } from '../../services/notification/notification.service';
-import { SnapOddsNoResultError } from '../../services/snap-odds/snap-odds-errors';
+import { TvSearchNoResultError } from '../../services/snap-odds/snap-odds-errors';
 import { SnapOddsFacade } from '../../services/snap-odds/snap-odds-facade.service';
 import { LOCATION } from '../../services/tokens/location-token';
 import { GoogleAnalyticsService } from '../../services/tracking/google-analytics.service';
@@ -68,14 +68,14 @@ describe('SnapComponent', () => {
   });
 
   it('should take snapshot and query api for snapOdd results', (done) => {
-    snapOddsFacade.getSnap.mockReturnValue(of(sportEventsMock));
+    snapOddsFacade.getSnap.mockReturnValue(of(sportEventTvSearchMock));
 
     component.ngOnInit();
     component.takeSnapshot();
 
     setTimeout(() => {
       expect(notificationService.notify).toHaveBeenCalled();
-      expect(applicationConfigService.emitResultsEvent).toHaveBeenCalledWith(sportEventsMock);
+      expect(applicationConfigService.emitResultsEvent).toHaveBeenCalledWith(sportEventTvSearchMock);
       expect(appStateStore.dispatch).toHaveBeenCalledWith(AppState.SNAP_IN_PROGRESS);
       expect(snapOddsFacade.getSnap).toHaveBeenCalledWith(webcamImage.blob, false);
 
@@ -87,13 +87,13 @@ describe('SnapComponent', () => {
     applicationConfigService.isAutoSnapEnabled.mockReturnValue(true);
 
     snapOddsFacade.getSnap.mockReturnValueOnce(throwError(() => new Error()));
-    snapOddsFacade.getSnap.mockReturnValueOnce(of(sportEventsMock));
+    snapOddsFacade.getSnap.mockReturnValueOnce(of(sportEventTvSearchMock));
 
     component.ngOnInit();
 
     setTimeout(() => {
       expect(webcamComponent.triggerSnapshot).toHaveBeenCalledTimes(2);
-      expect(applicationConfigService.emitResultsEvent).toHaveBeenCalledWith(sportEventsMock);
+      expect(applicationConfigService.emitResultsEvent).toHaveBeenCalledWith(sportEventTvSearchMock);
       expect(appStateStore.dispatch).not.toHaveBeenCalledWith(AppState.SNAP_IN_PROGRESS);
       component.ngOnDestroy();
 
@@ -123,7 +123,7 @@ describe('SnapComponent', () => {
     });
 
     it('should set state to SNAP_NO_RESULTS if getSnap returns SnapOddsNoResultError', (done) => {
-      snapOddsFacade.getSnap.mockReturnValue(throwError(() => new SnapOddsNoResultError()));
+      snapOddsFacade.getSnap.mockReturnValue(throwError(() => new TvSearchNoResultError()));
 
       component.takeSnapshot();
 

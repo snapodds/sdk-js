@@ -1,11 +1,11 @@
 import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { SportEventsResponse } from '@response/typings';
+import { TvSearchResult } from '@response/typings';
 import { defer, delay, mergeMap, Observable, retryWhen, Subject, switchMap, takeUntil, timer } from 'rxjs';
 import { ApplicationConfigService } from '../../services/config/application-config.service';
 import { ManipulatedImage } from '../../services/image-manipulation/manipulated-image';
 import { LoggerService } from '../../services/logger/logger.service';
 import { NotificationService } from '../../services/notification/notification.service';
-import { SnapOddsNoResultError } from '../../services/snap-odds/snap-odds-errors';
+import { TvSearchNoResultError } from '../../services/snap-odds/snap-odds-errors';
 import { SnapOddsFacade } from '../../services/snap-odds/snap-odds-facade.service';
 import { LOCATION } from '../../services/tokens/location-token';
 import { GoogleAnalyticsService } from '../../services/tracking/google-analytics.service';
@@ -70,7 +70,7 @@ export class SnapComponent implements OnInit, OnDestroy {
   takeSnapshot(): void {
     this.loadSportEvents().subscribe({
       next: (response) => this.handleSuccess(response),
-      error: (error) => this.handeleError(error),
+      error: (error) => this.handleError(error),
     });
     this.snapshot$.next();
   }
@@ -88,20 +88,20 @@ export class SnapComponent implements OnInit, OnDestroy {
       .subscribe((response) => this.handleSuccess(response));
   }
 
-  private handleSuccess(sportEventsResponse: SportEventsResponse) {
+  private handleSuccess(sportEventsResponse: TvSearchResult) {
     this.notificationService.notify();
     this.applicationConfigService.emitResultsEvent(sportEventsResponse);
   }
 
-  private handeleError(error: unknown): void {
-    if (error instanceof SnapOddsNoResultError) {
+  private handleError(error: unknown): void {
+    if (error instanceof TvSearchNoResultError) {
       this.appStateStore.dispatch(AppState.SNAP_NO_RESULTS);
     } else {
       this.appStateStore.dispatch(AppState.SNAP_FAILED);
     }
   }
 
-  private loadSportEvents(autoSnap = false): Observable<SportEventsResponse> {
+  private loadSportEvents(autoSnap = false): Observable<TvSearchResult> {
     if (!autoSnap) {
       this.appStateStore.dispatch(AppState.SNAP_IN_PROGRESS);
     }

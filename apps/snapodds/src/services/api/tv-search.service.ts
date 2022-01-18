@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SportEventsResponse } from '@response/typings';
+import { TvSearchResult } from '@response/typings';
 import { catchError, map, Observable, of, switchMap, tap, throwError } from 'rxjs';
 import { ApplicationConfigService } from '../config/application-config.service';
 import { LoggerService } from '../logger/logger.service';
@@ -9,7 +9,7 @@ import { GoogleAnalyticsService } from '../tracking/google-analytics.service';
 @Injectable({
   providedIn: 'root',
 })
-export class SnapscreenApiService {
+export class TvSearchService {
   private timeLag = 0;
   private snapTimestamp = 0;
 
@@ -32,22 +32,22 @@ export class SnapscreenApiService {
     return Date.now() - this.snapTimestamp;
   }
 
-  sportSnap(imageData: Blob): Observable<SportEventsResponse | null> {
+  searchSport(imageData: Blob): Observable<TvSearchResult | null> {
     return this.snap('/tv-search/sport/by-image', imageData);
   }
 
-  sportAutoSnap(imageData: Blob): Observable<SportEventsResponse | null> {
+  autoSearchSport(imageData: Blob): Observable<TvSearchResult | null> {
     return this.snap('/tv-search/sport/near-timestamp/by-image', imageData, true);
   }
 
-  private snap(url: string, imageData: Blob, addTimestamp = false): Observable<SportEventsResponse | null> {
+  private snap(url: string, imageData: Blob, addTimestamp = false): Observable<TvSearchResult | null> {
     return of(this.createSnapscreenHeaders(addTimestamp)).pipe(
       tap(() => {
         this.snapTimestamp = Date.now();
         this.analyticsService.snapViewSnap();
       }),
       switchMap((headers) =>
-        this.http.post<SportEventsResponse>(`${this.baseUrl}${url}`, imageData, { headers, observe: 'response' })
+        this.http.post<TvSearchResult>(`${this.baseUrl}${url}`, imageData, { headers, observe: 'response' })
       ),
       catchError((error) => {
         this.writeCallFailedAnalytics();
@@ -75,7 +75,7 @@ export class SnapscreenApiService {
     this.analyticsService.snapViewSnapFailed(this.currentSnapTimeOffset);
   }
 
-  private writeSnapResulAnalytics(response: HttpResponse<SportEventsResponse>): void {
+  private writeSnapResulAnalytics(response: HttpResponse<TvSearchResult>): void {
     if (response.body?.resultEntries.length) {
       this.analyticsService.snapViewSnapResult(this.currentSnapTimeOffset);
     } else {
@@ -83,7 +83,7 @@ export class SnapscreenApiService {
     }
   }
 
-  private writeTimeLag(response: HttpResponse<SportEventsResponse>): void {
+  private writeTimeLag(response: HttpResponse<TvSearchResult>): void {
     const responseDate = response.headers.get('Date');
 
     if (responseDate) {

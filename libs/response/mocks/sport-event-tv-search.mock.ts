@@ -1,6 +1,6 @@
-import { SportEventsResponse } from '../typings';
+import { TvSearchResult } from '../typings';
 
-export const sportEventsMock: SportEventsResponse = {
+export const sportEventTvSearchMock: TvSearchResult = {
   requestUuid: '6ed73afb-8f20-4764-85d6-5e84d5ee29fe',
   resultEntries: [
     {

@@ -1,5 +1,5 @@
 import { EventEmitter } from '@angular/core';
-import { SportEventsResponse } from '@response/typings';
+import { TvSearchResult } from '@response/typings';
 import { LogLevel } from '../services/logger/log-level';
 import { LoggerEvent } from '../services/logger/logger-event';
 
@@ -12,5 +12,5 @@ export interface ApplicationConfig {
   tokenRefreshEvent: EventEmitter<void>;
   loggerEvent: EventEmitter<LoggerEvent>;
   closeEvent: EventEmitter<void>;
-  resultsEvent: EventEmitter<SportEventsResponse>;
+  resultsEvent: EventEmitter<TvSearchResult>;
 }

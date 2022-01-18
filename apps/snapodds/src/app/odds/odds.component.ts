@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChange } from '@angular/core';
-import { SportEventResultEntryResponse, SportEventsResponse } from '@response/typings';
+import { TvSearchResultEntry, TvSearchResult } from '@response/typings';
 import { LineOdds } from '../../models/line-odds';
 import { SnapOddsFacade } from '../../services/snap-odds/snap-odds-facade.service';
 import { WINDOW } from '../../services/tokens/window-token';
@@ -10,12 +10,12 @@ import { WINDOW } from '../../services/tokens/window-token';
   styleUrls: ['./odds.component.scss'],
 })
 export class OddsComponent implements OnChanges {
-  sportEventResult: SportEventResultEntryResponse | null = null;
+  sportEventResult: TvSearchResultEntry | null = null;
   lineOdds: LineOdds | null = null;
   loading = false;
   error = false;
 
-  @Input() sportEventsResponse?: SportEventsResponse | null;
+  @Input() sportEventsResponse?: TvSearchResult | null;
   @Output() closeOddsView: EventEmitter<void> = new EventEmitter();
 
   constructor(@Inject(WINDOW) private readonly window: Window, private readonly snapOddsFacade: SnapOddsFacade) {}

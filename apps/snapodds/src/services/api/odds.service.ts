@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LineOddsResponse } from '@response/typings';
+import { OddsResponse } from '@response/typings';
 import { map, Observable } from 'rxjs';
 import { LineOdds } from '../../models/line-odds';
 import { SportsBook } from '../../models/sports-book';
@@ -9,7 +9,7 @@ import { ApplicationConfigService } from '../config/application-config.service';
 @Injectable({
   providedIn: 'root',
 })
-export class SportEventOddsService {
+export class OddsService {
   constructor(private readonly http: HttpClient, private readonly applicationConfigService: ApplicationConfigService) {}
 
   get baseUrl() {
@@ -18,11 +18,11 @@ export class SportEventOddsService {
 
   gameLineOddsBySportEventId(sportEventId: number): Observable<LineOdds> {
     return this.http
-      .get<LineOddsResponse>(`${this.baseUrl}/sport/events/${sportEventId}/odds/lines`)
+      .get<OddsResponse>(`${this.baseUrl}/sport/events/${sportEventId}/odds/lines`)
       .pipe(map((response) => this.mapLineOddsResponse(response)));
   }
 
-  private mapLineOddsResponse(lineOdds: LineOddsResponse): LineOdds {
+  private mapLineOddsResponse(lineOdds: OddsResponse): LineOdds {
     const { competitors, players = [], sportsBooks } = lineOdds;
 
     if (competitors?.length < 2 || !sportsBooks) {

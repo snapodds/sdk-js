@@ -4,10 +4,10 @@ import { lineOddsMock } from '@response/mocks';
 import { mock, MockProxy } from 'jest-mock-extended';
 import { ApplicationConfigService } from '../config/application-config.service';
 import { lineOddsMapped } from './line-odds.mapped';
-import { SportEventOddsService } from './sport-event-odds.service';
+import { OddsService } from './odds.service';
 
-describe('SportEventOddsService', () => {
-  let service: SportEventOddsService;
+describe('OddsService', () => {
+  let service: OddsService;
   let http: HttpTestingController;
   let applicationConfigService: MockProxy<ApplicationConfigService>;
 
@@ -19,7 +19,7 @@ describe('SportEventOddsService', () => {
       providers: [{ provide: ApplicationConfigService, useValue: applicationConfigService }],
     });
 
-    service = TestBed.inject(SportEventOddsService);
+    service = TestBed.inject(OddsService);
     http = TestBed.inject(HttpTestingController);
   });
 

@@ -3,7 +3,7 @@
  * This is only a minimal backend to get started.
  */
 
-import { lineOddsMock, sportEventsMock } from '@response/mocks';
+import { lineOddsMock, sportEventTvSearchMock } from '@response/mocks';
 import * as cors from 'cors';
 import * as express from 'express';
 import { readFileSync } from 'fs';
@@ -20,11 +20,11 @@ app.get('/api/token', (req, res) => {
 });
 
 app.post('/api/tv-search/sport/by-image', (req, res) => {
-  res.json(sportEventsMock);
+  res.json(sportEventTvSearchMock);
 });
 
 app.post('/api/tv-search/sport/near-timestamp/by-image', (req, res) => {
-  res.json(sportEventsMock);
+  res.json(sportEventTvSearchMock);
 });
 
 app.get('/api/sport/events/:eventId/odds/lines', (req, res) => {

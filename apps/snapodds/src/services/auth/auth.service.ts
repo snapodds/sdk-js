@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AccessToken } from '@response/typings';
 import { addSeconds, differenceInSeconds } from 'date-fns';
@@ -33,6 +34,12 @@ export class AuthService {
 
   getAccessToken(): string | undefined {
     return this.accessToken;
+  }
+
+  createAuthHeaders() {
+    return this.hasValidAccessToken()
+      ? new HttpHeaders({ Authorization: `Bearer ${this.getAccessToken()}` })
+      : new HttpHeaders();
   }
 
   hasValidAccessToken(): boolean {

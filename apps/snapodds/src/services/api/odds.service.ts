@@ -4,13 +4,18 @@ import { OddsResponse } from '@response/typings';
 import { map, Observable } from 'rxjs';
 import { LineOdds } from '../../models/line-odds';
 import { SportsBook } from '../../models/sports-book';
+import { AuthService } from '../auth/auth.service';
 import { ApplicationConfigService } from '../config/application-config.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OddsService {
-  constructor(private readonly http: HttpClient, private readonly applicationConfigService: ApplicationConfigService) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly applicationConfigService: ApplicationConfigService,
+    private readonly authService: AuthService
+  ) {}
 
   get baseUrl() {
     return this.applicationConfigService.getApiUrl();
@@ -18,7 +23,9 @@ export class OddsService {
 
   gameLineOddsBySportEventId(sportEventId: number): Observable<LineOdds> {
     return this.http
-      .get<OddsResponse>(`${this.baseUrl}/sport/events/${sportEventId}/odds/lines`)
+      .get<OddsResponse>(`${this.baseUrl}/sport/events/${sportEventId}/odds/lines`, {
+        headers: this.authService.createAuthHeaders(),
+      })
       .pipe(map((response) => this.mapLineOddsResponse(response)));
   }
 

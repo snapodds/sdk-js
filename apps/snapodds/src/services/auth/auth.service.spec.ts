@@ -58,4 +58,16 @@ describe('AuthService', () => {
       expect(service.hasValidAccessToken()).toBe(false);
     });
   });
+
+  describe('createAuthHeaders', () => {
+    it('should add the access token to the response headers', () => {
+      service.updateToken(authResponseMock);
+      expect(service.createAuthHeaders().get('Authorization')).toBe(`Bearer ${authResponseMock.access_token}`);
+    });
+
+    it('should omit access token if invalid from the response headers', () => {
+      service.updateToken({ ...authResponseMock, expires_in: 5 });
+      expect(service.createAuthHeaders().get('Authorization')).toBe(null);
+    });
+  });
 });

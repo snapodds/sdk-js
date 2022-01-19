@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TvSearchResult } from '@response/typings';
 import { map, Observable, of, switchMap, tap } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 import { ApplicationConfigService } from '../config/application-config.service';
 import { LoggerService } from '../logger/logger.service';
 import { GoogleAnalyticsService } from '../tracking/google-analytics.service';
@@ -17,7 +18,8 @@ export class TvSearchService {
     private readonly http: HttpClient,
     private readonly logger: LoggerService,
     private readonly analyticsService: GoogleAnalyticsService,
-    private readonly applicationConfigService: ApplicationConfigService
+    private readonly applicationConfigService: ApplicationConfigService,
+    private readonly authService: AuthService
   ) {}
 
   get baseUrl() {
@@ -55,9 +57,10 @@ export class TvSearchService {
   }
 
   private createSnapscreenHeaders(addTimestamp: boolean): HttpHeaders {
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-type', 'application/octet-stream');
-    headers = headers.set('X-Snapscreen-MimeType', 'image/jpeg');
+    let headers = this.authService
+      .createAuthHeaders()
+      .set('Content-type', 'application/octet-stream')
+      .set('X-Snapscreen-MimeType', 'image/jpeg');
 
     if (addTimestamp) {
       headers = headers.set('X-Snapscreen-Timestamp', `${this.currentTimestamp}`);

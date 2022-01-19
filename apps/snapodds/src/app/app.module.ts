@@ -1,11 +1,10 @@
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { DoBootstrap, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { PinchZoomModule } from 'ngx-pinch-zoom';
 import { WebcamModule } from 'ngx-webcam';
-import { AuthHttpInterceptor } from '../services/auth/auth-interceptor.service';
 import { FileTranslateLoader } from '../services/i18n/file-translate-loader';
 
 import { AppComponent } from './app.component';
@@ -49,7 +48,6 @@ import { WebcamComponent } from './webcam/webcam.component';
       },
     }),
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true }],
   entryComponents: [AppComponent],
 })
 export class AppModule implements DoBootstrap {

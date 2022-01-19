@@ -76,18 +76,29 @@ describe('OddsComponent', () => {
 
     expect(component.lineOdds).toBe(lineOddsMapped);
     expect(snapOddsFacade.getLineOdds).toHaveBeenCalledWith(sportEventResult.sportEvent.id);
-    expect(component.error).toBe(false);
+    expect(component.noResults).toBe(false);
     expect(component.loading).toBe(false);
   });
 
-  it('should show error if loading lineOdds failed', () => {
+  it('should show noResults if loading lineOdds failed', () => {
     snapOddsFacade.getLineOdds.mockReturnValue(throwError(() => new Error()));
 
     component.ngOnChanges({ sportEventsResponse: new SimpleChange(null, sportEventTvSearchMock, true) });
 
     expect(snapOddsFacade.getLineOdds).toHaveBeenCalledWith(sportEventResult.sportEvent.id);
     expect(component.lineOdds).toBe(null);
-    expect(component.error).toBe(true);
+    expect(component.noResults).toBe(true);
+    expect(component.loading).toBe(false);
+  });
+
+  it('should show noResults if sportBooks are empty ', () => {
+    snapOddsFacade.getLineOdds.mockReturnValue(of({ ...lineOddsMapped, sportsBooks: [] }));
+
+    component.ngOnChanges({ sportEventsResponse: new SimpleChange(null, sportEventTvSearchMock, true) });
+
+    expect(snapOddsFacade.getLineOdds).toHaveBeenCalledWith(sportEventResult.sportEvent.id);
+    expect(component.lineOdds).toBe(null);
+    expect(component.noResults).toBe(true);
     expect(component.loading).toBe(false);
   });
 });

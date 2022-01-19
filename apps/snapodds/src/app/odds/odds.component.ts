@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChange } from '@angular/core';
-import { TvSearchResultEntry, TvSearchResult } from '@response/typings';
+import { TvSearchResult, TvSearchResultEntry } from '@response/typings';
+import { tap } from 'rxjs';
 import { LineOdds } from '../../models/line-odds';
 import { SnapOddsFacade } from '../../services/snap-odds/snap-odds-facade.service';
 import { WINDOW } from '../../services/tokens/window-token';
@@ -13,7 +14,7 @@ export class OddsComponent implements OnChanges {
   sportEventResult: TvSearchResultEntry | null = null;
   lineOdds: LineOdds | null = null;
   loading = false;
-  error = false;
+  noResults = false;
 
   @Input() sportEventsResponse?: TvSearchResult | null;
   @Output() closeOddsView: EventEmitter<void> = new EventEmitter();
@@ -37,18 +38,25 @@ export class OddsComponent implements OnChanges {
 
   private loadLineOdds(sportEventId: number) {
     this.loading = true;
-    this.error = false;
+    this.noResults = false;
 
-    this.snapOddsFacade.getLineOdds(sportEventId).subscribe({
-      next: (lineOdds) => {
-        this.lineOdds = lineOdds;
-        this.loading = false;
-      },
-      error: () => {
-        this.lineOdds = null;
-        this.error = true;
-        this.loading = false;
-      },
-    });
+    this.snapOddsFacade
+      .getLineOdds(sportEventId)
+      .pipe(
+        tap((lineOdds) => {
+          if (lineOdds.sportsBooks?.length === 0) throw new Error('No SportsBooks found');
+        })
+      )
+      .subscribe({
+        next: (lineOdds) => {
+          this.lineOdds = lineOdds;
+          this.loading = false;
+        },
+        error: () => {
+          this.lineOdds = null;
+          this.noResults = true;
+          this.loading = false;
+        },
+      });
   }
 }

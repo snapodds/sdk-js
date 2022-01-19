@@ -74,7 +74,7 @@ describe('SnapComponent', () => {
 
     setTimeout(() => {
       expect(notificationService.notify).toHaveBeenCalled();
-      expect(applicationConfigService.emitResultsEvent).toHaveBeenCalledWith(sportEventTvSearchMock);
+      expect(applicationConfigService.emitResultsEvent).toHaveBeenCalledWith(sportEventTvSearchMock.resultEntries[0]);
       expect(appStateStore.dispatch).toHaveBeenCalledWith(AppState.SNAP_IN_PROGRESS);
       expect(snapOddsFacade.getSnap).toHaveBeenCalledWith(webcamImage.blob, false);
 
@@ -93,7 +93,7 @@ describe('SnapComponent', () => {
 
     setTimeout(() => {
       expect(webcamComponent.triggerSnapshot).toHaveBeenCalledTimes(2);
-      expect(applicationConfigService.emitResultsEvent).toHaveBeenCalledWith(sportEventTvSearchMock);
+      expect(applicationConfigService.emitResultsEvent).toHaveBeenCalledWith(sportEventTvSearchMock.resultEntries[0]);
       expect(appStateStore.dispatch).not.toHaveBeenCalledWith(AppState.SNAP_IN_PROGRESS);
       component.ngOnDestroy();
 

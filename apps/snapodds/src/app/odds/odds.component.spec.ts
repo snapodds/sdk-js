@@ -21,7 +21,7 @@ describe('OddsComponent', () => {
   let window: MockProxy<Window>;
   let snapOddsFacade: MockProxy<SnapOddsFacade>;
 
-  const sportEventResult: TvSearchResultEntry = sportEventTvSearchMock.resultEntries[0];
+  const tvSearchResultEntry: TvSearchResultEntry = sportEventTvSearchMock.resultEntries[0];
 
   beforeEach(async () => {
     window = mock<Window>();
@@ -42,7 +42,7 @@ describe('OddsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(OddsComponent);
     component = fixture.componentInstance;
-    component.sportEventResult = sportEventResult;
+    component.tvSearchResultEntry = tvSearchResultEntry;
     component.lineOdds = lineOddsMapped;
     fixture.detectChanges();
   });
@@ -51,10 +51,10 @@ describe('OddsComponent', () => {
     const element: HTMLElement = fixture.nativeElement;
 
     const tournament = element.querySelector('.c-sport-event__tournament');
-    expect(tournament?.textContent).toEqual(sportEventResult.sportEvent.tournament);
+    expect(tournament?.textContent).toEqual(tvSearchResultEntry.sportEvent.tournament);
 
     const channel = element.querySelector('.c-sport-event__channel');
-    expect(channel?.textContent).toEqual(`${sportEventResult.tvChannel.name} since 01:40 AM`);
+    expect(channel?.textContent).toEqual(`${tvSearchResultEntry.tvChannel.name} since 01:40 AM`);
 
     const sportBook = element.querySelectorAll<HTMLElement>('.c-game');
     expect(sportBook).toHaveLength(lineOddsMapped.sportsBooks?.length ?? 0);
@@ -72,10 +72,10 @@ describe('OddsComponent', () => {
   it('should load lineOdds when sportEvents are changed', () => {
     snapOddsFacade.getLineOdds.mockReturnValue(of(lineOddsMapped));
 
-    component.ngOnChanges({ sportEventsResponse: new SimpleChange(null, sportEventTvSearchMock, true) });
+    component.ngOnChanges({ tvSearchResultEntry: new SimpleChange(null, tvSearchResultEntry, true) });
 
     expect(component.lineOdds).toBe(lineOddsMapped);
-    expect(snapOddsFacade.getLineOdds).toHaveBeenCalledWith(sportEventResult.sportEvent.id);
+    expect(snapOddsFacade.getLineOdds).toHaveBeenCalledWith(tvSearchResultEntry.sportEvent.id);
     expect(component.noResults).toBe(false);
     expect(component.loading).toBe(false);
   });
@@ -83,9 +83,9 @@ describe('OddsComponent', () => {
   it('should show noResults if loading lineOdds failed', () => {
     snapOddsFacade.getLineOdds.mockReturnValue(throwError(() => new Error()));
 
-    component.ngOnChanges({ sportEventsResponse: new SimpleChange(null, sportEventTvSearchMock, true) });
+    component.ngOnChanges({ tvSearchResultEntry: new SimpleChange(null, tvSearchResultEntry, true) });
 
-    expect(snapOddsFacade.getLineOdds).toHaveBeenCalledWith(sportEventResult.sportEvent.id);
+    expect(snapOddsFacade.getLineOdds).toHaveBeenCalledWith(tvSearchResultEntry.sportEvent.id);
     expect(component.lineOdds).toBe(null);
     expect(component.noResults).toBe(true);
     expect(component.loading).toBe(false);
@@ -94,9 +94,9 @@ describe('OddsComponent', () => {
   it('should show noResults if sportBooks are empty ', () => {
     snapOddsFacade.getLineOdds.mockReturnValue(of({ ...lineOddsMapped, sportsBooks: [] }));
 
-    component.ngOnChanges({ sportEventsResponse: new SimpleChange(null, sportEventTvSearchMock, true) });
+    component.ngOnChanges({ tvSearchResultEntry: new SimpleChange(null, tvSearchResultEntry, true) });
 
-    expect(snapOddsFacade.getLineOdds).toHaveBeenCalledWith(sportEventResult.sportEvent.id);
+    expect(snapOddsFacade.getLineOdds).toHaveBeenCalledWith(tvSearchResultEntry.sportEvent.id);
     expect(component.lineOdds).toBe(null);
     expect(component.noResults).toBe(true);
     expect(component.loading).toBe(false);

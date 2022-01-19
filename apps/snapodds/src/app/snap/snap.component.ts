@@ -97,7 +97,7 @@ export class SnapComponent implements OnInit, OnDestroy {
 
   private handleSuccess(sportEventsResponse: TvSearchResult) {
     this.notificationService.notify();
-    this.applicationConfigService.emitResultsEvent(sportEventsResponse);
+    this.applicationConfigService.emitResultsEvent(sportEventsResponse.resultEntries[0]);
   }
 
   private handleError(error: unknown): void {

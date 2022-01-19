@@ -68,7 +68,7 @@
 
       sdk.addEventListener('closed', () => document.body.removeChild(sdk));
 
-      sdk.addEventListener('results', ({ detail }) => (sdk.sportEvents = detail));
+      sdk.addEventListener('results', ({ detail }) => (sdk.tvSearchResult = detail));
 
       sdk.addEventListener('logger', ({ detail: { logLevel, data } }) => console.log('SDK:logger', logLevel, ...data));
 

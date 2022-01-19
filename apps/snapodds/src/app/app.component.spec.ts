@@ -83,7 +83,7 @@ describe('AppComponent', () => {
   it('should clear snapOddsData when closed', () => {
     component.closeOddsView();
 
-    expect(component.sportEventsResponse).toBe(null);
+    expect(component.tvSearchResult).toBe(null);
   });
 
   it('setting the tokenResponse should call the authService to update the token', () => {
@@ -93,9 +93,9 @@ describe('AppComponent', () => {
   });
 
   it('setting the sportEvents should set the state to SHOW_ODDS', () => {
-    component.sportEvents = sportEventTvSearchMock;
+    component.tvSearchResult = sportEventTvSearchMock.resultEntries[0];
 
-    expect(component.sportEventsResponse).toBe(sportEventTvSearchMock);
+    expect(component.tvSearchResult).toBe(sportEventTvSearchMock.resultEntries[0]);
     expect(appStateStore.dispatch).toHaveBeenCalledWith(AppState.SHOW_ODDS);
   });
 });

@@ -1,9 +1,9 @@
 <snapodds-help *ngIf="appStateStore.showHelp$ | async; else snap"></snapodds-help>
 
 <ng-template #snap>
-  <snapodds-snap *ngIf="!sportEventsResponse; else odds"></snapodds-snap>
+  <snapodds-snap *ngIf="!tvSearchResult; else odds"></snapodds-snap>
 </ng-template>
 
 <ng-template #odds>
-  <snapodds-odds [sportEventsResponse]="sportEventsResponse" (closeOddsView)="closeOddsView()"></snapodds-odds>
+  <snapodds-odds [tvSearchResultEntry]="tvSearchResult" (closeOddsView)="closeOddsView()"></snapodds-odds>
 </ng-template>

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChange } from '@angular/core';
-import { TvSearchResult, TvSearchResultEntry } from '@response/typings';
+import { TvSearchResultEntry } from '@response/typings';
 import { tap } from 'rxjs';
 import { LineOdds } from '../../models/line-odds';
 import { SnapOddsFacade } from '../../services/snap-odds/snap-odds-facade.service';
@@ -11,12 +11,11 @@ import { WINDOW } from '../../services/tokens/window-token';
   styleUrls: ['./odds.component.scss'],
 })
 export class OddsComponent implements OnChanges {
-  sportEventResult: TvSearchResultEntry | null = null;
   lineOdds: LineOdds | null = null;
   loading = false;
   noResults = false;
 
-  @Input() sportEventsResponse?: TvSearchResult | null;
+  @Input() tvSearchResultEntry?: TvSearchResultEntry | null;
   @Output() closeOddsView: EventEmitter<void> = new EventEmitter();
 
   constructor(@Inject(WINDOW) private readonly window: Window, private readonly snapOddsFacade: SnapOddsFacade) {}
@@ -28,11 +27,9 @@ export class OddsComponent implements OnChanges {
     }
   }
 
-  ngOnChanges(changes: { sportEventsResponse: SimpleChange }): void {
-    this.sportEventResult = changes.sportEventsResponse.currentValue.resultEntries[0] ?? null;
-
-    if (this.sportEventResult) {
-      this.loadLineOdds(this.sportEventResult.sportEvent.id);
+  ngOnChanges(changes: { tvSearchResultEntry: SimpleChange }): void {
+    if (changes.tvSearchResultEntry.currentValue) {
+      this.loadLineOdds(changes.tvSearchResultEntry.currentValue.sportEvent.id);
     }
   }
 

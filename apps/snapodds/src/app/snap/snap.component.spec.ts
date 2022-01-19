@@ -18,12 +18,12 @@ import { SnapComponent } from './snap.component';
 
 describe('SnapComponent', () => {
   let component: SnapComponent;
+  let mediaDeviceStateStore: MediaDeviceStateStore;
   let logger: MockProxy<LoggerService>;
   let applicationConfigService: MockProxy<ApplicationConfigService>;
   let analyticsService: MockProxy<GoogleAnalyticsService>;
   let snapOddsFacade: MockProxy<SnapOddsFacade>;
   let appStateStore: MockProxy<AppStateStore>;
-  let mediaDeviceStateStore: MockProxy<MediaDeviceStateStore>;
   let webcamComponent: MockProxy<WebcamComponent>;
   let location: MockProxy<Location>;
   let notificationService: MockProxy<NotificationService>;
@@ -41,7 +41,6 @@ describe('SnapComponent', () => {
     analyticsService = mock<GoogleAnalyticsService>();
     snapOddsFacade = mock<SnapOddsFacade>();
     appStateStore = mock<AppStateStore>();
-    mediaDeviceStateStore = mock<MediaDeviceStateStore>();
     webcamComponent = mock<WebcamComponent>();
     location = mock<Location>();
     notificationService = mock<NotificationService>();
@@ -54,7 +53,6 @@ describe('SnapComponent', () => {
         { provide: GoogleAnalyticsService, useValue: analyticsService },
         { provide: SnapOddsFacade, useValue: snapOddsFacade },
         { provide: AppStateStore, useValue: appStateStore },
-        { provide: MediaDeviceStateStore, useValue: mediaDeviceStateStore },
         { provide: NotificationService, useValue: notificationService },
         { provide: LOCATION, useValue: location },
       ],
@@ -62,8 +60,9 @@ describe('SnapComponent', () => {
 
     component = TestBed.inject(SnapComponent);
     component.webcamComponent = webcamComponent;
+    mediaDeviceStateStore = TestBed.inject(MediaDeviceStateStore);
+    mediaDeviceStateStore.dispatch(MediaDeviceState.DEVICE_INIT);
     appStateStore.getState.mockReturnValue(of(AppState.SNAP_READY));
-    mediaDeviceStateStore.getState.mockReturnValue(of(MediaDeviceState.DEVICE_INIT));
     webcamComponent.triggerSnapshot.mockResolvedValue(webcamImage);
   });
 
@@ -88,6 +87,7 @@ describe('SnapComponent', () => {
 
     snapOddsFacade.getSnap.mockReturnValueOnce(throwError(() => new Error()));
     snapOddsFacade.getSnap.mockReturnValueOnce(of(sportEventTvSearchMock));
+    mediaDeviceStateStore.dispatch(MediaDeviceState.DEVICE_CAMERA_READY);
 
     component.ngOnInit();
 

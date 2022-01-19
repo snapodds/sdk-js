@@ -1,6 +1,6 @@
 import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { TvSearchResult } from '@response/typings';
-import { defer, delay, mergeMap, Observable, retryWhen, Subject, switchMap, takeUntil, timer } from 'rxjs';
+import { defer, delay, mergeMap, Observable, retryWhen, Subject, switchMap, take, takeUntil, timer } from 'rxjs';
 import { ApplicationConfigService } from '../../services/config/application-config.service';
 import { ManipulatedImage } from '../../services/image-manipulation/manipulated-image';
 import { LoggerService } from '../../services/logger/logger.service';
@@ -76,16 +76,23 @@ export class SnapComponent implements OnInit, OnDestroy {
   }
 
   private registerAutoSnap(): void {
-    timer(this.applicationConfigService.getAutoSnapDelay(true))
+    this.mediaDeviceStateStore.webcamIsReady$
       .pipe(
-        mergeMap(() =>
-          this.loadSportEvents(true).pipe(
-            retryWhen((errors) => errors.pipe(delay(this.applicationConfigService.getAutoSnapDelay())))
-          )
-        ),
-        takeUntil(this.snapshot$)
+        take(1),
+        switchMap(() => this.startAutoSnapWithDelay())
       )
       .subscribe((response) => this.handleSuccess(response));
+  }
+
+  private startAutoSnapWithDelay(): Observable<TvSearchResult> {
+    return timer(this.applicationConfigService.getAutoSnapDelay(true)).pipe(
+      mergeMap(() =>
+        this.loadSportEvents(true).pipe(
+          retryWhen((errors) => errors.pipe(delay(this.applicationConfigService.getAutoSnapDelay())))
+        )
+      ),
+      takeUntil(this.snapshot$)
+    );
   }
 
   private handleSuccess(sportEventsResponse: TvSearchResult) {

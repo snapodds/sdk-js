@@ -1,11 +1,11 @@
 import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { TvSearchResult } from '@response/typings';
-import { defer, delay, mergeMap, Observable, retryWhen, Subject, switchMap, take, takeUntil, timer } from 'rxjs';
+import { Observable, Subject, defer, delay, mergeMap, race, retryWhen, switchMap, take, takeUntil, timer } from 'rxjs';
 import { ApplicationConfigService } from '../../services/config/application-config.service';
 import { ManipulatedImage } from '../../services/image-manipulation/manipulated-image';
 import { LoggerService } from '../../services/logger/logger.service';
 import { NotificationService } from '../../services/notification/notification.service';
-import { TvSearchNoResultError } from '../../services/snap-odds/snap-odds-errors';
+import { TvSearchNoResultError } from '../../services/api/api-errors';
 import { SnapOddsFacade } from '../../services/snap-odds/snap-odds-facade.service';
 import { LOCATION } from '../../services/tokens/location-token';
 import { GoogleAnalyticsService } from '../../services/tracking/google-analytics.service';
@@ -68,17 +68,19 @@ export class SnapComponent implements OnInit, OnDestroy {
   }
 
   takeSnapshot(): void {
+    this.snapshot$.next();
+
     this.loadSportEvents().subscribe({
       next: (response) => this.handleSuccess(response),
       error: (error) => this.handleError(error),
     });
-    this.snapshot$.next();
   }
 
   private registerAutoSnap(): void {
     this.mediaDeviceStateStore.webcamIsReady$
       .pipe(
         take(1),
+        takeUntil(this.destroyed$),
         switchMap(() => this.startAutoSnapWithDelay())
       )
       .subscribe((response) => this.handleSuccess(response));
@@ -91,7 +93,7 @@ export class SnapComponent implements OnInit, OnDestroy {
           retryWhen((errors) => errors.pipe(delay(this.applicationConfigService.getAutoSnapDelay())))
         )
       ),
-      takeUntil(this.snapshot$)
+      takeUntil(race(this.destroyed$, this.snapshot$))
     );
   }
 
@@ -113,7 +115,13 @@ export class SnapComponent implements OnInit, OnDestroy {
       this.appStateStore.dispatch(AppState.SNAP_IN_PROGRESS);
     }
     return defer(() => this.webcamComponent.triggerSnapshot()).pipe(
-      switchMap((webcamImage: ManipulatedImage) => this.snapOddsFacade.getSnap(webcamImage.blob, autoSnap))
+      switchMap((webcamImage: ManipulatedImage) => {
+        if (autoSnap) {
+          return this.snapOddsFacade.autoSearchSport(webcamImage.blob);
+        } else {
+          return this.snapOddsFacade.searchSport(webcamImage.blob);
+        }
+      })
     );
   }
 

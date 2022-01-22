@@ -1,7 +1,5 @@
-import { EventEmitter } from '@angular/core';
-import { TvSearchResultEntry } from '@response/typings';
+import { AccessToken, TvSearchResultEntry } from '@response/typings';
 import { LogLevel } from '../services/logger/log-level';
-import { LoggerEvent } from '../services/logger/logger-event';
 
 export interface ApplicationConfig {
   apiUrl: string;
@@ -9,8 +7,8 @@ export interface ApplicationConfig {
   language: string;
   vibrate: boolean;
   logLevel: LogLevel;
-  tokenRefreshEvent: EventEmitter<void>;
-  loggerEvent: EventEmitter<LoggerEvent>;
-  closeEvent: EventEmitter<void>;
-  resultsEvent: EventEmitter<TvSearchResultEntry>;
+  logCallback: (logLevel: string, data: unknown[]) => void;
+  closeCallback: () => void;
+  resultsCallback: (tvSearchResult: TvSearchResultEntry) => void;
+  accessTokenProvider: () => Promise<AccessToken>;
 }

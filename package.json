@@ -7,10 +7,10 @@
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "start": "nx serve",
     "start:api": "nx serve snapodds-api",
-    "build": "nx build --output-hashing none",
-    "build:elements": "ng build --output-hashing none && node build-elements.js",
+    "build": "nx run-many --target=build --projects=snapodds-builder,snapodds",
+    "build:elements": "npm run build && node build-elements.js",
     "serve:elements": "npx http-server dist/elements/snapodds -c-1 -g",
-    "test": "nx test",
+    "test": "nx run-many --all --target=test",
     "analyze": "npx webpack-bundle-analyzer dist/apps/snapodds/stats.json",
     "prepare": "husky install"
   },

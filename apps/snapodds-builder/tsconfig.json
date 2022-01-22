@@ -8,10 +8,7 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "sourceMap": false,
-    "paths": {
-      "@response/*": ["dist/libs/response/src/lib/*"]
-    }
+    "sourceMap": false
   },
   "files": [],
   "include": [],

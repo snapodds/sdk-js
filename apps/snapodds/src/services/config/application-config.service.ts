@@ -1,8 +1,8 @@
-import { EventEmitter, Injectable } from '@angular/core';
-import { TvSearchResultEntry } from '@response/typings';
+import { Injectable } from '@angular/core';
+import { AccessToken, TvSearchResultEntry } from '@response/typings';
+import { noop } from 'rxjs';
 import { ApplicationConfig } from '../../config/application-config';
 import { fromLogLevel, LogLevel } from '../logger/log-level';
-import { LoggerEvent } from '../logger/logger-event';
 
 const DEFAULT_APPLICATION_CONFIG: ApplicationConfig = {
   apiUrl: 'https://api.us.snapscreen.com',
@@ -10,10 +10,10 @@ const DEFAULT_APPLICATION_CONFIG: ApplicationConfig = {
   autoSnap: false,
   logLevel: LogLevel.SILENT,
   vibrate: false,
-  tokenRefreshEvent: new EventEmitter<void>(),
-  loggerEvent: new EventEmitter<LoggerEvent>(),
-  closeEvent: new EventEmitter<void>(),
-  resultsEvent: new EventEmitter<TvSearchResultEntry>(),
+  logCallback: noop,
+  closeCallback: noop,
+  resultsCallback: noop,
+  accessTokenProvider: () => Promise.reject('No accessTokenProvider specified'),
 };
 
 @Injectable({ providedIn: 'root' })
@@ -34,6 +34,10 @@ export class ApplicationConfigService {
       (acc, [key, value]) => (value === undefined ? acc : { ...acc, [key]: value }),
       {}
     );
+  }
+
+  get accessTokenProvider(): () => Promise<AccessToken> {
+    return this.config.accessTokenProvider;
   }
 
   isAutoSnapEnabled(): boolean {
@@ -60,20 +64,16 @@ export class ApplicationConfigService {
     return this.config.apiUrl;
   }
 
-  emitTokenRefresh(): void {
-    this.config.tokenRefreshEvent.emit();
-  }
-
   emitLoggerEvent(logLevel: LogLevel, data: unknown[]): void {
-    this.config.loggerEvent.emit({ logLevel: fromLogLevel(logLevel), data });
+    this.config.logCallback(fromLogLevel(logLevel), data);
   }
 
   emitCloseEvent(): void {
-    this.config.closeEvent.emit();
+    this.config.closeCallback();
   }
 
   emitResultsEvent(resultEntry: TvSearchResultEntry): void {
-    this.config.resultsEvent.emit(resultEntry);
+    this.config.resultsCallback(resultEntry);
   }
 
   isVibrateEnabled(): boolean {

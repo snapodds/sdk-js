@@ -31,8 +31,9 @@ describe('AuthService', () => {
     });
 
     it('should request token refresh if the existing accessToken is invalid', (done) => {
+      applicationConfigService.accessTokenProvider.mockResolvedValue(authResponseMock);
+
       service.refreshAccessToken().subscribe((accessToken) => {
-        expect(applicationConfigService.emitTokenRefresh).toHaveBeenCalled();
         expect(accessToken).toBe(authResponseMock.access_token);
         done();
       });

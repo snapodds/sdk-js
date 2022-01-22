@@ -1,12 +1,11 @@
-import { EventEmitter } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { TranslateService } from '@ngx-translate/core';
-import { authResponseMock, sportEventTvSearchMock } from '@response/mocks';
+import { sportEventTvSearchMock } from '@response/mocks';
 import { mock, MockProxy } from 'jest-mock-extended';
 import { ApplicationConfig } from '../config/application-config';
 import { AuthService } from '../services/auth/auth.service';
 import { ApplicationConfigService } from '../services/config/application-config.service';
-import { LogLevel } from '../services/logger/log-level';
+import { toLogLevel } from '../services/logger/log-level';
 import { NotificationService } from '../services/notification/notification.service';
 import { GoogleAnalyticsService } from '../services/tracking/google-analytics.service';
 import { AppState, AppStateStore } from '../states/app-state.store';
@@ -46,13 +45,39 @@ describe('AppComponent', () => {
 
   describe('init', () => {
     it('should populate the application config', () => {
+      const closeCallback = jest.fn();
+      const logCallback = jest.fn();
+      const resultsCallback = jest.fn();
+      const accessTokenProvider = jest.fn();
+
+      const apiUrl = 'http://example.org';
+      const autoSnap = true;
+      const language = 'en';
+      const logLevel = 'info';
+      const vibrate = true;
+
       const applicationConfig: Partial<ApplicationConfig> = {
-        logLevel: LogLevel.SILENT,
-        closeEvent: new EventEmitter(),
-        loggerEvent: new EventEmitter(),
-        resultsEvent: new EventEmitter(),
-        tokenRefreshEvent: new EventEmitter(),
+        closeCallback,
+        logCallback,
+        resultsCallback,
+        accessTokenProvider,
+        apiUrl,
+        autoSnap,
+        language,
+        logLevel: toLogLevel(logLevel),
+        vibrate,
       };
+
+      component.closeCallback = closeCallback;
+      component.logCallback = logCallback;
+      component.resultsCallback = resultsCallback;
+      component.accessTokenProvider = accessTokenProvider;
+
+      component.apiUrl = apiUrl;
+      component.autoSnap = autoSnap;
+      component.language = language;
+      component.logLevel = logLevel;
+      component.vibrate = vibrate;
 
       component.ngOnInit();
 
@@ -73,23 +98,12 @@ describe('AppComponent', () => {
 
       expect(analyticsService.sdkInitialized).toHaveBeenCalled();
     });
-
-    it('should fetch token when application is initialized', (done) => {
-      component.tokenRefresh.subscribe(() => done());
-      component.ngOnInit();
-    });
   });
 
   it('should clear snapOddsData when closed', () => {
     component.closeOddsView();
 
     expect(component.tvSearchResult).toBe(null);
-  });
-
-  it('setting the tokenResponse should call the authService to update the token', () => {
-    component.tokenResponse = authResponseMock;
-
-    expect(authService.updateToken).toHaveBeenCalledWith(authResponseMock);
   });
 
   it('setting the sportEvents should set the state to SHOW_ODDS', () => {

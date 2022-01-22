@@ -1,9 +1,5 @@
-import { EventEmitter } from '@angular/core';
 import { sportEventTvSearchMock } from '@response/mocks';
-import { TvSearchResultEntry } from '@response/typings';
-import { mockDeep } from 'jest-mock-extended';
 import { LogLevel } from '../logger/log-level';
-import { LoggerEvent } from '../logger/logger-event';
 import { ApplicationConfigService } from './application-config.service';
 
 describe('ApplicationConfig', () => {
@@ -33,27 +29,27 @@ describe('ApplicationConfig', () => {
   });
 
   it('should emit the events accordingly', () => {
-    const tokenRefreshEvent = mockDeep<EventEmitter<void>>();
-    const closeEvent = mockDeep<EventEmitter<void>>();
-    const loggerEvent = mockDeep<EventEmitter<LoggerEvent>>();
-    const resultsEvent = mockDeep<EventEmitter<TvSearchResultEntry>>();
+    const accessTokenProvider = jest.fn();
+    const closeCallback = jest.fn();
+    const logCallback = jest.fn();
+    const resultsCallback = jest.fn();
 
     service.setConfig({
-      tokenRefreshEvent,
-      closeEvent,
-      loggerEvent,
-      resultsEvent,
+      accessTokenProvider,
+      closeCallback,
+      logCallback,
+      resultsCallback,
     });
 
-    service.emitTokenRefresh();
+    service.accessTokenProvider();
     service.emitCloseEvent();
     service.emitLoggerEvent(LogLevel.INFO, ['INFO']);
     service.emitResultsEvent(sportEventTvSearchMock.resultEntries[0]);
 
-    expect(tokenRefreshEvent.emit).toHaveBeenCalled();
-    expect(closeEvent.emit).toHaveBeenCalled();
-    expect(loggerEvent.emit).toHaveBeenCalledWith({ logLevel: 'info', data: ['INFO'] });
-    expect(resultsEvent.emit).toHaveBeenCalledWith(sportEventTvSearchMock.resultEntries[0]);
+    expect(accessTokenProvider).toHaveBeenCalled();
+    expect(closeCallback).toHaveBeenCalled();
+    expect(logCallback).toHaveBeenCalledWith('info', ['INFO']);
+    expect(resultsCallback).toHaveBeenCalledWith(sportEventTvSearchMock.resultEntries[0]);
   });
 
   describe('autoSnap', () => {

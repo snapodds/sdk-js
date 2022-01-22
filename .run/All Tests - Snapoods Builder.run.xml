@@ -1,9 +1,9 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="All Tests - Snapodds" type="JavaScriptTestRunnerJest">
+  <configuration default="false" name="All Tests - Snapoods Builder" type="JavaScriptTestRunnerJest">
     <node-interpreter value="project" />
     <node-options value="" />
     <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-    <working-dir value="$PROJECT_DIR$/apps/snapodds" />
+    <working-dir value="$PROJECT_DIR$/apps/snapodds-builder" />
     <envs />
     <scope-kind value="ALL" />
     <method v="2" />

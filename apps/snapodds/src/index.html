@@ -49,30 +49,26 @@
     </button>
   </body>
 
+  <script src="assets/snapodds-builder.js"></script>
   <script>
     document.getElementById('openSnapodds').addEventListener('click', () => {
-      const sdk = document.createElement('snapodds-sdk');
+      function fetchAccessTokenFromApi() {
+        return fetch('https://local.dev:3333/api/token', { mode: 'cors', cache: 'no-cache' }).then((response) =>
+          response.json()
+        );
+      }
 
-      sdk.language = 'en';
-      sdk.apiUrl = 'https://api-dev.us.snapscreen.com';
-      sdk.apiUrl = 'https://local.dev:3333/api';
-      sdk.autoSnap = false;
-      sdk.logLevel = 'error';
-
-      sdk.addEventListener('tokenRefresh', () => {
-        fetch('https://local.dev:3333/api/token', { mode: 'cors', cache: 'no-cache' })
-          .then((response) => response.json())
-          .then((tokenResponse) => (sdk.tokenResponse = tokenResponse))
-          .catch(console.error);
-      });
-
-      sdk.addEventListener('closed', () => document.body.removeChild(sdk));
-
-      sdk.addEventListener('results', ({ detail }) => (sdk.tvSearchResult = detail));
-
-      sdk.addEventListener('logger', ({ detail: { logLevel, data } }) => console.log('SDK:logger', logLevel, ...data));
-
-      document.body.appendChild(sdk);
+      SnapoddsSdk.bannerBuilder()
+        .setLanguage('en')
+        .setApiUrl('https://api-dev.us.snapscreen.com')
+        .setApiUrl('https://local.dev:3333/api')
+        .setAutoSnap(false)
+        .setLogLevel('error')
+        .setAccessTokenProvider(() => fetchAccessTokenFromApi())
+        .onResults((tvSearchResult) => console.log('SDK:onResults', tvSearchResult))
+        .onLog((logLevel, data) => console.log('SDK:onLog', logLevel, ...data))
+        .onClose(() => console.log('SDK:onClose'))
+        .appendTo(document.body);
     });
 
     document.getElementById('openSnapodds').click();

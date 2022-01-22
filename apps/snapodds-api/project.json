@@ -1,0 +1,52 @@
+{
+  "root": "apps/snapodds-api",
+  "sourceRoot": "apps/snapodds-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/snapodds-api",
+        "main": "apps/snapodds-api/src/main.ts",
+        "tsConfig": "apps/snapodds-api/tsconfig.app.json",
+        "assets": ["apps/snapodds-api/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/snapodds-api/src/environments/environment.ts",
+              "with": "apps/snapodds-api/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "snapodds-api:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/snapodds-api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/snapodds-api"],
+      "options": {
+        "jestConfig": "apps/snapodds-api/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -15,8 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@response/mocks": ["libs/response/mocks/index.ts"],
-      "@response/typings": ["libs/response/typings/index.ts"]
+      "@response/mocks": ["libs/response/src/lib/mocks/index.ts"],
+      "@response/typings": ["libs/response/src/lib/typings/index.ts"],
+      "@snapodds/builder": ["libs/builder/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

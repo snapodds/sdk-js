@@ -1,0 +1,13 @@
+{
+  "name": "@snapodds/builder",
+  "version": "0.0.1",
+  "source": "src/index.ts",
+  "main": "index.js",
+  "targets": {
+    "main": {
+      "distDir": "../../dist/apps/snapodds-builder",
+      "sourceMap": false,
+      "optimize": true
+    }
+  }
+}

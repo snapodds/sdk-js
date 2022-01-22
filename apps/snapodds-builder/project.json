@@ -1,0 +1,37 @@
+{
+  "root": "apps/snapodds-builder",
+  "sourceRoot": "apps/snapodds-builder/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npx parcel build src/index.ts",
+        "cwd": "apps/snapodds-builder"
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/js:node",
+      "options": {
+        "buildTarget": "snapodds-builder:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/snapodds-builder/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/snapodds-builder"],
+      "options": {
+        "jestConfig": "apps/snapodds-builder/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

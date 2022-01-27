@@ -13,7 +13,7 @@ $box--width: 4rem;
   }
 
   snapodds-footer {
-    padding: settings.$spacing-base;
+    padding: settings.$spacing-base settings.$spacing-base 0;
   }
 
   button {

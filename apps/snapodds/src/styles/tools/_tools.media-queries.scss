@@ -1,0 +1,23 @@
+@mixin media-small--portrait {
+  @media (max-height: 700px) and (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin media-tiny--portrait {
+  @media (max-height: 600px) and (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin media-small--landscape {
+  @media (max-height: 400px) and (orientation: landscape) {
+    @content;
+  }
+}
+
+@mixin media-tiny--landscape {
+  @media (max-height: 350px) and (orientation: landscape) {
+    @content;
+  }
+}

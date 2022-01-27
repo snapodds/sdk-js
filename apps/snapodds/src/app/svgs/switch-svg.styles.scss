@@ -1,0 +1,5 @@
+@use 'settings';
+
+:host {
+  color: settings.$color-text;
+}

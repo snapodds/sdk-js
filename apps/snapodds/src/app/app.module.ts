@@ -18,6 +18,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { SwitchSvgComponent } from './svgs/switch-svg.component';
 import { TriggerSvgComponent } from './svgs/trigger.svg.component';
 import { TriggerComponent } from './trigger/trigger.component';
+import { UserFeedbackMessageComponent } from './user-feedback-message/user-feedback-message.component';
 import { WebcamComponent } from './webcam/webcam.component';
 
 @NgModule({
@@ -34,6 +35,7 @@ import { WebcamComponent } from './webcam/webcam.component';
     TriggerComponent,
     TriggerSvgComponent,
     SwitchSvgComponent,
+    UserFeedbackMessageComponent,
   ],
   imports: [
     BrowserModule,

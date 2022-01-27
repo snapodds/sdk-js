@@ -2,74 +2,47 @@
   {{ 'Snapodds_Title_Snap_TV' | translate }}
   <div right>
     <button class="c-close__button" (click)="showHelpPage()">
-      {{ 'Snapodds_Title_Help' | translate }}
+      {{ 'Snapodds_Action_Help' | translate }}
     </button>
   </div>
 </snapodds-header>
 
-<snapodds-webcam #webcam></snapodds-webcam>
+<div class="l-flex l-flex__row--landscape l-flex__column--portrait">
+  <snapodds-webcam #webcam></snapodds-webcam>
 
-<ng-container *ngIf="appState === 'DEVICE_NO_PERMISSION'; else hasCameraAccess">
-  <snapodds-content>
-    <div class="c-user-feedback c-user-feedback--error">
-      <div class="c-user-feedback__headline">{{ 'Snapodds_Device_No_Permission_Headline' | translate }}</div>
-      <span [innerHTML]="'Snapodds_Device_No_Permission' | translate"></span>
-    </div>
-  </snapodds-content>
+  <div class="l-flex l-flex__column--landscape l-flex__column--portrait">
+    <snapodds-content>
+      <snapodds-user-feedback-message [appState]="appState"></snapodds-user-feedback-message>
+    </snapodds-content>
 
-  <snapodds-footer>
-    <div class="c-footer">
-      <div class="c-footer--row">
-        <button class="c-footer__reload-button" (click)="reloadPage()">
-          {{ 'Snapodds_Action_Reload' | translate }}
-        </button>
-      </div>
-      <div class="c-footer--row c-footer--row-spacing-top">
-        <div class="c-footer__powered-by">Powered by SnapOdds</div>
-      </div>
-    </div>
-  </snapodds-footer>
-</ng-container>
-
-<ng-template #hasCameraAccess>
-  <snapodds-content>
-    <div class="c-user-feedback" [innerHTML]="'Snapodds_ViewFinder_Hint' | translate"></div>
-
-    <div class="c-user-feedback c-user-feedback--error" *ngIf="appState === 'SNAP_NO_RESULTS'">
-      <div class="c-user-feedback__headline">{{ 'Snapodds_Snapping_No_results_Headline' | translate }}</div>
-      <div [innerHTML]="'Snapodds_Snapping_No_results' | translate"></div>
-    </div>
-
-    <div class="c-user-feedback c-user-feedback--error" *ngIf="appState === 'SNAP_FAILED'">
-      <div class="c-user-feedback__headline">{{ 'Snapodds_Snapping_Failed_Headline' | translate }}</div>
-      <div [innerHTML]="'Snapodds_Snapping_Failed' | translate"></div>
-    </div>
-  </snapodds-content>
-
-  <snapodds-footer>
-    <div class="c-footer">
-      <div class="c-footer--row">
-        <span class="c-footer__spacer"></span>
-
-        <snapodds-trigger
-          (clicked)="takeSnapshot()"
-          [disabled]="appState === 'SNAP_IN_PROGRESS' || mediaDeviceState !== 'DEVICE_CAMERA_READY'"
-          [processing]="appState === 'SNAP_IN_PROGRESS'"
-        ></snapodds-trigger>
-
-        <div class="c-footer__spacer">
-          <button
-            class="c-footer__switch-camera"
-            *ngIf="webcam.hasMultipleWebcams"
-            (click)="webcam.switchToNextWebcam()"
-          >
-            <snapodds-switch-svg></snapodds-switch-svg>
+    <snapodds-footer>
+      <div class="c-footer">
+        <ng-container *ngIf="appState === 'DEVICE_NO_PERMISSION'; else hasCameraAccess">
+          <button class="c-footer__reload-button" (click)="reloadPage()">
+            {{ 'Snapodds_Action_Reload' | translate }}
           </button>
-        </div>
+        </ng-container>
+
+        <ng-template #hasCameraAccess>
+          <span class="c-footer__spacer"></span>
+
+          <snapodds-trigger
+            (clicked)="takeSnapshot()"
+            [disabled]="appState === 'SNAP_IN_PROGRESS' || mediaDeviceState !== 'DEVICE_CAMERA_READY'"
+            [processing]="appState === 'SNAP_IN_PROGRESS'"
+          ></snapodds-trigger>
+
+          <div class="c-footer__spacer">
+            <button
+              class="c-footer__switch-camera"
+              *ngIf="webcam.hasMultipleWebcams"
+              (click)="webcam.switchToNextWebcam()"
+            >
+              <snapodds-switch-svg></snapodds-switch-svg>
+            </button>
+          </div>
+        </ng-template>
       </div>
-      <div class="c-footer--row c-footer--row-spacing-top">
-        <div class="c-footer__powered-by">Powered by SnapOdds</div>
-      </div>
-    </div>
-  </snapodds-footer>
-</ng-template>
+    </snapodds-footer>
+  </div>
+</div>

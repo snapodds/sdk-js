@@ -10,10 +10,12 @@
   </pinch-zoom>
 
   <div class="c-camera--viewfinder" #viewFinder *ngIf="mediaDeviceStateStore.webcamIsReady$ | async">
-    <div class="c-camera--viewfinder-tv-frame"></div>
-    <div class="c-camera--viewfinder-tv-stand"></div>
-    <div class="c-camera--viewfinder-tv-connector"></div>
+    <div class="c-camera--viewfinder__tv-frame"></div>
+    <div class="c-camera--viewfinder__tv-stand"></div>
+    <div class="c-camera--viewfinder__tv-connector"></div>
   </div>
+
+  <div class="c-camera--footer__powered-by">Powered by SnapOdds</div>
 </div>
 
 <ng-container *ngIf="debugImageManipulations()">

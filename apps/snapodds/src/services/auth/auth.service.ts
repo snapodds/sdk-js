@@ -1,8 +1,7 @@
-import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AccessToken } from '@response/typings';
 import { addSeconds, differenceInSeconds } from 'date-fns';
-import { from, map, Observable, of } from 'rxjs';
+import { Observable, from, map, of } from 'rxjs';
 import { ApplicationConfigService } from '../config/application-config.service';
 
 @Injectable({
@@ -16,30 +15,24 @@ export class AuthService {
 
   constructor(private readonly applicationConfigService: ApplicationConfigService) {}
 
-  refreshAccessToken(): Observable<string | undefined> {
-    if (this.hasValidAccessToken()) {
+  requestAccessToken(): Observable<string> {
+    if (this.accessToken != undefined && !this.isTokenExpired()) {
       return of(this.accessToken);
     } else {
       return from(this.applicationConfigService.accessTokenProvider()).pipe(
-        map((accessToken) => this.updateToken(accessToken)),
-        map(() => this.accessToken)
+        map((accessToken) => this.updateToken(accessToken))
       );
     }
   }
 
-  updateToken(authResponse: AccessToken): void {
+  updateToken(authResponse: AccessToken): string {
     this.tokenExpirationDate = addSeconds(new Date(), authResponse.expires_in);
     this.accessToken = authResponse.access_token;
+    return this.accessToken;
   }
 
   getAccessToken(): string | undefined {
     return this.accessToken;
-  }
-
-  createAuthHeaders() {
-    return this.hasValidAccessToken()
-      ? new HttpHeaders({ Authorization: `Bearer ${this.getAccessToken()}` })
-      : new HttpHeaders();
   }
 
   hasValidAccessToken(): boolean {

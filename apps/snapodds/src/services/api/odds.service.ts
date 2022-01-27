@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OddsResponse } from '@response/typings';
-import { map, Observable } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 import { LineOdds } from '../../models/line-odds';
 import { SportsBook } from '../../models/sports-book';
 import { AuthService } from '../auth/auth.service';
@@ -13,8 +13,8 @@ import { ApplicationConfigService } from '../config/application-config.service';
 export class OddsService {
   constructor(
     private readonly http: HttpClient,
-    private readonly applicationConfigService: ApplicationConfigService,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly applicationConfigService: ApplicationConfigService
   ) {}
 
   get baseUrl() {
@@ -22,11 +22,14 @@ export class OddsService {
   }
 
   gameLineOddsBySportEventId(sportEventId: number): Observable<LineOdds> {
-    return this.http
-      .get<OddsResponse>(`${this.baseUrl}/sport/events/${sportEventId}/odds/lines`, {
-        headers: this.authService.createAuthHeaders(),
-      })
-      .pipe(map((response) => this.mapLineOddsResponse(response)));
+    return this.authService.requestAccessToken().pipe(
+      switchMap((accessToken) =>
+        this.http.get<OddsResponse>(`${this.baseUrl}/sport/events/${sportEventId}/odds/lines`, {
+          headers: new HttpHeaders({ Authorization: `Bearer ${accessToken}` }),
+        })
+      ),
+      map((response) => this.mapLineOddsResponse(response))
+    );
   }
 
   private mapLineOddsResponse(lineOdds: OddsResponse): LineOdds {

@@ -1,25 +1,23 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TvSearchResult } from '@response/typings';
-import { map, Observable, of, switchMap, tap } from 'rxjs';
+import { Observable, tap, map, switchMap } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { ApplicationConfigService } from '../config/application-config.service';
 import { LoggerService } from '../logger/logger.service';
-import { GoogleAnalyticsService } from '../tracking/google-analytics.service';
+import { TvSearchResult } from '@response/typings';
+import { TvSearchNoResultError } from './api-errors';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TvSearchService {
   private timeLag = 0;
-  private snapTimestamp = 0;
 
   constructor(
     private readonly http: HttpClient,
     private readonly logger: LoggerService,
-    private readonly analyticsService: GoogleAnalyticsService,
-    private readonly applicationConfigService: ApplicationConfigService,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly applicationConfigService: ApplicationConfigService
   ) {}
 
   get baseUrl() {
@@ -30,46 +28,47 @@ export class TvSearchService {
     return Date.now() - this.timeLag;
   }
 
-  get currentSnapTimeOffset() {
-    return Date.now() - this.snapTimestamp;
-  }
-
-  searchSport(imageData: Blob): Observable<TvSearchResult | null> {
+  searchSport(imageData: Blob): Observable<TvSearchResult> {
     return this.snap('/tv-search/sport/by-image', imageData);
   }
 
-  autoSearchSport(imageData: Blob): Observable<TvSearchResult | null> {
+  autoSearchSport(imageData: Blob): Observable<TvSearchResult> {
     return this.snap('/tv-search/sport/near-timestamp/by-image', imageData, true);
   }
 
-  private snap(url: string, imageData: Blob, addTimestamp = false): Observable<TvSearchResult | null> {
-    return of(this.createSnapscreenHeaders(addTimestamp)).pipe(
-      tap(() => {
-        this.snapTimestamp = Date.now();
-        this.analyticsService.snapViewSnap();
-      }),
-      switchMap((headers) =>
-        this.http.post<TvSearchResult>(`${this.baseUrl}${url}`, imageData, { headers, observe: 'response' })
+  private snap(url: string, imageData: Blob, nearTimestamp = false): Observable<TvSearchResult> {
+    return this.authService.requestAccessToken().pipe(
+      switchMap((accessToken) =>
+        this.http.post<TvSearchResult>(`${this.baseUrl}${url}`, imageData, {
+          headers: this.createSnapscreenHeaders(accessToken, nearTimestamp),
+          observe: 'response',
+        })
       ),
-      tap((response) => this.writeTimeLag(response)),
-      map((response) => response.body)
+      tap((response) => this.updateTimeLag(response)),
+      map((response) => {
+        if (response.body?.resultEntries.length) {
+          return response.body;
+        } else {
+          throw new TvSearchNoResultError();
+        }
+      })
     );
   }
 
-  private createSnapscreenHeaders(addTimestamp: boolean): HttpHeaders {
-    let headers = this.authService
-      .createAuthHeaders()
+  private createSnapscreenHeaders(accessToken: string, nearTimestamp: boolean): HttpHeaders {
+    let headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${accessToken}`)
       .set('Content-type', 'application/octet-stream')
       .set('X-Snapscreen-MimeType', 'image/jpeg');
 
-    if (addTimestamp) {
+    if (nearTimestamp) {
       headers = headers.set('X-Snapscreen-Timestamp', `${this.currentTimestamp}`);
     }
 
     return headers;
   }
 
-  private writeTimeLag(response: HttpResponse<TvSearchResult>): void {
+  private updateTimeLag(response: HttpResponse<TvSearchResult>): void {
     const responseDate = response.headers.get('Date');
 
     if (responseDate) {

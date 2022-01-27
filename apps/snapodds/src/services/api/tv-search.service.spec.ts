@@ -2,10 +2,12 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { sportEventTvSearchMock } from '@response/mocks';
 import { mock, MockProxy } from 'jest-mock-extended';
+import { of } from 'rxjs';
 import { ApplicationConfigService } from '../config/application-config.service';
 import { LoggerService } from '../logger/logger.service';
-
+import { AuthService } from '../auth/auth.service';
 import { TvSearchService } from './tv-search.service';
+import { TvSearchNoResultError } from './api-errors';
 
 describe('TvSearchService', () => {
   const apiUrl = 'API_URL';
@@ -14,17 +16,19 @@ describe('TvSearchService', () => {
   let service: TvSearchService;
   let http: HttpTestingController;
   let logger: MockProxy<LoggerService>;
-
+  let authService: MockProxy<AuthService>;
   let applicationConfigService: MockProxy<ApplicationConfigService>;
 
   beforeEach(() => {
     logger = mock<LoggerService>();
+    authService = mock<AuthService>();
     applicationConfigService = mock<ApplicationConfigService>();
 
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
         { provide: LoggerService, useValue: logger },
+        { provide: AuthService, useValue: authService },
         { provide: ApplicationConfigService, useValue: applicationConfigService },
       ],
     });
@@ -39,49 +43,89 @@ describe('TvSearchService', () => {
     expect(service.baseUrl).toBe(apiUrl);
   });
 
-  it('should find sport event by image', (done) => {
-    service.searchSport(image).subscribe((response) => {
-      expect(response).toBe(sportEventTvSearchMock);
-      done();
+  describe('searchSport', () => {
+    it('should find sport event by image', (done) => {
+      authService.requestAccessToken.mockReturnValue(of('ACCESS_TOKEN'));
+
+      service.searchSport(image).subscribe((response) => {
+        expect(response).toBe(sportEventTvSearchMock);
+        done();
+      });
+
+      const httpRequest = http.expectOne(`${service.baseUrl}/tv-search/sport/by-image`);
+      httpRequest.flush(sportEventTvSearchMock);
+
+      const { headers } = httpRequest.request;
+      expect(headers.get('Authorization')).toBe('Bearer ACCESS_TOKEN');
+      expect(headers.get('Content-type')).toBe('application/octet-stream');
+      expect(headers.get('X-Snapscreen-MimeType')).toBe('image/jpeg');
+      expect(headers.has('X-Snapscreen-Timestamp')).toBe(false);
     });
 
-    const httpRequest = http.expectOne(`${service.baseUrl}/tv-search/sport/by-image`);
-    httpRequest.flush(sportEventTvSearchMock);
+    it('should throw error when empty response', (done) => {
+      authService.requestAccessToken.mockReturnValue(of('ACCESS_TOKEN'));
 
-    const { headers } = httpRequest.request;
-    expect(headers.get('Content-type')).toBe('application/octet-stream');
-    expect(headers.get('X-Snapscreen-MimeType')).toBe('image/jpeg');
-    expect(headers.has('X-Snapscreen-Timestamp')).toBe(false);
+      service.searchSport(image).subscribe({
+        next: () => done.fail(),
+        error: (error) => {
+          expect(error).toBeInstanceOf(TvSearchNoResultError);
+          done();
+        },
+      });
+
+      const httpRequest = http.expectOne(`${service.baseUrl}/tv-search/sport/by-image`);
+      httpRequest.flush({ ...sportEventTvSearchMock, resultEntries: [] });
+
+      const { headers } = httpRequest.request;
+      expect(headers.get('Authorization')).toBe('Bearer ACCESS_TOKEN');
+      expect(headers.get('Content-type')).toBe('application/octet-stream');
+      expect(headers.get('X-Snapscreen-MimeType')).toBe('image/jpeg');
+      expect(headers.has('X-Snapscreen-Timestamp')).toBe(false);
+    });
   });
 
-  it('should find sport event by image near a timestamp', (done) => {
-    jest.useFakeTimers().setSystemTime(Date.now());
+  describe('autoSearchSport', () => {
+    it('should find sport event by image near a timestamp', (done) => {
+      authService.requestAccessToken.mockReturnValue(of('ACCESS_TOKEN'));
+      jest.useFakeTimers().setSystemTime(Date.now());
 
-    service.autoSearchSport(image).subscribe((response) => {
-      expect(response).toBe(sportEventTvSearchMock);
+      service.autoSearchSport(image).subscribe((response) => {
+        expect(response).toBe(sportEventTvSearchMock);
 
-      done();
+        done();
+      });
+
+      const httpRequest = http.expectOne(`${service.baseUrl}/tv-search/sport/near-timestamp/by-image`);
+      httpRequest.flush(sportEventTvSearchMock, { headers: { Date: new Date().toISOString() } });
+
+      const { headers } = httpRequest.request;
+      expect(headers.get('Authorization')).toBe('Bearer ACCESS_TOKEN');
+      expect(headers.get('Content-type')).toBe('application/octet-stream');
+      expect(headers.get('X-Snapscreen-MimeType')).toBe('image/jpeg');
+      expect(headers.get('X-Snapscreen-Timestamp')).toBe(`${Date.now()}`);
     });
 
-    const httpRequest = http.expectOne(`${service.baseUrl}/tv-search/sport/near-timestamp/by-image`);
-    httpRequest.flush(sportEventTvSearchMock, { headers: { Date: new Date().toISOString() } });
+    it('should throw error when empty response', (done) => {
+      authService.requestAccessToken.mockReturnValue(of('ACCESS_TOKEN'));
+      jest.useFakeTimers().setSystemTime(Date.now());
 
-    const { headers } = httpRequest.request;
-    expect(headers.get('Content-type')).toBe('application/octet-stream');
-    expect(headers.get('X-Snapscreen-MimeType')).toBe('image/jpeg');
-    expect(headers.get('X-Snapscreen-Timestamp')).toBe(`${Date.now()}`);
-  });
+      service.autoSearchSport(image).subscribe({
+        next: () => done.fail(),
+        error: (error) => {
+          expect(error).toBeInstanceOf(TvSearchNoResultError);
+          done();
+        },
+      });
 
-  it('should write snapViewSnapNegative analytics when resultEntries are empty', (done) => {
-    const emptySportEventResultEntries = { ...sportEventTvSearchMock, resultEntries: [] };
+      const httpRequest = http.expectOne(`${service.baseUrl}/tv-search/sport/near-timestamp/by-image`);
+      httpRequest.flush({ ...sportEventTvSearchMock, resultEntries: [] });
 
-    service.searchSport(image).subscribe((response) => {
-      expect(response).toBe(emptySportEventResultEntries);
-      done();
+      const { headers } = httpRequest.request;
+      expect(headers.get('Authorization')).toBe('Bearer ACCESS_TOKEN');
+      expect(headers.get('Content-type')).toBe('application/octet-stream');
+      expect(headers.get('X-Snapscreen-MimeType')).toBe('image/jpeg');
+      expect(headers.get('X-Snapscreen-Timestamp')).toBe(`${Date.now()}`);
     });
-
-    const httpRequest = http.expectOne(`${service.baseUrl}/tv-search/sport/by-image`);
-    httpRequest.flush(emptySportEventResultEntries);
   });
 
   afterAll(() => {

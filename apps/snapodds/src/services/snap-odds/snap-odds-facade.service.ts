@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { TvSearchResult } from '@response/typings';
-import { catchError, map, Observable, switchMap, tap, throwError } from 'rxjs';
+import { Observable, tap, catchError, throwError } from 'rxjs';
 import { LineOdds } from '../../models/line-odds';
 import { OddsService } from '../api/odds.service';
 import { TvSearchService } from '../api/tv-search.service';
-import { AuthService } from '../auth/auth.service';
 import { LoggerService } from '../logger/logger.service';
 import { GoogleAnalyticsService } from '../tracking/google-analytics.service';
-import { TvSearchNoResultError } from './snap-odds-errors';
+import { TvSearchNoResultError } from '../api/api-errors';
 
 @Injectable({ providedIn: 'root' })
 export class SnapOddsFacade {
@@ -15,50 +14,32 @@ export class SnapOddsFacade {
     private readonly tvSearchService: TvSearchService,
     private readonly oddsService: OddsService,
     private readonly logger: LoggerService,
-    private readonly authService: AuthService,
     private readonly analyticsService: GoogleAnalyticsService
   ) {}
 
-  getSnap(imageData: Blob, autoSnap: boolean): Observable<TvSearchResult> {
-    return this.authService.refreshAccessToken().pipe(
-      tap(() => this.analyticsService.snapViewSnap()),
-      switchMap(() => {
-        if (autoSnap) {
-          return this.tvSearchService.autoSearchSport(imageData);
-        } else {
-          return this.tvSearchService.searchSport(imageData);
-        }
-      }),
+  searchSport(imageData: Blob): Observable<TvSearchResult> {
+    this.analyticsService.snapViewSnap();
+
+    const snapStartTime = Date.now();
+    return this.tvSearchService.searchSport(imageData).pipe(
       catchError((error) => {
-        this.writeCallFailedAnalytics();
-        return throwError(error.error);
-      }),
-      tap((response) => this.writeSnapResulAnalytics(response)),
-      map((result) => {
-        if (result?.resultEntries.length) {
-          return result;
+        const duration = Date.now() - snapStartTime;
+        if (error instanceof TvSearchNoResultError) {
+          this.analyticsService.snapViewSnapNegative(duration);
         } else {
-          throw new TvSearchNoResultError();
+          this.analyticsService.snapViewSnapFailed(duration);
         }
-      })
+        return throwError(error);
+      }),
+      tap(() => this.analyticsService.snapViewSnapResult(Date.now() - snapStartTime))
     );
   }
 
+  autoSearchSport(imageData: Blob): Observable<TvSearchResult> {
+    return this.tvSearchService.autoSearchSport(imageData);
+  }
+
   getLineOdds(sportEventId: number): Observable<LineOdds> {
-    return this.authService
-      .refreshAccessToken()
-      .pipe(switchMap(() => this.oddsService.gameLineOddsBySportEventId(sportEventId)));
-  }
-
-  private writeCallFailedAnalytics(): void {
-    this.analyticsService.snapViewSnapFailed(this.tvSearchService.currentSnapTimeOffset);
-  }
-
-  private writeSnapResulAnalytics(response: TvSearchResult | null): void {
-    if (response?.resultEntries.length) {
-      this.analyticsService.snapViewSnapResult(this.tvSearchService.currentSnapTimeOffset);
-    } else {
-      this.analyticsService.snapViewSnapNegative(this.tvSearchService.currentSnapTimeOffset);
-    }
+    return this.oddsService.gameLineOddsBySportEventId(sportEventId);
   }
 }

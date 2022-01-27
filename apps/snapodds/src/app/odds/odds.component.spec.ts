@@ -101,4 +101,15 @@ describe('OddsComponent', () => {
     expect(component.noResults).toBe(true);
     expect(component.loading).toBe(false);
   });
+
+  it('should show noResults if no sportBooks', () => {
+    snapOddsFacade.getLineOdds.mockReturnValue(of({ ...lineOddsMapped, sportsBooks: undefined }));
+
+    component.ngOnChanges({ tvSearchResultEntry: new SimpleChange(null, tvSearchResultEntry, true) });
+
+    expect(snapOddsFacade.getLineOdds).toHaveBeenCalledWith(tvSearchResultEntry.sportEvent.id);
+    expect(component.lineOdds).toBe(null);
+    expect(component.noResults).toBe(true);
+    expect(component.loading).toBe(false);
+  });
 });

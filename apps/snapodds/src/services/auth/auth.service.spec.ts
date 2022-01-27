@@ -19,11 +19,11 @@ describe('AuthService', () => {
     service = TestBed.inject(AuthService);
   });
 
-  describe('refreshAccessToken', () => {
+  describe('requestAccessToken', () => {
     it('should return the existing accessToken when it is still valid', (done) => {
       service.updateToken(authResponseMock);
 
-      service.refreshAccessToken().subscribe((accessToken) => {
+      service.requestAccessToken().subscribe((accessToken) => {
         expect(accessToken).toBe(authResponseMock.access_token);
         expect(service.getAccessToken()).toBe(authResponseMock.access_token);
         done();
@@ -33,7 +33,7 @@ describe('AuthService', () => {
     it('should request token refresh if the existing accessToken is invalid', (done) => {
       applicationConfigService.accessTokenProvider.mockResolvedValue(authResponseMock);
 
-      service.refreshAccessToken().subscribe((accessToken) => {
+      service.requestAccessToken().subscribe((accessToken) => {
         expect(accessToken).toBe(authResponseMock.access_token);
         done();
       });
@@ -57,18 +57,6 @@ describe('AuthService', () => {
       service.updateToken({ ...authResponseMock, expires_in: 5 });
 
       expect(service.hasValidAccessToken()).toBe(false);
-    });
-  });
-
-  describe('createAuthHeaders', () => {
-    it('should add the access token to the response headers', () => {
-      service.updateToken(authResponseMock);
-      expect(service.createAuthHeaders().get('Authorization')).toBe(`Bearer ${authResponseMock.access_token}`);
-    });
-
-    it('should omit access token if invalid from the response headers', () => {
-      service.updateToken({ ...authResponseMock, expires_in: 5 });
-      expect(service.createAuthHeaders().get('Authorization')).toBe(null);
     });
   });
 });

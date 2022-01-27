@@ -161,6 +161,7 @@ $box--width: 4rem;
     &__target {
       font-size: settings.$font-xs;
       font-weight: 400;
+      min-height: 0.9rem;
     }
 
     &__odds {

@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChange } from '@angular/core';
 import { TvSearchResultEntry } from '@response/typings';
-import { tap } from 'rxjs';
 import { LineOdds } from '../../models/line-odds';
 import { SnapOddsFacade } from '../../services/snap-odds/snap-odds-facade.service';
 import { WINDOW } from '../../services/tokens/window-token';
@@ -37,23 +36,28 @@ export class OddsComponent implements OnChanges {
     this.loading = true;
     this.noResults = false;
 
-    this.snapOddsFacade
-      .getLineOdds(sportEventId)
-      .pipe(
-        tap((lineOdds) => {
-          if (lineOdds.sportsBooks?.length === 0) throw new Error('No SportsBooks found');
-        })
-      )
-      .subscribe({
-        next: (lineOdds) => {
-          this.lineOdds = lineOdds;
-          this.loading = false;
-        },
-        error: () => {
-          this.lineOdds = null;
-          this.noResults = true;
-          this.loading = false;
-        },
-      });
+    this.snapOddsFacade.getLineOdds(sportEventId).subscribe({
+      next: (lineOdds) => {
+        if (lineOdds.sportsBooks == undefined || lineOdds.sportsBooks.length === 0) {
+          this.onLineOddsLoadFailed();
+        } else {
+          this.onLineOddsLoaded(lineOdds);
+        }
+      },
+      error: () => {
+        this.onLineOddsLoadFailed();
+      },
+    });
+  }
+
+  private onLineOddsLoaded(lineOdds: LineOdds): void {
+    this.lineOdds = lineOdds;
+    this.loading = false;
+  }
+
+  private onLineOddsLoadFailed(): void {
+    this.lineOdds = null;
+    this.noResults = true;
+    this.loading = false;
   }
 }

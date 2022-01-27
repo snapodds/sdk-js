@@ -44,9 +44,7 @@ export class OddsComponent implements OnChanges {
           this.onLineOddsLoaded(lineOdds);
         }
       },
-      error: () => {
-        this.onLineOddsLoadFailed();
-      },
+      error: () => this.onLineOddsLoadFailed(),
     });
   }
 

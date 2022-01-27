@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AccessToken } from '@response/typings';
 import { addSeconds, differenceInSeconds } from 'date-fns';
-import { Observable, from, map, of } from 'rxjs';
+import { from, map, Observable, of } from 'rxjs';
 import { ApplicationConfigService } from '../config/application-config.service';
 
 @Injectable({
@@ -16,13 +16,13 @@ export class AuthService {
   constructor(private readonly applicationConfigService: ApplicationConfigService) {}
 
   requestAccessToken(): Observable<string> {
-    if (this.accessToken != undefined && !this.isTokenExpired()) {
-      return of(this.accessToken);
-    } else {
-      return from(this.applicationConfigService.accessTokenProvider()).pipe(
-        map((accessToken) => this.updateToken(accessToken))
-      );
+    if (this.hasValidAccessToken()) {
+      return of(this.accessToken as string);
     }
+
+    return from(this.applicationConfigService.accessTokenProvider()).pipe(
+      map((accessToken) => this.updateToken(accessToken))
+    );
   }
 
   updateToken(authResponse: AccessToken): string {

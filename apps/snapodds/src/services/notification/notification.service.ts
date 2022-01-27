@@ -12,8 +12,12 @@ export class NotificationService {
   ) {}
 
   notify(): void {
-    if (this.applicationConfigService.isVibrateEnabled() && typeof this.navigator?.vibrate === 'function') {
-      this.navigator?.vibrate(200);
+    if (this.applicationConfigService.isVibrateEnabled() && this.hasVibrationApi()) {
+      this.navigator.vibrate(200);
     }
+  }
+
+  private hasVibrationApi(): boolean {
+    return typeof this.navigator?.vibrate === 'function';
   }
 }

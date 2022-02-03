@@ -1,6 +1,9 @@
 import { TvSearchResultEntry } from '@response/typings';
 import { SdkBuilder } from './sdk-builder';
 
+/**
+ * Renders the OddsPage after a successful Snap.
+ */
 export class BannerSdkBuilder extends SdkBuilder {
   assignProperties() {
     this.sdk.resultsCallback = (tvSearchResult: TvSearchResultEntry) => {

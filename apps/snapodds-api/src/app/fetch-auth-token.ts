@@ -1,6 +1,10 @@
 import { AccessToken } from '@response/typings';
 import { request, RequestOptions } from 'https';
 
+/**
+ * Tries to fetch an authToken from the API configured in the env variables.
+ * Uses the clientId and clientSecret for basic authorization
+ */
 export function fetchAuthToken(): Promise<AccessToken> {
   const options: RequestOptions = {
     hostname: process.env.API_HOST,

@@ -30,6 +30,14 @@ export class LoggerService {
     this.log(LogLevel.INFO, ...data);
   }
 
+  /**
+   * Based on the configured logLevel only log levels with the same or higher severity will be logged.
+   * All logs will be forwarded to the loggerEventCallback
+   *
+   * @param logLevel
+   * @param data
+   * @private
+   */
   private log(logLevel: LogLevel, ...data: unknown[]): void {
     if (this.isAboveLogLevel(logLevel)) {
       switch (logLevel) {
@@ -50,6 +58,11 @@ export class LoggerService {
     this.applicationConfigService.emitLoggerEvent(logLevel, data);
   }
 
+  /**
+   * Determines if one logLevel's severity is higher than the one configured in the ApplicationConfig
+   * @param logLevel
+   * @private
+   */
   private isAboveLogLevel(logLevel: LogLevel): boolean {
     return logLevel >= this.applicationConfigService.getLogLevel();
   }

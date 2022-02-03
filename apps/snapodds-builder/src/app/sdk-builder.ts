@@ -1,6 +1,9 @@
 import { AccessToken, TvSearchResultEntry } from '@response/typings';
 import { SnapOddsSdkElement } from './snap-odds-sdk-element.type';
 
+/**
+ * SdkBuilder which contains the shared functionality of the odds/banner/snap workflow
+ */
 export abstract class SdkBuilder {
   protected apiUrl?: string;
   protected autoSnap?: boolean;
@@ -65,6 +68,10 @@ export abstract class SdkBuilder {
     return this;
   }
 
+  /**
+   * Assign all properties and callbacks to the SDK and appends the SDK to the given element.
+   * @param element: dom element where the sdk will be appened to
+   */
   appendTo(element: HTMLElement): void {
     this.sdk.language = this.language;
     this.sdk.apiUrl = this.apiUrl;
@@ -85,5 +92,8 @@ export abstract class SdkBuilder {
     element.appendChild(this.sdk);
   }
 
+  /**
+   * Used to implement custom workflows
+   */
   abstract assignProperties(): void;
 }

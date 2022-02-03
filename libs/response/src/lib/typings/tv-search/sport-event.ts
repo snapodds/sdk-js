@@ -26,13 +26,17 @@ export interface SportEvent {
 
   /**
    * The start time of this sport event.
+   *
+   * ISO DateTime Format: yyyy-MM-dd'T'HH:mm:ss.SSSZZ
    */
-  startTime: string; //iso date-time: yyyy-MM-dd'T'HH:mm:ss.SSSZZ
+  startTime: string;
 
   /**
    * The end time of this sport event.
+   *
+   * ISO DateTime Format: yyyy-MM-dd'T'HH:mm:ss.SSSZZ
    */
-  endTime: string; // iso date-time: yyyy-MM-dd'T'HH:mm:ss.SSSZZ
+  endTime: string;
 
   /**
    * The sport discipline of this sport event.

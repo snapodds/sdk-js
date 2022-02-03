@@ -8,7 +8,7 @@ import { mock, MockProxy } from 'jest-mock-extended';
 import { of, throwError } from 'rxjs';
 import { register } from 'timezone-mock';
 import { lineOddsMapped } from '../../services/api/line-odds.mapped';
-import { SnapOddsFacade } from '../../services/snap-odds/snap-odds-facade.service';
+import { OddsService } from '../../services/api/odds.service';
 import { WINDOW } from '../../services/tokens/window-token';
 import { ContentComponent } from '../content/content.component';
 import { HeaderComponent } from '../header/header.component';
@@ -19,19 +19,19 @@ describe('OddsComponent', () => {
   let component: OddsComponent;
   let fixture: ComponentFixture<OddsComponent>;
   let window: MockProxy<Window>;
-  let snapOddsFacade: MockProxy<SnapOddsFacade>;
+  let oddsService: MockProxy<OddsService>;
 
   const tvSearchResultEntry: TvSearchResultEntry = sportEventTvSearchMock.resultEntries[0];
 
   beforeEach(async () => {
     window = mock<Window>();
-    snapOddsFacade = mock<SnapOddsFacade>();
+    oddsService = mock<OddsService>();
 
     await TestBed.configureTestingModule({
       imports: [TranslateModule.forRoot(), HttpClientTestingModule],
       providers: [
         { provide: WINDOW, useValue: window },
-        { provide: SnapOddsFacade, useValue: snapOddsFacade },
+        { provide: OddsService, useValue: oddsService },
       ],
       declarations: [OddsComponent, HeaderComponent, ContentComponent],
     }).compileComponents();
@@ -70,44 +70,44 @@ describe('OddsComponent', () => {
   });
 
   it('should load lineOdds when sportEvents are changed', () => {
-    snapOddsFacade.getLineOdds.mockReturnValue(of(lineOddsMapped));
+    oddsService.gameLineOddsBySportEventId.mockReturnValue(of(lineOddsMapped));
 
     component.ngOnChanges({ tvSearchResultEntry: new SimpleChange(null, tvSearchResultEntry, true) });
 
     expect(component.lineOdds).toBe(lineOddsMapped);
-    expect(snapOddsFacade.getLineOdds).toHaveBeenCalledWith(tvSearchResultEntry.sportEvent.id);
+    expect(oddsService.gameLineOddsBySportEventId).toHaveBeenCalledWith(tvSearchResultEntry.sportEvent.id);
     expect(component.noResults).toBe(false);
     expect(component.loading).toBe(false);
   });
 
   it('should show noResults if loading lineOdds failed', () => {
-    snapOddsFacade.getLineOdds.mockReturnValue(throwError(() => new Error()));
+    oddsService.gameLineOddsBySportEventId.mockReturnValue(throwError(() => new Error()));
 
     component.ngOnChanges({ tvSearchResultEntry: new SimpleChange(null, tvSearchResultEntry, true) });
 
-    expect(snapOddsFacade.getLineOdds).toHaveBeenCalledWith(tvSearchResultEntry.sportEvent.id);
+    expect(oddsService.gameLineOddsBySportEventId).toHaveBeenCalledWith(tvSearchResultEntry.sportEvent.id);
     expect(component.lineOdds).toBe(null);
     expect(component.noResults).toBe(true);
     expect(component.loading).toBe(false);
   });
 
   it('should show noResults if sportBooks are empty ', () => {
-    snapOddsFacade.getLineOdds.mockReturnValue(of({ ...lineOddsMapped, sportsBooks: [] }));
+    oddsService.gameLineOddsBySportEventId.mockReturnValue(of({ ...lineOddsMapped, sportsBooks: [] }));
 
     component.ngOnChanges({ tvSearchResultEntry: new SimpleChange(null, tvSearchResultEntry, true) });
 
-    expect(snapOddsFacade.getLineOdds).toHaveBeenCalledWith(tvSearchResultEntry.sportEvent.id);
+    expect(oddsService.gameLineOddsBySportEventId).toHaveBeenCalledWith(tvSearchResultEntry.sportEvent.id);
     expect(component.lineOdds).toBe(null);
     expect(component.noResults).toBe(true);
     expect(component.loading).toBe(false);
   });
 
   it('should show noResults if no sportBooks', () => {
-    snapOddsFacade.getLineOdds.mockReturnValue(of({ ...lineOddsMapped, sportsBooks: undefined }));
+    oddsService.gameLineOddsBySportEventId.mockReturnValue(of({ ...lineOddsMapped, sportsBooks: undefined }));
 
     component.ngOnChanges({ tvSearchResultEntry: new SimpleChange(null, tvSearchResultEntry, true) });
 
-    expect(snapOddsFacade.getLineOdds).toHaveBeenCalledWith(tvSearchResultEntry.sportEvent.id);
+    expect(oddsService.gameLineOddsBySportEventId).toHaveBeenCalledWith(tvSearchResultEntry.sportEvent.id);
     expect(component.lineOdds).toBe(null);
     expect(component.noResults).toBe(true);
     expect(component.loading).toBe(false);

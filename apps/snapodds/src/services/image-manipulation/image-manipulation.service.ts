@@ -9,6 +9,13 @@ import { ManipulatedImage } from './manipulated-image';
 export class ImageManipulationService {
   constructor(private readonly logger: LoggerService, @Inject(DOCUMENT) private readonly document: Document) {}
 
+  /**
+   * Creates an image from the `source` based on which part is visible in the viewfinder.
+   * @param source: the webcams video stream
+   * @param viewFinder: the viewfinder from which the image should be cropped
+   * @param scaleFactor: the factor the user has zoomed into the image
+   * @param maxDimension: the max dimension of the resulting image
+   */
   cropAndResizeImage(
     source: HTMLVideoElement,
     viewFinder: HTMLElement,
@@ -41,19 +48,34 @@ export class ImageManipulationService {
     return this.createImageFromCanvas(canvas);
   }
 
+  /**
+   * Determines if parts of the image should be cropped.
+   *
+   * @param scaleFactor: the factor the user has zoomed into the image
+   * @param source: the webcams video stream
+   * @param viewFinder: the viewfinder from which the image should be cropped
+   * @private
+   */
   private shouldCrop(scaleFactor: number, source: HTMLVideoElement, viewFinder: HTMLElement) {
     return scaleFactor > 1 || source !== viewFinder;
   }
 
+  /**
+   * Crops the part of the image which is visible beneath the viewfinder
+   * @param source: the webcams video stream
+   * @param viewFinder: the viewfinder from which the image should be cropped
+   * @param scaleFactor: the factor the user has zoomed into the image
+   * @private
+   */
   private crop(
     source: HTMLVideoElement,
     viewFinder: HTMLElement,
-    zoomScale: number
+    scaleFactor: number
   ): { sx: number; sy: number; sourceWidth: number; sourceHeight: number } {
     const videoScale = Math.max(source.videoWidth / source.clientWidth, source.videoHeight / source.clientHeight);
 
-    let sourceWidth = Math.floor((viewFinder.clientWidth * videoScale) / zoomScale);
-    let sourceHeight = Math.floor((viewFinder.clientHeight * videoScale) / zoomScale);
+    let sourceWidth = Math.floor((viewFinder.clientWidth * videoScale) / scaleFactor);
+    let sourceHeight = Math.floor((viewFinder.clientHeight * videoScale) / scaleFactor);
 
     let sx = Math.floor((source.videoWidth - sourceWidth) / 2);
     let sy = Math.floor((source.videoHeight - sourceHeight) / 2);
@@ -73,6 +95,13 @@ export class ImageManipulationService {
     };
   }
 
+  /**
+   * Converts an canvas element into an image blob with additional image metadata
+   * @param canvas: the canvas element where the image is rendered
+   * @param mimeType: the mime type of the resulting image
+   * @param quality: the jpeg compression quality
+   * @private
+   */
   private createImageFromCanvas(
     canvas: HTMLCanvasElement,
     mimeType = 'image/jpeg',
@@ -105,10 +134,24 @@ export class ImageManipulationService {
     });
   }
 
+  /**
+   * Determines if an image needs to be resized as it is larger than the max allowed dimension
+   * @param sourceWidth
+   * @param sourceHeight
+   * @param maxDimension
+   * @private
+   */
   private shouldDownscale(sourceWidth: number, sourceHeight: number, maxDimension: number) {
     return (sourceWidth > sourceHeight && sourceWidth > maxDimension) || sourceHeight > maxDimension;
   }
 
+  /**
+   * Calculates the resized width and height of an image
+   * @param sourceWidth
+   * @param sourceHeight
+   * @param maxDimension
+   * @private
+   */
   private downscale(sourceWidth: number, sourceHeight: number, maxDimension: number) {
     let preferredWidth = sourceWidth;
     let preferredHeight = sourceHeight;

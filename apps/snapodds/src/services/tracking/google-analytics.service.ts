@@ -12,6 +12,13 @@ export class GoogleAnalyticsService {
 
   constructor(private readonly logger: LoggerService) {}
 
+  /**
+   * Tracks analytics based on which analytics service is available.
+   * Fallback to the LoggerService if neither GoogleAnalytics nor GoogleTagManager is available-
+   * @param action: the action of the event to track
+   * @param value: the value of the event to track
+   * @private
+   */
   private trackEvent(action: string, value?: number | string) {
     try {
       if (this.isGoogleAnalytics()) {
@@ -31,10 +38,19 @@ export class GoogleAnalyticsService {
     }
   }
 
+  /**
+   * Checks if GoogleAnalytics is globally available
+   * @private
+   */
   private isGoogleAnalytics(): boolean {
     return typeof ga === 'function';
   }
 
+  /**
+   * Track Event using GoogleAnalytics
+   * @param action
+   * @private
+   */
   private trackGoogleAnalyticsEvent(action: string): void {
     ga('send', {
       hitType: 'pageview',
@@ -44,10 +60,19 @@ export class GoogleAnalyticsService {
     });
   }
 
+  /**
+   * Checks if GoogleTagManager is globally available
+   * @private
+   */
   private isGoogleTagManager(): boolean {
     return typeof gtag === 'function';
   }
 
+  /**
+   * Track Event using GoogleTagManager
+   * @param action
+   * @private
+   */
   private trackGoogleTagManagerEvent(action: string): void {
     gtag('event', 'page_view', {
       page_path: `/${this.category}/${this.label}/${action}`,

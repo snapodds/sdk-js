@@ -27,6 +27,16 @@
         "jestConfig": "libs/response/jest.config.js",
         "passWithNoTests": true
       }
+    },
+    "docs": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx typedoc --tsconfig libs/response/tsconfig.lib.json --out docs/libs libs/response/src/lib/typings/index.ts"
+          }
+        ]
+      }
     }
   },
   "tags": []

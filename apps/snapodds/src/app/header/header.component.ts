@@ -9,6 +9,9 @@ import { ApplicationConfigService } from '../../services/config/application-conf
 export class HeaderComponent {
   constructor(private readonly applicationConfigService: ApplicationConfigService) {}
 
+  /**
+   * Emits the closeEvent on the ApplicationConfigService to signalize that the app should be closed.
+   */
   cancelSnap(): void {
     this.applicationConfigService.emitCloseEvent();
   }

@@ -1,3 +1,6 @@
+/**
+ * Keys available for translating text in the view
+ */
 export interface TranslationEntries {
   Snapodds_Title_Snap_TV: string;
   Snapodds_Title_Odds: string;

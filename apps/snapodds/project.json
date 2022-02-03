@@ -95,6 +95,16 @@
         "jestConfig": "apps/snapodds/jest.config.js",
         "passWithNoTests": true
       }
+    },
+    "docs": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx compodoc -n 'SnapOdds SDK' -p tsconfig.doc.json -d docs/"
+          }
+        ]
+      }
     }
   },
   "tags": []

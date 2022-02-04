@@ -7,6 +7,7 @@ export const TRANSLATION_ENTRIES_DE: TranslationEntries = {
   Snapodds_Action_Cancel: 'Abbrechen',
   Snapodds_Action_Reload: 'Seite neu laden',
   Snapodds_Action_Close_Help: 'Hilfe schließen',
+  Snapodds_Action_Help: 'Hilfe?',
   Snapodds_ViewFinder_Hint: 'Make sure your TV is visible<br />within the viewfinder.',
   Snapodds_Device_No_Permission_Headline: 'Permission required',
   Snapodds_Device_No_Permission: 'In order to snap your TV, SnapOdds needs access to your camera.',

@@ -1,0 +1,29 @@
+@use 'settings';
+@use 'tools';
+
+:host {
+  .c-user-feedback {
+    text-align: center;
+
+    &--error {
+      color: settings.$color-warn;
+    }
+
+    &__headline {
+      font-size: settings.$font-xl;
+      margin-bottom: settings.$spacing-sm;
+
+      @include tools.media-tiny--portrait {
+        display: none;
+      }
+
+      @include tools.media-tiny--landscape {
+        display: none;
+      }
+
+      @include tools.media-small--portrait {
+        font-size: settings.$font-lg;
+      }
+    }
+  }
+}

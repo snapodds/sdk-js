@@ -3,7 +3,15 @@
 @use 'sass:math';
 
 $viewfinder-stroke-width: 4px;
-$viewfinder-stand-offset: 6%;
+$viewfinder-stand-offset: 7%;
+
+@mixin aspect-ratio {
+  aspect-ratio: 375/295;
+
+  @include tools.media-tiny--portrait {
+    aspect-ratio: 16/9;
+  }
+}
 
 :host {
   background-color: #000;
@@ -12,8 +20,9 @@ $viewfinder-stand-offset: 6%;
   /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
   ::ng-deep {
     .webcam-wrapper {
+      @include aspect-ratio;
+
       align-items: center;
-      aspect-ratio: 16/9;
       display: flex !important;
       overflow: hidden;
     }
@@ -22,14 +31,20 @@ $viewfinder-stand-offset: 6%;
       height: auto !important;
       width: 100% !important;
     }
+
+    pinch-zoom {
+      display: flex;
+    }
   }
 
   .c-camera {
     &--container {
-      aspect-ratio: auto 16/9;
+      @include aspect-ratio;
+
+      display: flex;
+      flex: 1;
       overflow: hidden;
       position: relative;
-      width: 100%;
     }
 
     &--viewfinder {
@@ -38,39 +53,56 @@ $viewfinder-stand-offset: 6%;
       position: absolute;
       top: 50%;
       transform: translate(-50%, -50%);
-      width: 70%;
+      width: 90%;
       z-index: map-get(settings.$z-index, 'viewfinder');
+
+      &__tv-frame {
+        border: $viewfinder-stroke-width solid #fff;
+        box-shadow: 0 0 0 999px rgb(0 0 0 / 50%);
+        content: '';
+        display: block;
+        padding-top: math.div(9, 16) * 100%;
+        position: relative;
+      }
+
+      &__tv-stand {
+        border-bottom: $viewfinder-stroke-width solid #fff;
+        border-radius: 5px;
+        bottom: -$viewfinder-stand-offset;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, $viewfinder-stand-offset);
+        width: 15%;
+      }
+
+      &__tv-connector {
+        border-left: $viewfinder-stroke-width solid #fff;
+        bottom: -$viewfinder-stand-offset;
+        content: '';
+        height: $viewfinder-stand-offset;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, 0);
+      }
     }
 
-    &--viewfinder-tv-frame {
-      border: $viewfinder-stroke-width solid #fff;
-      box-shadow: 0 0 0 999px rgb(0 0 0 / 50%);
-      content: '';
-      display: block;
-      padding-top: 56.25%;
-      position: relative;
-    }
+    &--footer {
+      &__powered-by {
+        bottom: settings.$spacing-sm;
+        color: #fff;
+        font-size: settings.$font-xs;
+        font-weight: 200;
+        left: 0;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        z-index: map-get(settings.$z-index, 'viewfinder') + 1;
 
-    &--viewfinder-tv-stand {
-      border: math.div($viewfinder-stroke-width, 2) solid #fff;
-      border-radius: 5px;
-      bottom: -$viewfinder-stand-offset;
-      left: 50%;
-      position: absolute;
-      transform: translate(-50%, $viewfinder-stand-offset);
-      width: 15%;
-    }
-
-    &--viewfinder-tv-connector {
-      border: math.div($viewfinder-stroke-width, 2) solid #fff;
-      border-bottom-width: 0;
-      border-top-width: 0;
-      bottom: -$viewfinder-stand-offset;
-      content: '';
-      height: $viewfinder-stand-offset;
-      left: 50%;
-      position: absolute;
-      transform: translate(-50%, 0);
+        /* stylelint-disable-next-line max-nesting-depth*/
+        @include tools.media-tiny--portrait {
+          bottom: settings.$spacing-xs;
+        }
+      }
     }
   }
 }

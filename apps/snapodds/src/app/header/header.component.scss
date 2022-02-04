@@ -5,7 +5,15 @@
   align-items: baseline;
   border-bottom: 1px solid settings.$color-accent;
   display: flex;
-  padding: settings.$spacing-base * 3 settings.$spacing-base settings.$spacing-base settings.$spacing-base;
+  padding: settings.$spacing-base;
+
+  @media (orientation: portrait) {
+    padding-top: settings.$spacing-base * 3;
+  }
+
+  @include tools.media-small--portrait {
+    padding-top: settings.$spacing-base * 2;
+  }
 
   .c-header {
     &--left {
@@ -17,6 +25,7 @@
       flex: 1;
       font-size: settings.$font-xl;
       text-align: center;
+      white-space: nowrap;
     }
 
     &--right {

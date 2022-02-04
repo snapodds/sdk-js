@@ -7,8 +7,55 @@
   flex: 1;
   flex-direction: column;
 
+  .l-flex {
+    display: flex;
+    flex: 1;
+  }
+
+  @media (orientation: landscape) {
+    .l-flex {
+      &__column--landscape {
+        flex-direction: column;
+      }
+
+      &__row--landscape {
+        flex-direction: row;
+      }
+    }
+  }
+
+  @media (orientation: portrait) {
+    .l-flex {
+      &__column--portrait {
+        flex-direction: column;
+      }
+
+      &__row--portrait {
+        flex-direction: row;
+      }
+    }
+  }
+
+  snapodds-webcam {
+    display: flex;
+    flex: 1;
+  }
+
   snapodds-content {
-    margin: settings.$spacing-base * 2;
+    margin: settings.$spacing-lg;
+
+    @include tools.media-small--portrait {
+      margin: settings.$spacing-base settings.$spacing-lg;
+    }
+
+    @include tools.media-tiny--landscape {
+      margin: settings.$spacing-base settings.$spacing-lg;
+    }
+  }
+
+  snapodds-footer {
+    margin-left: settings.$spacing-lg;
+    margin-right: settings.$spacing-lg;
   }
 
   snapodds-trigger {
@@ -22,30 +69,11 @@
     font-size: settings.$font-base;
   }
 
-  .c-user-feedback {
-    text-align: center;
-
-    &--error {
-      color: settings.$color-warn;
-    }
-
-    &__headline {
-      font-size: settings.$font-xl;
-      margin-bottom: settings.$spacing-sm;
-    }
-  }
-
   .c-footer {
-    &--row {
-      align-items: center;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-    }
-
-    &--row-spacing-top {
-      margin-top: settings.$spacing-base * 2;
-    }
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 
     &__switch-camera {
       @include tools.button-reset;
@@ -53,6 +81,7 @@
       color: settings.$color-primary;
       display: flex;
       flex: 1;
+      justify-content: center;
     }
 
     &__reload-button {

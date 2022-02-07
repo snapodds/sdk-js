@@ -1,0 +1,10 @@
+{
+  "include": ["apps/snapodds/src/**/*.ts", "libs/response/src/lib/typings/**/*.ts"],
+  "exclude": [
+    "apps/**/*.spec.ts",
+    "apps/**/*.mock.ts",
+    "apps/**/*.mapped.ts",
+    "apps/**/environment*.ts",
+    "apps/**/translation-entries.*.ts"
+  ]
+}

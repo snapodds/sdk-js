@@ -1,22 +1,24 @@
 import { Injectable } from '@angular/core';
 import { TvSearchResult } from '@response/typings';
-import { Observable, tap, catchError, throwError } from 'rxjs';
-import { LineOdds } from '../../models/line-odds';
-import { OddsService } from '../api/odds.service';
+import { catchError, Observable, tap, throwError } from 'rxjs';
+import { TvSearchNoResultError } from '../api/api-errors';
 import { TvSearchService } from '../api/tv-search.service';
 import { LoggerService } from '../logger/logger.service';
 import { GoogleAnalyticsService } from '../tracking/google-analytics.service';
-import { TvSearchNoResultError } from '../api/api-errors';
 
 @Injectable({ providedIn: 'root' })
 export class SnapOddsFacade {
   constructor(
     private readonly tvSearchService: TvSearchService,
-    private readonly oddsService: OddsService,
     private readonly logger: LoggerService,
     private readonly analyticsService: GoogleAnalyticsService
   ) {}
 
+  /**
+   * Performs the search of an SportEvent by an image.
+   * Trigger the analytics to register positive / negative and failed results.
+   * @param imageData
+   */
   searchSport(imageData: Blob): Observable<TvSearchResult> {
     this.analyticsService.snapViewSnap();
 
@@ -35,11 +37,11 @@ export class SnapOddsFacade {
     );
   }
 
+  /**
+   * Find SportEvent when the search is triggered programmatically.
+   * @param imageData
+   */
   autoSearchSport(imageData: Blob): Observable<TvSearchResult> {
     return this.tvSearchService.autoSearchSport(imageData);
-  }
-
-  getLineOdds(sportEventId: number): Observable<LineOdds> {
-    return this.oddsService.gameLineOddsBySportEventId(sportEventId);
   }
 }

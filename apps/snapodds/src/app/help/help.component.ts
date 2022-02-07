@@ -9,6 +9,9 @@ import { AppState, AppStateStore } from '../../states/app-state.store';
 export class HelpComponent {
   constructor(private readonly appStateStore: AppStateStore) {}
 
+  /**
+   * Navigate to the Snap Page by setting the corresponding AppState
+   */
   showSnapPage(): void {
     this.appStateStore.dispatch(AppState.SNAP_READY);
   }

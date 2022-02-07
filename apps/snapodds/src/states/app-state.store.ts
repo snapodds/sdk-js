@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { map, Observable, ReplaySubject } from 'rxjs';
 
+/**
+ * The various AppStates which are used for determining which view to render
+ */
 export enum AppState {
   SHOW_HELP = 'SHOW_HELP',
   SHOW_ODDS = 'SHOW_ODDS',
@@ -16,12 +19,23 @@ export enum AppState {
 export class AppStateStore {
   private readonly _state = new ReplaySubject<AppState>(1);
   private readonly state$: Observable<AppState> = this._state.asObservable();
+
+  /**
+   * Emits when the HelpPage should be shown
+   */
   readonly showHelp$ = this.getState().pipe(map((state) => state === AppState.SHOW_HELP));
 
+  /**
+   * Listen to changes on the AppState
+   */
   getState(): Observable<AppState> {
     return this.state$;
   }
 
+  /**
+   * Trigger an AppState change
+   * @param state
+   */
   dispatch(state: AppState): void {
     this._state.next(state);
   }

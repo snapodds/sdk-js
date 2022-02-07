@@ -12,14 +12,19 @@ import { AppState, AppStateStore } from '../states/app-state.store';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  private tvSearchResultEntry: TvSearchResultEntry | null = null;
+  /**
+   * Holds the value of the TvSearchResultEntry for loading and rendering the lineOdds
+   * Only to be accessed by property accessors.
+   *
+   * @private
+   */
+  #tvSearchResult: TvSearchResultEntry | null = null;
 
   @Input() apiUrl?: string;
   @Input() autoSnap?: boolean;
   @Input() language?: string;
   @Input() logLevel?: string;
   @Input() vibrate?: boolean;
-
   @Input() accessTokenProvider?: () => Promise<AccessToken>;
   @Input() logCallback?: (logLevel: string, data: unknown[]) => void;
   @Input() resultsCallback?: (tvSearchResult: TvSearchResultEntry) => void;
@@ -27,15 +32,18 @@ export class AppComponent implements OnInit {
 
   @Input()
   set tvSearchResult(tvSearchResultEntry: TvSearchResultEntry | null) {
-    this.tvSearchResultEntry = tvSearchResultEntry;
+    this.#tvSearchResult = tvSearchResultEntry;
 
     if (tvSearchResultEntry) {
       this.appStateStore.dispatch(AppState.SHOW_ODDS);
     }
   }
 
+  /**
+   * Returns the TvSearchResult, so that it can be used inside the template
+   */
   get tvSearchResult() {
-    return this.tvSearchResultEntry;
+    return this.#tvSearchResult;
   }
 
   constructor(
@@ -45,20 +53,37 @@ export class AppComponent implements OnInit {
     readonly appStateStore: AppStateStore
   ) {}
 
+  /**
+   * Sets up the applicationConfig, translations and analytics.
+   * Called when the SDK is added to the DOM
+   */
   ngOnInit(): void {
     this.setupApplicationConfig();
     this.setupTranslations();
     this.setupAnalytics();
   }
 
+  /**
+   * Trigger analytics method that SDK has been initialized
+   * @private
+   */
   private setupAnalytics(): void {
     this.analyticsService.sdkInitialized();
   }
 
+  /**
+   * Register the translation service for the configured language
+   * @private
+   */
   private setupTranslations(): void {
     this.translateService.use(this.applicationConfigService.getLanguage());
   }
 
+  /**
+   * Configure the application based on the component inputs and assigns the callbacks.
+   *
+   * @private
+   */
   private setupApplicationConfig(): void {
     this.applicationConfigService.setConfig({
       apiUrl: this.apiUrl,
@@ -73,6 +98,9 @@ export class AppComponent implements OnInit {
     });
   }
 
+  /**
+   * Clears the stored tvSearchResults and renders the view to snap an image.
+   */
   closeOddsView(): void {
     this.tvSearchResult = null;
     this.appStateStore.dispatch(AppState.SNAP_READY);

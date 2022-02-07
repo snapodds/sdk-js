@@ -6,6 +6,7 @@ export const TRANSLATION_ENTRIES_EN: TranslationEntries = {
   Snapodds_Title_Help: 'Help',
   Snapodds_Action_Cancel: 'Cancel',
   Snapodds_Action_Reload: 'Reload page',
+  Snapodds_Action_Help: 'Need help?',
   Snapodds_Action_Close_Help: 'Close Help',
   Snapodds_ViewFinder_Hint: 'Make sure your TV is visible<br />within the viewfinder.',
   Snapodds_Device_No_Permission_Headline: 'Permission required',

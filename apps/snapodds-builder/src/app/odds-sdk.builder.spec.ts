@@ -14,7 +14,6 @@ describe('OddsSdkBuilder', () => {
   });
 
   it('should assign the tvSearchResult to the sdk', () => {
-    console.log(sportEventTvSearchMock);
     const tvSearchResult = sportEventTvSearchMock.resultEntries[0];
 
     builder.setTvSearchResult(tvSearchResult).appendTo(body);

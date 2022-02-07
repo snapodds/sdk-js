@@ -11,12 +11,19 @@ export class NotificationService {
     private readonly applicationConfigService: ApplicationConfigService
   ) {}
 
+  /**
+   * Lets the device vibrate.
+   */
   notify(): void {
     if (this.applicationConfigService.isVibrateEnabled() && this.hasVibrationApi()) {
       this.navigator.vibrate(200);
     }
   }
 
+  /**
+   * Determines if the browserApi supports vibration
+   * @private
+   */
   private hasVibrationApi(): boolean {
     return typeof this.navigator?.vibrate === 'function';
   }

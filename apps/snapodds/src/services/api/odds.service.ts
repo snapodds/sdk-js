@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OddsResponse } from '@response/typings';
-import { Observable, map, switchMap } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 import { LineOdds } from '../../models/line-odds';
 import { SportsBook } from '../../models/sports-book';
 import { AuthService } from '../auth/auth.service';
@@ -17,10 +17,17 @@ export class OddsService {
     private readonly applicationConfigService: ApplicationConfigService
   ) {}
 
+  /**
+   * Retrieve the apiUrl from the applicationConfig
+   */
   get baseUrl() {
     return this.applicationConfigService.getApiUrl();
   }
 
+  /**
+   * Search for the LineOdds by a sportEventId
+   * @param sportEventId: The identifier of the sportEvent
+   */
   gameLineOddsBySportEventId(sportEventId: number): Observable<LineOdds> {
     return this.authService.requestAccessToken().pipe(
       switchMap((accessToken) =>
@@ -32,6 +39,11 @@ export class OddsService {
     );
   }
 
+  /**
+   * Converts the LineOdds into a better data structure for rendering it
+   * @param lineOdds
+   * @private
+   */
   private mapLineOddsResponse(lineOdds: OddsResponse): LineOdds {
     const { competitors, players = [], sportsBooks } = lineOdds;
 
@@ -96,6 +108,11 @@ export class OddsService {
     return { competitors, players, sportsBooks: sportsBookLines };
   }
 
+  /**
+   * Convert the odds to be displayed in american style
+   * @param odds
+   * @private
+   */
   private convertToAmericanOdds(odds: number): null | number {
     if (!odds || odds <= 1) {
       return null;

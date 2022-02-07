@@ -7,7 +7,7 @@ const concat = require('concat');
     `${sourceDir}/runtime.js`,
     `${sourceDir}/polyfills.js`,
     `${sourceDir}/main.js`,
-    `${sourceDir}/assets/snapodds-builder.js`,
+    `./dist/apps/snapodds-builder/snapodds-builder.js`,
   ];
 
   await fs.ensureDir(`${targetDir}`);

@@ -28,11 +28,11 @@ jobs:
         name: snapodds-sdk
         path: dist/elements/snapodds/*
 
-    - name: Upload Documentation as an artifact
-      uses: actions/upload-artifact@v2
+    - name: Deploy documentation to github
+      uses: JamesIves/github-pages-deploy-action@v4.2.3
       with:
-        name: snapodds-documentation
-        path: docs/**/*
+        branch: gh-pages
+        folder: docs
 
   pr:
     runs-on: ubuntu-latest

@@ -12,7 +12,5 @@ const concat = require('concat');
 
   await fs.ensureDir(`${targetDir}`);
   await concat(files, `${targetDir}/snapodds-sdk.js`);
-
   await fs.copyFile(`${sourceDir}/styles.css`, `${targetDir}/snapodds-sdk.css`);
-  await fs.copyFile(`${sourceDir}/index.html`, `${targetDir}/index.html`);
 })();

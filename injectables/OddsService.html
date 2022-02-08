@@ -1,0 +1,657 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>SnapOdds SDK</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">SnapOdds SDK</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >OddsService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>apps/snapodds/src/services/api/odds.service.ts</code>
+        </p>
+
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#convertToAmericanOdds" >convertToAmericanOdds</a>
+                            </li>
+                            <li>
+                                <a href="#gameLineOddsBySportEventId" >gameLineOddsBySportEventId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#mapLineOddsResponse" >mapLineOddsResponse</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#baseUrl" >baseUrl</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, applicationConfigService: <a href="../injectables/ApplicationConfigService.html" target="_self">ApplicationConfigService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">apps/snapodds/src/services/api/odds.service.ts:13</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>http</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>applicationConfigService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ApplicationConfigService.html" target="_self" >ApplicationConfigService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertToAmericanOdds"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>convertToAmericanOdds</b></span>
+                        <a href="#convertToAmericanOdds"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>convertToAmericanOdds(odds: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">apps/snapodds/src/services/api/odds.service.ts:116</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Convert the odds to be displayed in american style</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>odds</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>null | number</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gameLineOddsBySportEventId"></a>
+                    <span class="name">
+                        <span ><b>gameLineOddsBySportEventId</b></span>
+                        <a href="#gameLineOddsBySportEventId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>gameLineOddsBySportEventId(sportEventId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">apps/snapodds/src/services/api/odds.service.ts:31</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Search for the LineOdds by a sportEventId</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>sportEventId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>: The identifier of the sportEvent</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/LineOdds.html" target="_self" >Observable&lt;LineOdds&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mapLineOddsResponse"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>mapLineOddsResponse</b></span>
+                        <a href="#mapLineOddsResponse"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>mapLineOddsResponse(lineOdds: <a href="../interfaces/OddsResponse.html" target="_self">OddsResponse</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">apps/snapodds/src/services/api/odds.service.ts:47</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Converts the LineOdds into a better data structure for rendering it</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>lineOdds</td>
+                                    <td>
+                                                <code><a href="../interfaces/OddsResponse.html" target="_self" >OddsResponse</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/LineOdds.html" target="_self" >LineOdds</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="baseUrl"></a>
+                        <span class="name"><b>baseUrl</b><a href="#baseUrl"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>baseUrl()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">apps/snapodds/src/services/api/odds.service.ts:23</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Retrieve the apiUrl from the applicationConfig</p>
+</div>
+
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient, HttpHeaders } from &#x27;@angular/common/http&#x27;;
+import { Injectable } from &#x27;@angular/core&#x27;;
+import { OddsResponse } from &#x27;@response/typings&#x27;;
+import { map, Observable, switchMap } from &#x27;rxjs&#x27;;
+import { LineOdds } from &#x27;../../models/line-odds&#x27;;
+import { SportsBook } from &#x27;../../models/sports-book&#x27;;
+import { AuthService } from &#x27;../auth/auth.service&#x27;;
+import { ApplicationConfigService } from &#x27;../config/application-config.service&#x27;;
+
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class OddsService {
+  constructor(
+    private readonly http: HttpClient,
+    private readonly authService: AuthService,
+    private readonly applicationConfigService: ApplicationConfigService
+  ) {}
+
+  /**
+   * Retrieve the apiUrl from the applicationConfig
+   */
+  get baseUrl() {
+    return this.applicationConfigService.getApiUrl();
+  }
+
+  /**
+   * Search for the LineOdds by a sportEventId
+   * @param sportEventId: The identifier of the sportEvent
+   */
+  gameLineOddsBySportEventId(sportEventId: number): Observable&lt;LineOdds&gt; {
+    return this.authService.requestAccessToken().pipe(
+      switchMap((accessToken) &#x3D;&gt;
+        this.http.get&lt;OddsResponse&gt;(&#x60;${this.baseUrl}/sport/events/${sportEventId}/odds/lines&#x60;, {
+          headers: new HttpHeaders({ Authorization: &#x60;Bearer ${accessToken}&#x60; }),
+        })
+      ),
+      map((response) &#x3D;&gt; this.mapLineOddsResponse(response))
+    );
+  }
+
+  /**
+   * Converts the LineOdds into a better data structure for rendering it
+   * @param lineOdds
+   * @private
+   */
+  private mapLineOddsResponse(lineOdds: OddsResponse): LineOdds {
+    const { competitors, players &#x3D; [], sportsBooks } &#x3D; lineOdds;
+
+    if (competitors?.length &lt; 2 || !sportsBooks) {
+      return { competitors, players };
+    }
+
+    const sportsBookLines: SportsBook[] &#x3D; [];
+    sportsBooks
+      .filter((sportsBook) &#x3D;&gt; sportsBook.offers)
+      .map((sportsBook) &#x3D;&gt; {
+        const converted: SportsBook &#x3D; {
+          name: sportsBook.name,
+          lines: competitors.map(() &#x3D;&gt; ({} as never)),
+          redirectUrl: sportsBook._links?.redirect?.href,
+        };
+
+        sportsBook.offers
+          .filter((offer) &#x3D;&gt; offer.outcomes)
+          .forEach((offer) &#x3D;&gt; {
+            offer.outcomes.forEach((outcome) &#x3D;&gt; {
+              const competitorIndex &#x3D; competitors.findIndex((competitor) &#x3D;&gt; competitor.id &#x3D;&#x3D;&#x3D; outcome.competitorId);
+              const hasCompetitor &#x3D; competitorIndex &gt; -1;
+              const redirectUrl &#x3D; outcome._links?.redirect?.href;
+
+              if (offer.type &#x3D;&#x3D;&#x3D; &#x27;MONEYLINE&#x27; &amp;&amp; outcome.type &#x3D;&#x3D;&#x3D; &#x27;WIN&#x27; &amp;&amp; hasCompetitor) {
+                converted.lines[competitorIndex].moneyline &#x3D; this.convertToAmericanOdds(outcome.odds);
+
+                if (redirectUrl) {
+                  converted.lines[competitorIndex].moneylineUrl &#x3D; redirectUrl;
+                }
+              } else if (offer.type &#x3D;&#x3D;&#x3D; &#x27;OVER_UNDER&#x27; &amp;&amp; outcome.type &#x3D;&#x3D;&#x3D; &#x27;OVER&#x27;) {
+                converted.lines[0].overUnder &#x3D; outcome.target ?? null;
+                converted.lines[0].overUnderOdds &#x3D; this.convertToAmericanOdds(outcome.odds);
+
+                if (redirectUrl) {
+                  converted.lines[0].overUnderUrl &#x3D; redirectUrl;
+                }
+              } else if (offer.type &#x3D;&#x3D;&#x3D; &#x27;OVER_UNDER&#x27; &amp;&amp; outcome.type &#x3D;&#x3D;&#x3D; &#x27;UNDER&#x27;) {
+                converted.lines[1].overUnder &#x3D; outcome.target ?? null;
+                converted.lines[1].overUnderOdds &#x3D; this.convertToAmericanOdds(outcome.odds);
+
+                if (redirectUrl) {
+                  converted.lines[1].overUnderUrl &#x3D; redirectUrl;
+                }
+              } else if (offer.type &#x3D;&#x3D;&#x3D; &#x27;SPREAD&#x27; &amp;&amp; outcome.type &#x3D;&#x3D;&#x3D; &#x27;WIN&#x27; &amp;&amp; hasCompetitor) {
+                converted.lines[competitorIndex].spread &#x3D; outcome.target ?? null;
+                converted.lines[competitorIndex].spreadOdds &#x3D; this.convertToAmericanOdds(outcome.odds);
+
+                if (redirectUrl) {
+                  converted.lines[competitorIndex].spreadUrl &#x3D; redirectUrl;
+                }
+              }
+            });
+          });
+
+        if (converted.lines.length &gt; 0) {
+          sportsBookLines.push(converted);
+        }
+      });
+
+    return { competitors, players, sportsBooks: sportsBookLines };
+  }
+
+  /**
+   * Convert the odds to be displayed in american style
+   * @param odds
+   * @private
+   */
+  private convertToAmericanOdds(odds: number): null | number {
+    if (!odds || odds &lt;&#x3D; 1) {
+      return null;
+    } else if (odds &lt; 2) {
+      return Math.round((-1 / (odds - 1)) * 100);
+    } else {
+      return Math.round((odds - 1) * 100);
+    }
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'OddsService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

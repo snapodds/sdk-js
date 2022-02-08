@@ -1,0 +1,1536 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>SnapOdds SDK</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">SnapOdds SDK</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  SnapComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>apps/snapodds/src/app/snap/snap.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>snapodds-snap</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./snap.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./snap.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#appState" >appState</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#destroyed$" >destroyed$</a>
+                            </li>
+                            <li>
+                                <a href="#mediaDeviceState" >mediaDeviceState</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#snapshot$" >snapshot$</a>
+                            </li>
+                            <li>
+                                <a href="#webcamComponent" >webcamComponent</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#handleError" >handleError</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#handleSuccess" >handleSuccess</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadSportEvents" >loadSportEvents</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#registerAutoSnap" >registerAutoSnap</a>
+                            </li>
+                            <li>
+                                <a href="#reloadPage" >reloadPage</a>
+                            </li>
+                            <li>
+                                <a href="#showHelpPage" >showHelpPage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#startAutoSnapWithDelay" >startAutoSnapWithDelay</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#subscribeToStateStores" >subscribeToStateStores</a>
+                            </li>
+                            <li>
+                                <a href="#takeSnapshot" >takeSnapshot</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(logger: <a href="../injectables/LoggerService.html" target="_self">LoggerService</a>, applicationConfigService: <a href="../injectables/ApplicationConfigService.html" target="_self">ApplicationConfigService</a>, analyticsService: <a href="../injectables/GoogleAnalyticsService.html" target="_self">GoogleAnalyticsService</a>, snapOddsFacade: <a href="../injectables/SnapOddsFacade.html" target="_self">SnapOddsFacade</a>, appStateStore: <a href="../injectables/AppStateStore.html" target="_self">AppStateStore</a>, mediaDeviceStateStore: <a href="../injectables/MediaDeviceStateStore.html" target="_self">MediaDeviceStateStore</a>, notificationService: <a href="../injectables/NotificationService.html" target="_self">NotificationService</a>, location: <a href="https://angular.io/api/common/Location" target="_blank">Location</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">apps/snapodds/src/app/snap/snap.component.ts:28</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>logger</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LoggerService.html" target="_self" >LoggerService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>applicationConfigService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ApplicationConfigService.html" target="_self" >ApplicationConfigService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>analyticsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/GoogleAnalyticsService.html" target="_self" >GoogleAnalyticsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>snapOddsFacade</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SnapOddsFacade.html" target="_self" >SnapOddsFacade</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>appStateStore</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AppStateStore.html" target="_self" >AppStateStore</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>mediaDeviceStateStore</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MediaDeviceStateStore.html" target="_self" >MediaDeviceStateStore</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>notificationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/NotificationService.html" target="_self" >NotificationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>location</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/common/Location" target="_blank" >Location</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleError"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>handleError</b></span>
+                        <a href="#handleError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleError(error)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="146"
+                            class="link-to-prism">apps/snapodds/src/app/snap/snap.component.ts:146</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Depending on the error, either indicates that not SportEvents have been found by the given snapshot
+or that the request could not be processed due to technical errors.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>error</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleSuccess"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>handleSuccess</b></span>
+                        <a href="#handleSuccess"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleSuccess(sportEventsResponse: <a href="../interfaces/TvSearchResult.html" target="_self">TvSearchResult</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="135"
+                            class="link-to-prism">apps/snapodds/src/app/snap/snap.component.ts:135</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Emit the best match (first entry in the response) on the ApplicationConfigService,
+in order to notify other services about a successful snap.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>sportEventsResponse</td>
+                                    <td>
+                                                <code><a href="../interfaces/TvSearchResult.html" target="_self" >TvSearchResult</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadSportEvents"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>loadSportEvents</b></span>
+                        <a href="#loadSportEvents"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadSportEvents(autoSnap)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="159"
+                            class="link-to-prism">apps/snapodds/src/app/snap/snap.component.ts:159</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Retrieves a snapshot from the webcam and then call the respective method to lookup the SportEvent.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>autoSnap</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>false</code>
+                                    </td>
+
+                                    <td>
+                                        <p>: Depending on the mode used to perform the snapshot different methods are executed</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/TvSearchResult.html" target="_self" >Observable&lt;TvSearchResult&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">apps/snapodds/src/app/snap/snap.component.ts:79</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Clean up existing subscriptions.
+Triggers the snap view has been closed analytics event.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">apps/snapodds/src/app/snap/snap.component.ts:48</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Initializes the component.</p>
+<p>Will register autoSnap if configured.
+Sets the applicationState to SNAP_READY.
+Triggers the snap view opened analytics event.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registerAutoSnap"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>registerAutoSnap</b></span>
+                        <a href="#registerAutoSnap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>registerAutoSnap()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="102"
+                            class="link-to-prism">apps/snapodds/src/app/snap/snap.component.ts:102</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>When the camera is ready it starts to periodically take snapshots and tries to load SportEvents</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reloadPage"></a>
+                    <span class="name">
+                        <span ><b>reloadPage</b></span>
+                        <a href="#reloadPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>reloadPage()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="184"
+                            class="link-to-prism">apps/snapodds/src/app/snap/snap.component.ts:184</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Reload the webbrowser</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showHelpPage"></a>
+                    <span class="name">
+                        <span ><b>showHelpPage</b></span>
+                        <a href="#showHelpPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showHelpPage()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="177"
+                            class="link-to-prism">apps/snapodds/src/app/snap/snap.component.ts:177</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Navigate to the Help Page by setting the corresponding AppState</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="startAutoSnapWithDelay"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>startAutoSnapWithDelay</b></span>
+                        <a href="#startAutoSnapWithDelay"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>startAutoSnapWithDelay()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="118"
+                            class="link-to-prism">apps/snapodds/src/app/snap/snap.component.ts:118</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The first delay is a bit longer in order for the user to manage to align the camera correctly.
+Afterwards snapshots from the webcam will be taken periodically and SportEvents will be tried to be loaded.
+Stops only if the view is closed or the user has taken a snapshot by pressing the snapshot button.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/TvSearchResult.html" target="_self" >Observable&lt;TvSearchResult&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subscribeToStateStores"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>subscribeToStateStores</b></span>
+                        <a href="#subscribeToStateStores"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>subscribeToStateStores()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">apps/snapodds/src/app/snap/snap.component.ts:63</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Subscribes to updates from the AppStateStore and MediaDeviceStateStore</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="takeSnapshot"></a>
+                    <span class="name">
+                        <span ><b>takeSnapshot</b></span>
+                        <a href="#takeSnapshot"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>takeSnapshot()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">apps/snapodds/src/app/snap/snap.component.ts:89</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Notifies other subscriptions that a new snapshot is performed.
+Load the SportEvents based on the snapshot</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="appState"></a>
+                    <span class="name">
+                        <span ><b>appState</b></span>
+                        <a href="#appState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#AppState" target="_self" >AppState | undefined</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">apps/snapodds/src/app/snap/snap.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="destroyed$"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>destroyed$</b></span>
+                        <a href="#destroyed$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Subject&lt;void&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">apps/snapodds/src/app/snap/snap.component.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mediaDeviceState"></a>
+                    <span class="name">
+                        <span ><b>mediaDeviceState</b></span>
+                        <a href="#mediaDeviceState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#MediaDeviceState" target="_self" >MediaDeviceState | undefined</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">apps/snapodds/src/app/snap/snap.component.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="snapshot$"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>snapshot$</b></span>
+                        <a href="#snapshot$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Subject&lt;void&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">apps/snapodds/src/app/snap/snap.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="webcamComponent"></a>
+                    <span class="name">
+                        <span ><b>webcamComponent</b></span>
+                        <a href="#webcamComponent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/WebcamComponent.html" target="_self" >WebcamComponent</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(WebcamComponent)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">apps/snapodds/src/app/snap/snap.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Inject, OnDestroy, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
+import { TvSearchResult } from &#x27;@response/typings&#x27;;
+import { defer, delay, mergeMap, Observable, race, retryWhen, Subject, switchMap, take, takeUntil, timer } from &#x27;rxjs&#x27;;
+import { TvSearchNoResultError } from &#x27;../../services/api/api-errors&#x27;;
+import { ApplicationConfigService } from &#x27;../../services/config/application-config.service&#x27;;
+import { ManipulatedImage } from &#x27;../../services/image-manipulation/manipulated-image&#x27;;
+import { LoggerService } from &#x27;../../services/logger/logger.service&#x27;;
+import { NotificationService } from &#x27;../../services/notification/notification.service&#x27;;
+import { SnapOddsFacade } from &#x27;../../services/snap-odds/snap-odds-facade.service&#x27;;
+import { LOCATION } from &#x27;../../services/tokens/location-token&#x27;;
+import { GoogleAnalyticsService } from &#x27;../../services/tracking/google-analytics.service&#x27;;
+import { AppState, AppStateStore } from &#x27;../../states/app-state.store&#x27;;
+import { MediaDeviceState, MediaDeviceStateStore } from &#x27;../../states/media-device-state.store&#x27;;
+import { WebcamComponent } from &#x27;../webcam/webcam.component&#x27;;
+
+@Component({
+  selector: &#x27;snapodds-snap&#x27;,
+  templateUrl: &#x27;./snap.component.html&#x27;,
+  styleUrls: [&#x27;./snap.component.scss&#x27;],
+})
+export class SnapComponent implements OnInit, OnDestroy {
+  @ViewChild(WebcamComponent) webcamComponent!: WebcamComponent;
+
+  appState: AppState | undefined;
+  mediaDeviceState: MediaDeviceState | undefined;
+
+  private readonly destroyed$ &#x3D; new Subject&lt;void&gt;();
+  private readonly snapshot$ &#x3D; new Subject&lt;void&gt;();
+
+  constructor(
+    private readonly logger: LoggerService,
+    private readonly applicationConfigService: ApplicationConfigService,
+    private readonly analyticsService: GoogleAnalyticsService,
+    private readonly snapOddsFacade: SnapOddsFacade,
+    private readonly appStateStore: AppStateStore,
+    private readonly mediaDeviceStateStore: MediaDeviceStateStore,
+    private readonly notificationService: NotificationService,
+    @Inject(LOCATION) private readonly location: Location
+  ) {}
+
+  /**
+   * Initializes the component.
+   *
+   * Will register autoSnap if configured.
+   * Sets the applicationState to SNAP_READY.
+   * Triggers the snap view opened analytics event.
+   */
+  ngOnInit(): void {
+    if (this.applicationConfigService.isAutoSnapEnabled()) {
+      this.registerAutoSnap();
+    }
+
+    this.subscribeToStateStores();
+
+    this.appStateStore.dispatch(AppState.SNAP_READY);
+    this.analyticsService.snapViewOpened();
+  }
+
+  /**
+   * Subscribes to updates from the AppStateStore and MediaDeviceStateStore
+   * @private
+   */
+  private subscribeToStateStores() {
+    this.appStateStore
+      .getState()
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((appState) &#x3D;&gt; (this.appState &#x3D; appState));
+
+    this.mediaDeviceStateStore
+      .getState()
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((mediaDeviceState) &#x3D;&gt; (this.mediaDeviceState &#x3D; mediaDeviceState));
+  }
+
+  /**
+   * Clean up existing subscriptions.
+   * Triggers the snap view has been closed analytics event.
+   */
+  ngOnDestroy(): void {
+    this.analyticsService.snapViewClosed();
+    this.destroyed$.next();
+    this.destroyed$.complete();
+  }
+
+  /**
+   * Notifies other subscriptions that a new snapshot is performed.
+   * Load the SportEvents based on the snapshot
+   */
+  takeSnapshot(): void {
+    this.snapshot$.next();
+
+    this.loadSportEvents().subscribe({
+      next: (response) &#x3D;&gt; this.handleSuccess(response),
+      error: (error) &#x3D;&gt; this.handleError(error),
+    });
+  }
+
+  /**
+   * When the camera is ready it starts to periodically take snapshots and tries to load SportEvents
+   * @private
+   */
+  private registerAutoSnap(): void {
+    this.mediaDeviceStateStore.webcamIsReady$
+      .pipe(
+        take(1),
+        takeUntil(this.destroyed$),
+        switchMap(() &#x3D;&gt; this.startAutoSnapWithDelay())
+      )
+      .subscribe((response) &#x3D;&gt; this.handleSuccess(response));
+  }
+
+  /**
+   * The first delay is a bit longer in order for the user to manage to align the camera correctly.
+   * Afterwards snapshots from the webcam will be taken periodically and SportEvents will be tried to be loaded.
+   * Stops only if the view is closed or the user has taken a snapshot by pressing the snapshot button.
+   * @private
+   */
+  private startAutoSnapWithDelay(): Observable&lt;TvSearchResult&gt; {
+    return timer(this.applicationConfigService.getAutoSnapDelay(true)).pipe(
+      mergeMap(() &#x3D;&gt;
+        this.loadSportEvents(true).pipe(
+          retryWhen((errors) &#x3D;&gt; errors.pipe(delay(this.applicationConfigService.getAutoSnapDelay())))
+        )
+      ),
+      takeUntil(race(this.destroyed$, this.snapshot$))
+    );
+  }
+
+  /**
+   * Emit the best match (first entry in the response) on the ApplicationConfigService,
+   * in order to notify other services about a successful snap.
+   * @param sportEventsResponse
+   * @private
+   */
+  private handleSuccess(sportEventsResponse: TvSearchResult) {
+    this.notificationService.notify();
+    this.applicationConfigService.emitResultsEvent(sportEventsResponse.resultEntries[0]);
+  }
+
+  /**
+   * Depending on the error, either indicates that not SportEvents have been found by the given snapshot
+   * or that the request could not be processed due to technical errors.
+   * @param error
+   * @private
+   */
+  private handleError(error: unknown): void {
+    if (error instanceof TvSearchNoResultError) {
+      this.appStateStore.dispatch(AppState.SNAP_NO_RESULTS);
+    } else {
+      this.appStateStore.dispatch(AppState.SNAP_FAILED);
+    }
+  }
+
+  /**
+   * Retrieves a snapshot from the webcam and then call the respective method to lookup the SportEvent.
+   * @param autoSnap: Depending on the mode used to perform the snapshot different methods are executed
+   * @private
+   */
+  private loadSportEvents(autoSnap &#x3D; false): Observable&lt;TvSearchResult&gt; {
+    if (!autoSnap) {
+      this.appStateStore.dispatch(AppState.SNAP_IN_PROGRESS);
+    }
+    return defer(() &#x3D;&gt; this.webcamComponent.triggerSnapshot()).pipe(
+      switchMap((webcamImage: ManipulatedImage) &#x3D;&gt; {
+        if (autoSnap) {
+          return this.snapOddsFacade.autoSearchSport(webcamImage.blob);
+        } else {
+          return this.snapOddsFacade.searchSport(webcamImage.blob);
+        }
+      })
+    );
+  }
+
+  /**
+   * Navigate to the Help Page by setting the corresponding AppState
+   */
+  showHelpPage(): void {
+    this.appStateStore.dispatch(AppState.SHOW_HELP);
+  }
+
+  /**
+   * Reload the webbrowser
+   */
+  reloadPage(): void {
+    this.location.reload();
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;snapodds-header&gt;
+  {{ &#x27;Snapodds_Title_Snap_TV&#x27; | translate }}
+  &lt;div right&gt;
+    &lt;button class&#x3D;&quot;c-close__button&quot; (click)&#x3D;&quot;showHelpPage()&quot;&gt;
+      {{ &#x27;Snapodds_Action_Help&#x27; | translate }}
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/snapodds-header&gt;
+
+&lt;div class&#x3D;&quot;l-flex l-flex__row--landscape l-flex__column--portrait&quot;&gt;
+  &lt;snapodds-webcam #webcam&gt;&lt;/snapodds-webcam&gt;
+
+  &lt;div class&#x3D;&quot;l-flex l-flex__column--landscape l-flex__column--portrait&quot;&gt;
+    &lt;snapodds-content&gt;
+      &lt;snapodds-user-feedback-message [appState]&#x3D;&quot;appState&quot;&gt;&lt;/snapodds-user-feedback-message&gt;
+    &lt;/snapodds-content&gt;
+
+    &lt;snapodds-footer&gt;
+      &lt;div class&#x3D;&quot;c-footer&quot;&gt;
+        &lt;ng-container *ngIf&#x3D;&quot;appState &#x3D;&#x3D;&#x3D; &#x27;DEVICE_NO_PERMISSION&#x27;; else hasCameraAccess&quot;&gt;
+          &lt;button class&#x3D;&quot;c-footer__reload-button&quot; (click)&#x3D;&quot;reloadPage()&quot;&gt;
+            {{ &#x27;Snapodds_Action_Reload&#x27; | translate }}
+          &lt;/button&gt;
+        &lt;/ng-container&gt;
+
+        &lt;ng-template #hasCameraAccess&gt;
+          &lt;span class&#x3D;&quot;c-footer__spacer&quot;&gt;&lt;/span&gt;
+
+          &lt;snapodds-trigger
+            (clicked)&#x3D;&quot;takeSnapshot()&quot;
+            [disabled]&#x3D;&quot;appState &#x3D;&#x3D;&#x3D; &#x27;SNAP_IN_PROGRESS&#x27; || mediaDeviceState !&#x3D;&#x3D; &#x27;DEVICE_CAMERA_READY&#x27;&quot;
+            [processing]&#x3D;&quot;appState &#x3D;&#x3D;&#x3D; &#x27;SNAP_IN_PROGRESS&#x27;&quot;
+          &gt;&lt;/snapodds-trigger&gt;
+
+          &lt;div class&#x3D;&quot;c-footer__spacer&quot;&gt;
+            &lt;button
+              class&#x3D;&quot;c-footer__switch-camera&quot;
+              *ngIf&#x3D;&quot;webcam.hasMultipleWebcams&quot;
+              (click)&#x3D;&quot;webcam.switchToNextWebcam()&quot;
+            &gt;
+              &lt;snapodds-switch-svg&gt;&lt;/snapodds-switch-svg&gt;
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/ng-template&gt;
+      &lt;/div&gt;
+    &lt;/snapodds-footer&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./snap.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@use &#x27;tools&#x27;;
+@use &#x27;settings&#x27;;
+@use &#x27;sass:math&#x27;;
+
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  .l-flex {
+    display: flex;
+    flex: 1;
+  }
+
+  @media (orientation: landscape) {
+    .l-flex {
+      &amp;__column--landscape {
+        flex-direction: column;
+      }
+
+      &amp;__row--landscape {
+        flex-direction: row;
+      }
+    }
+  }
+
+  @media (orientation: portrait) {
+    .l-flex {
+      &amp;__column--portrait {
+        flex-direction: column;
+      }
+
+      &amp;__row--portrait {
+        flex-direction: row;
+      }
+    }
+  }
+
+  snapodds-webcam {
+    display: flex;
+    flex: 1;
+  }
+
+  snapodds-content {
+    margin: settings.$spacing-lg;
+
+    @include tools.media-small--portrait {
+      margin: settings.$spacing-base settings.$spacing-lg;
+    }
+
+    @include tools.media-tiny--landscape {
+      margin: settings.$spacing-base settings.$spacing-lg;
+    }
+  }
+
+  snapodds-footer {
+    margin-left: settings.$spacing-lg;
+    margin-right: settings.$spacing-lg;
+  }
+
+  snapodds-trigger {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+  }
+
+  button {
+    @include tools.button-reset();
+    font-size: settings.$font-base;
+  }
+
+  .c-footer {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    &amp;__switch-camera {
+      @include tools.button-reset;
+
+      color: settings.$color-primary;
+      display: flex;
+      flex: 1;
+      justify-content: center;
+    }
+
+    &amp;__reload-button {
+      @include tools.button-reset;
+      background-color: settings.$color-primary;
+      color: settings.$color-text-focus;
+
+      font-size: settings.$font-lg;
+      font-weight: 500;
+      padding: settings.$spacing-base settings.$spacing-lg;
+    }
+
+    &amp;__powered-by {
+      font-size: settings.$font-sm;
+    }
+
+    &amp;__spacer {
+      display: flex;
+      flex: 1;
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><snapodds-header>  {{ \'Snapodds_Title_Snap_TV\' | translate }}  <div right>    <button class="c-close__button" (click)="showHelpPage()">      {{ \'Snapodds_Action_Help\' | translate }}    </button>  </div></snapodds-header><div class="l-flex l-flex__row--landscape l-flex__column--portrait">  <snapodds-webcam #webcam></snapodds-webcam>  <div class="l-flex l-flex__column--landscape l-flex__column--portrait">    <snapodds-content>      <snapodds-user-feedback-message [appState]="appState"></snapodds-user-feedback-message>    </snapodds-content>    <snapodds-footer>      <div class="c-footer">        <ng-container *ngIf="appState === \'DEVICE_NO_PERMISSION\'; else hasCameraAccess">          <button class="c-footer__reload-button" (click)="reloadPage()">            {{ \'Snapodds_Action_Reload\' | translate }}          </button>        </ng-container>        <ng-template #hasCameraAccess>          <span class="c-footer__spacer"></span>          <snapodds-trigger            (clicked)="takeSnapshot()"            [disabled]="appState === \'SNAP_IN_PROGRESS\' || mediaDeviceState !== \'DEVICE_CAMERA_READY\'"            [processing]="appState === \'SNAP_IN_PROGRESS\'"          ></snapodds-trigger>          <div class="c-footer__spacer">            <button              class="c-footer__switch-camera"              *ngIf="webcam.hasMultipleWebcams"              (click)="webcam.switchToNextWebcam()"            >              <snapodds-switch-svg></snapodds-switch-svg>            </button>          </div>        </ng-template>      </div>    </snapodds-footer>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'snapodds-sdk'},{'name': 'ContentComponent', 'selector': 'snapodds-content'},{'name': 'FooterComponent', 'selector': 'snapodds-footer'},{'name': 'HeaderComponent', 'selector': 'snapodds-header'},{'name': 'HelpComponent', 'selector': 'snapodds-help'},{'name': 'OddsComponent', 'selector': 'snapodds-odds'},{'name': 'SnapComponent', 'selector': 'snapodds-snap'},{'name': 'SpinnerComponent', 'selector': 'snapodds-spinner'},{'name': 'SwitchSvgComponent', 'selector': 'snapodds-switch-svg'},{'name': 'TriggerComponent', 'selector': 'snapodds-trigger'},{'name': 'TriggerSvgComponent', 'selector': 'snapodds-trigger-svg'},{'name': 'UserFeedbackMessageComponent', 'selector': 'snapodds-user-feedback-message'},{'name': 'WebcamComponent', 'selector': 'snapodds-webcam'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'SnapComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'SnapComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,1088 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>SnapOdds SDK</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">SnapOdds SDK</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >ImageManipulationService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>apps/snapodds/src/services/image-manipulation/image-manipulation.service.ts</code>
+        </p>
+
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#createImageFromCanvas" >createImageFromCanvas</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#crop" >crop</a>
+                            </li>
+                            <li>
+                                <a href="#cropAndResizeImage" >cropAndResizeImage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#downscale" >downscale</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#shouldCrop" >shouldCrop</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#shouldDownscale" >shouldDownscale</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(logger: <a href="../injectables/LoggerService.html" target="_self">LoggerService</a>, document: Document)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">apps/snapodds/src/services/image-manipulation/image-manipulation.service.ts:9</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>logger</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LoggerService.html" target="_self" >LoggerService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>document</td>
+                                                  
+                                                        <td>
+                                                                    <code>Document</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createImageFromCanvas"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>createImageFromCanvas</b></span>
+                        <a href="#createImageFromCanvas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createImageFromCanvas(canvas: HTMLCanvasElement, mimeType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, quality: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">apps/snapodds/src/services/image-manipulation/image-manipulation.service.ts:105</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Converts an canvas element into an image blob with additional image metadata</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>canvas</td>
+                                    <td>
+                                            <code>HTMLCanvasElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        <p>: the canvas element where the image is rendered</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>mimeType</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>&#x27;image/jpeg&#x27;</code>
+                                    </td>
+
+                                    <td>
+                                        <p>: the mime type of the resulting image</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>quality</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>0.9</code>
+                                    </td>
+
+                                    <td>
+                                        <p>: the jpeg compression quality</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ManipulatedImage" target="_self" >Promise&lt;ManipulatedImage&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="crop"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>crop</b></span>
+                        <a href="#crop"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>crop(source: HTMLVideoElement, viewFinder: HTMLElement, scaleFactor: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">apps/snapodds/src/services/image-manipulation/image-manipulation.service.ts:70</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Crops the part of the image which is visible beneath the viewfinder</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>source</td>
+                                    <td>
+                                            <code>HTMLVideoElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>: the webcams video stream</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>viewFinder</td>
+                                    <td>
+                                            <code>HTMLElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>: the viewfinder from which the image should be cropped</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>scaleFactor</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>: the factor the user has zoomed into the image</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>literal type</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cropAndResizeImage"></a>
+                    <span class="name">
+                        <span ><b>cropAndResizeImage</b></span>
+                        <a href="#cropAndResizeImage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cropAndResizeImage(source: HTMLVideoElement, viewFinder: HTMLElement, scaleFactor: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, maxDimension: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">apps/snapodds/src/services/image-manipulation/image-manipulation.service.ts:19</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Creates an image from the <code>source</code> based on which part is visible in the viewfinder.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>source</td>
+                                    <td>
+                                            <code>HTMLVideoElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>: the webcams video stream</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>viewFinder</td>
+                                    <td>
+                                            <code>HTMLElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>: the viewfinder from which the image should be cropped</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>scaleFactor</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>: the factor the user has zoomed into the image</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>maxDimension</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>: the max dimension of the resulting image</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/typealiases.html#ManipulatedImage" target="_self" >Promise&lt;ManipulatedImage&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="downscale"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>downscale</b></span>
+                        <a href="#downscale"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>downscale(sourceWidth: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, sourceHeight: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, maxDimension: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="155"
+                            class="link-to-prism">apps/snapodds/src/services/image-manipulation/image-manipulation.service.ts:155</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Calculates the resized width and height of an image</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>sourceWidth</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>sourceHeight</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>maxDimension</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{ preferredWidth: number; preferredHeight: number; }</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="shouldCrop"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>shouldCrop</b></span>
+                        <a href="#shouldCrop"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>shouldCrop(scaleFactor: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, source: HTMLVideoElement, viewFinder: HTMLElement)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">apps/snapodds/src/services/image-manipulation/image-manipulation.service.ts:59</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Determines if parts of the image should be cropped.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>scaleFactor</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>: the factor the user has zoomed into the image</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>source</td>
+                                    <td>
+                                            <code>HTMLVideoElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>: the webcams video stream</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>viewFinder</td>
+                                    <td>
+                                            <code>HTMLElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>: the viewfinder from which the image should be cropped</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="shouldDownscale"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>shouldDownscale</b></span>
+                        <a href="#shouldDownscale"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>shouldDownscale(sourceWidth: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, sourceHeight: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, maxDimension: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">apps/snapodds/src/services/image-manipulation/image-manipulation.service.ts:144</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Determines if an image needs to be resized as it is larger than the max allowed dimension</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>sourceWidth</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>sourceHeight</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>maxDimension</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable } from &#x27;@angular/core&#x27;;
+import { LoggerService } from &#x27;../logger/logger.service&#x27;;
+import { DOCUMENT } from &#x27;../tokens/document-token&#x27;;
+import { ManipulatedImage } from &#x27;./manipulated-image&#x27;;
+
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class ImageManipulationService {
+  constructor(private readonly logger: LoggerService, @Inject(DOCUMENT) private readonly document: Document) {}
+
+  /**
+   * Creates an image from the &#x60;source&#x60; based on which part is visible in the viewfinder.
+   * @param source: the webcams video stream
+   * @param viewFinder: the viewfinder from which the image should be cropped
+   * @param scaleFactor: the factor the user has zoomed into the image
+   * @param maxDimension: the max dimension of the resulting image
+   */
+  cropAndResizeImage(
+    source: HTMLVideoElement,
+    viewFinder: HTMLElement,
+    scaleFactor: number,
+    maxDimension: number
+  ): Promise&lt;ManipulatedImage&gt; {
+    let sx &#x3D; 0;
+    let sy &#x3D; 0;
+    let sourceWidth &#x3D; source.videoWidth;
+    let sourceHeight &#x3D; source.videoHeight;
+
+    if (this.shouldCrop(scaleFactor, source, viewFinder)) {
+      ({ sx, sy, sourceWidth, sourceHeight } &#x3D; this.crop(source, viewFinder, scaleFactor));
+    }
+
+    let preferredWidth &#x3D; sourceWidth;
+    let preferredHeight &#x3D; sourceHeight;
+
+    if (this.shouldDownscale(preferredWidth, preferredHeight, maxDimension)) {
+      ({ preferredWidth, preferredHeight } &#x3D; this.downscale(preferredWidth, preferredHeight, maxDimension));
+    }
+
+    const canvas &#x3D; this.document.createElement(&#x27;canvas&#x27;);
+    canvas.width &#x3D; preferredWidth;
+    canvas.height &#x3D; preferredHeight;
+
+    const renderingContext &#x3D; canvas.getContext(&#x27;2d&#x27;);
+    renderingContext?.drawImage(source, sx, sy, sourceWidth, sourceHeight, 0, 0, preferredWidth, preferredHeight);
+
+    return this.createImageFromCanvas(canvas);
+  }
+
+  /**
+   * Determines if parts of the image should be cropped.
+   *
+   * @param scaleFactor: the factor the user has zoomed into the image
+   * @param source: the webcams video stream
+   * @param viewFinder: the viewfinder from which the image should be cropped
+   * @private
+   */
+  private shouldCrop(scaleFactor: number, source: HTMLVideoElement, viewFinder: HTMLElement) {
+    return scaleFactor &gt; 1 || source !&#x3D;&#x3D; viewFinder;
+  }
+
+  /**
+   * Crops the part of the image which is visible beneath the viewfinder
+   * @param source: the webcams video stream
+   * @param viewFinder: the viewfinder from which the image should be cropped
+   * @param scaleFactor: the factor the user has zoomed into the image
+   * @private
+   */
+  private crop(
+    source: HTMLVideoElement,
+    viewFinder: HTMLElement,
+    scaleFactor: number
+  ): { sx: number; sy: number; sourceWidth: number; sourceHeight: number } {
+    const videoScale &#x3D; Math.max(source.videoWidth / source.clientWidth, source.videoHeight / source.clientHeight);
+
+    let sourceWidth &#x3D; Math.floor((viewFinder.clientWidth * videoScale) / scaleFactor);
+    let sourceHeight &#x3D; Math.floor((viewFinder.clientHeight * videoScale) / scaleFactor);
+
+    let sx &#x3D; Math.floor((source.videoWidth - sourceWidth) / 2);
+    let sy &#x3D; Math.floor((source.videoHeight - sourceHeight) / 2);
+
+    if (sx &lt; 0) {
+      sx &#x3D; 0;
+      sourceWidth &#x3D; source.videoWidth;
+    } else if (sy &lt; 0) {
+      sy &#x3D; 0;
+      sourceHeight &#x3D; source.videoHeight;
+    }
+    return {
+      sx,
+      sy,
+      sourceWidth,
+      sourceHeight,
+    };
+  }
+
+  /**
+   * Converts an canvas element into an image blob with additional image metadata
+   * @param canvas: the canvas element where the image is rendered
+   * @param mimeType: the mime type of the resulting image
+   * @param quality: the jpeg compression quality
+   * @private
+   */
+  private createImageFromCanvas(
+    canvas: HTMLCanvasElement,
+    mimeType &#x3D; &#x27;image/jpeg&#x27;,
+    quality &#x3D; 0.9
+  ): Promise&lt;ManipulatedImage&gt; {
+    return new Promise&lt;ManipulatedImage&gt;((resolve, reject) &#x3D;&gt; {
+      try {
+        canvas.toBlob(
+          (blob) &#x3D;&gt; {
+            if (blob) {
+              resolve({
+                blob,
+                mimeType,
+                width: canvas.width,
+                height: canvas.height,
+              });
+            } else {
+              const errorMessage &#x3D; &#x27;Canvas returned empty blob&#x27;;
+              this.logger.error(&#x27;Image manipulation failed&#x27;, errorMessage);
+              reject(errorMessage);
+            }
+          },
+          mimeType,
+          quality
+        );
+      } catch (error) {
+        this.logger.error(&#x27;Image manipulation failed&#x27;, error);
+        reject(error);
+      }
+    });
+  }
+
+  /**
+   * Determines if an image needs to be resized as it is larger than the max allowed dimension
+   * @param sourceWidth
+   * @param sourceHeight
+   * @param maxDimension
+   * @private
+   */
+  private shouldDownscale(sourceWidth: number, sourceHeight: number, maxDimension: number) {
+    return (sourceWidth &gt; sourceHeight &amp;&amp; sourceWidth &gt; maxDimension) || sourceHeight &gt; maxDimension;
+  }
+
+  /**
+   * Calculates the resized width and height of an image
+   * @param sourceWidth
+   * @param sourceHeight
+   * @param maxDimension
+   * @private
+   */
+  private downscale(sourceWidth: number, sourceHeight: number, maxDimension: number) {
+    let preferredWidth &#x3D; sourceWidth;
+    let preferredHeight &#x3D; sourceHeight;
+
+    if (preferredWidth &gt; preferredHeight &amp;&amp; preferredWidth &gt; maxDimension) {
+      preferredHeight &#x3D; Math.floor((maxDimension * preferredHeight) / preferredWidth);
+      preferredWidth &#x3D; maxDimension;
+    } else if (preferredHeight &gt; maxDimension) {
+      preferredWidth &#x3D; Math.floor((maxDimension * preferredWidth) / preferredHeight);
+      preferredHeight &#x3D; maxDimension;
+    }
+
+    return { preferredWidth, preferredHeight };
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ImageManipulationService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

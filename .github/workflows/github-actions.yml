@@ -22,13 +22,13 @@ jobs:
     - run: npm run build:elements
     - run: npm run docs
 
-    - name: Upload SDK as an artifact
+    - name: Upload SDK as artifact
       uses: actions/upload-artifact@v2
       with:
         name: snapodds-sdk
         path: dist/elements/snapodds/*
 
-    - name: Deploy documentation to github
+    - name: Deploy documentation
       uses: JamesIves/github-pages-deploy-action@v4.2.3
       with:
         branch: gh-pages
@@ -50,9 +50,3 @@ jobs:
     - run: npm run test
     - run: npm run build:elements
     - run: npm run docs
-
-    - name: Upload Documentation as an artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: snapodds-documentation
-        path: docs/**/*

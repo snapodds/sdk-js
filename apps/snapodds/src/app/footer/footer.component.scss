@@ -1,8 +1,13 @@
 @use 'settings';
+@use 'tools';
 
 :host {
   display: flex;
   flex-direction: column;
   flex-grow: 0;
   margin-bottom: settings.$spacing-lg;
+
+  @include tools.media-tiny--portrait {
+    margin-bottom: settings.$spacing-base;
+  }
 }

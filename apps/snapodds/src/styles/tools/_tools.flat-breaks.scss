@@ -1,0 +1,9 @@
+@mixin flat-breaks {
+  br {
+    content: '';
+
+    &::after {
+      content: ' ';
+    }
+  }
+}

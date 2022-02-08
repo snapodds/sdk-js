@@ -5,6 +5,13 @@
   .c-user-feedback {
     text-align: center;
 
+    @include tools.media-tiny--portrait {
+      /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+      ::ng-deep {
+        @include tools.flat-breaks;
+      }
+    }
+
     &--error {
       color: settings.$color-warn;
     }

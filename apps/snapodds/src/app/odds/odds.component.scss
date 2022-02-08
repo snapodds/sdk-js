@@ -41,6 +41,10 @@ $box--width: 4rem;
     margin: 0;
     padding: settings.$spacing-base;
 
+    @include tools.media-tiny--portrait {
+      padding: settings.$spacing-sm;
+    }
+
     &__tournament {
       font-weight: 700;
     }
@@ -68,6 +72,10 @@ $box--width: 4rem;
     display: flex;
     flex-direction: column;
     padding: settings.$spacing-sm settings.$spacing-base;
+
+    @include tools.media-tiny--portrait {
+      padding: settings.$spacing-sm;
+    }
   }
 
   .c-game-container {

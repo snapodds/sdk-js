@@ -9,7 +9,7 @@ $viewfinder-stand-offset: 7%;
   aspect-ratio: 375/295;
 
   @include tools.media-tiny--portrait {
-    aspect-ratio: 16/9;
+    aspect-ratio: 3/2.2;
   }
 }
 

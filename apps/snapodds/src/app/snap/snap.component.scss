@@ -48,6 +48,10 @@
       margin: settings.$spacing-base settings.$spacing-lg;
     }
 
+    @include tools.media-tiny--portrait {
+      margin: settings.$spacing-sm;
+    }
+
     @include tools.media-tiny--landscape {
       margin: settings.$spacing-base settings.$spacing-lg;
     }

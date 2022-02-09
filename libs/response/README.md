@@ -1,7 +1,11 @@
-# builder
+# SnapOdds SDK Builder
 
 This library was generated with [Nx](https://nx.dev).
 
-## Running unit tests
+It contains the typings for the REST endpoints of the SnapScreen API.
 
-Run `nx test response` to execute the unit tests via [Jest](https://jestjs.io).
+Furthermore, it provides mocked responses for development and testing.
+
+## Building the project
+
+Run `nx build response` to build the project.

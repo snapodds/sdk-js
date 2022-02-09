@@ -301,6 +301,10 @@ export class HeaderComponent {
     padding-top: settings.$spacing-base * 2;
   }
 
+  @include tools.media-tiny--portrait {
+    padding: settings.$spacing-base settings.$spacing-sm settings.$spacing-sm;
+  }
+
   .c-header {
     &amp;--left {
       flex: 1;

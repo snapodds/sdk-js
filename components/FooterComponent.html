@@ -141,12 +141,17 @@ export class FooterComponent {}
                     <code>./footer.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss">@use &#x27;settings&#x27;;
+@use &#x27;tools&#x27;;
 
 :host {
   display: flex;
   flex-direction: column;
   flex-grow: 0;
   margin-bottom: settings.$spacing-lg;
+
+  @include tools.media-tiny--portrait {
+    margin-bottom: settings.$spacing-base;
+  }
 }
 </code></pre>
     </div>

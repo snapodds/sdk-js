@@ -1,0 +1,125 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+.oc-wrapper {
+  -webkit-transition: transform 0.3s;
+  -moz-transition: transform 0.3s;
+  -ms-transition: transform 0.3s;
+  -o-transition: transform 0.3s;
+  transition: transform 0.3s;
+}
+
+.content {
+  margin: 0 auto;
+  position: relative;
+  text-align: left;
+  overflow: hidden;
+  -webkit-animation: fade-in 0.3s ease-out 1;
+  -moz-animation: fade-in 0.3s ease-out 1;
+  -ms-animation: fade-in 0.3s ease-out 1;
+  -o-animation: fade-in 0.3s ease-out 1;
+  animation: fade-in 0.3s ease-out 1;
+  padding: 0 0 60px;
+  /* bottom = footer height */
+  min-height: 100%;
+}
+
+.page-intro {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.page-intro .content {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 0;
+  overflow: hidden;
+  padding-bottom: 0;
+  background-color: #fff;
+  justify-content: space-between;
+}
+
+.page-intro .c-logo {
+  display: flex;
+  padding-top: 70px;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.page-intro .c-text {
+  margin: 32px;
+  font-size: 50px;
+  font-weight: bold;
+  line-height: 52px;
+  letter-spacing: -2%;
+  text-align: center;
+}
+
+.page-intro .c-subline {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 20px;
+  text-align: center;
+  margin: 0 32px 125px;
+}
+
+.footer .tv-search-button {
+  z-index: 1;
+  overflow: hidden;
+  cursor: pointer;
+  position: fixed;
+  border: none;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  right: 50%;
+  bottom: 24px;
+  width: 64px;
+  height: 64px;
+  -webkit-transform: translateX(50%);
+  -moz-transform: translateX(50%);
+  -ms-transform: translateX(50%);
+  -o-transform: translateX(50%);
+  transform: translateX(50%);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -ms-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+  padding: 16px;
+  background-color: #46CD9C;
+  background-clip: padding-box;
+}
+
+.footer .tv-search-button .tv-search-hint {
+  font-size: 8px;
+  line-height: 10px;
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  bottom: 7px;
+  transform: translate(-50%);
+}

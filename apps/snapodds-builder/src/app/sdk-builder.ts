@@ -2,7 +2,7 @@ import { AccessToken, TvSearchResultEntry } from '@response/typings';
 import { SnapOddsSdkElement } from './snap-odds-sdk-element.type';
 
 /**
- * SdkBuilder which contains the shared functionality of the odds/banner/snap workflow
+ * SdkBuilder which contains the shared functionality of the odds, operators or sports media workflow.
  */
 export abstract class SdkBuilder {
   protected apiUrl?: string;

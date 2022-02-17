@@ -1,16 +1,16 @@
 import { sportEventTvSearchMock } from '@response/mocks';
 import { mock } from 'jest-mock-extended';
-import { BannerSdkBuilder } from './banner-sdk.builder';
+import { SportsMediaSdkBuilder } from './sports-media-sdk.builder';
 import { SnapOddsSdkElement } from './snap-odds-sdk-element.type';
 
-describe('BannerSdkBuilder', () => {
-  let builder: BannerSdkBuilder;
+describe('SportsMediaSdkBuilder', () => {
+  let builder: SportsMediaSdkBuilder;
   let sdk: SnapOddsSdkElement;
 
   const body = mock<HTMLElement>();
 
   beforeEach(() => {
-    builder = new BannerSdkBuilder();
+    builder = new SportsMediaSdkBuilder();
   });
 
   it('should assign the tvSearchResult to the sdk on callback', () => {

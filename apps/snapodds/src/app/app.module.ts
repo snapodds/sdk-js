@@ -12,7 +12,9 @@ import { ContentComponent } from './content/content.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { HelpComponent } from './help/help.component';
+import { OddsLineComponent } from './odds-line/odds-line.component';
 import { OddsComponent } from './odds/odds.component';
+import { BestOfferLinePipe } from './pipes/best-offer.pipe';
 import { SnapComponent } from './snap/snap.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SwitchSvgComponent } from './svgs/switch.svg.component';
@@ -20,6 +22,7 @@ import { TriggerSvgComponent } from './svgs/trigger.svg.component';
 import { TriggerComponent } from './trigger/trigger.component';
 import { UserFeedbackMessageComponent } from './user-feedback-message/user-feedback-message.component';
 import { WebcamComponent } from './webcam/webcam.component';
+import { NumberFormatPipe } from './pipes/number-format.pipe';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,9 @@ import { WebcamComponent } from './webcam/webcam.component';
     TriggerSvgComponent,
     SwitchSvgComponent,
     UserFeedbackMessageComponent,
+    OddsLineComponent,
+    BestOfferLinePipe,
+    NumberFormatPipe,
   ],
   imports: [
     BrowserModule,

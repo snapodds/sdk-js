@@ -1,5 +1,5 @@
-import { OddsOfferOutcome } from './odds-offer-outcome';
 import { Link } from '../link';
+import { OddsOfferOutcome } from './odds-offer-outcome';
 
 /**
  * Represents a single odds offer.

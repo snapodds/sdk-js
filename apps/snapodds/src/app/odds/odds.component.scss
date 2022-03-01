@@ -76,10 +76,21 @@ $box--width: 4rem;
     @include tools.media-tiny--portrait {
       padding: settings.$spacing-sm;
     }
+
+    &__link {
+      color: settings.$color-text;
+      text-decoration: none;
+    }
+
+    &--best-offer {
+      background-color: #0085cd;
+      color: #fff;
+    }
   }
 
   .c-game-container {
     background-color: settings.$color-background;
+    margin-top: 0.1rem;
   }
 
   .c-game-header {
@@ -109,72 +120,6 @@ $box--width: 4rem;
 
       margin: 0.2rem;
       width: $box--width;
-    }
-  }
-
-  .c-game-line {
-    color: settings.$color-text;
-    display: flex;
-    justify-content: space-between;
-    text-decoration: none;
-
-    &__competitor {
-      align-items: center;
-      display: flex;
-
-      font-size: settings.$font-sm;
-      font-weight: 700;
-      margin-right: 0.6rem;
-
-      &--separator {
-        border-bottom: 1px solid settings.$color-accent;
-        flex: 1;
-        margin-bottom: 0.4rem;
-        margin-top: 0.4rem;
-      }
-    }
-
-    &__boxes {
-      display: flex;
-    }
-
-    &__box {
-      align-items: flex-end;
-
-      background-color: settings.$color-accent;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      margin: 0.2rem;
-      padding: 0.3rem;
-      width: $box--width;
-
-      &--clickable {
-        cursor: pointer;
-      }
-
-      &--hidden {
-        visibility: hidden;
-      }
-
-      &--separator {
-        background-color: transparent;
-        border-bottom: 1px solid settings.$color-accent;
-        margin: 0.4rem 0.2rem;
-        padding: 0 0.3rem;
-      }
-    }
-
-    &__target {
-      font-size: settings.$font-xs;
-      font-weight: 400;
-      min-height: 0.9rem;
-    }
-
-    &__odds {
-      font-size: settings.$font-base;
-      font-weight: 700;
     }
   }
 }

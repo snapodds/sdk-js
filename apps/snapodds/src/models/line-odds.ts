@@ -1,5 +1,6 @@
 import { Competitor, Player } from '@response/typings';
-import { SportsBook } from './sports-book';
+import { BestOfferViewModel } from './best-offer-view-model';
+import { SportsBookViewModel } from './sports-book-view-model';
 
 /**
  * Data structure used for rendering the lineOdds
@@ -17,5 +18,10 @@ export interface LineOdds {
   /**
    * List of sportBooks
    */
-  sportsBooks?: SportsBook[];
+  sportsBooks?: SportsBookViewModel[];
+
+  /**
+   * Best available odds for either side of the live spread
+   */
+  bestOffer?: BestOfferViewModel;
 }

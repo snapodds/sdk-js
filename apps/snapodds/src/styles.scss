@@ -1,5 +1,5 @@
 snapodds-sdk {
-  --snapodds__color--accent: #e5e7eb7f;
+  --snapodds__color--accent: #f2f2f2;
   --snapodds__color--primary: #2dd4bf;
   --snapodds__color--warn: #ea436e;
   --snapodds__color-background: #fff;
@@ -10,7 +10,7 @@ snapodds-sdk {
 
 @media (prefers-color-scheme: dark) {
   snapodds-sdk {
-    --snapodds__color--accent: #646464;
+    --snapodds__color--accent: #e5e7eb7f;
     --snapodds__color-background: #09131d;
     --snapodds__color-text: #fff;
   }

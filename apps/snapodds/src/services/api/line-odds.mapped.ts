@@ -1,6 +1,37 @@
 import { LineOdds } from '../../models/line-odds';
 
 export const lineOddsMapped: LineOdds = {
+  bestOffer: {
+    lines: [
+      {
+        moneySportsBookName: 'DraftKings',
+        moneyline: -435,
+        moneylineUrl: 'https://go.metabet.io/bet/490598/draftkings',
+        overUnder: 207.5,
+        overUnderOdds: -110,
+        overUnderSportsBookName: 'BetMGM',
+        overUnderUrl: 'https://go.metabet.io/bet/490598/mgm',
+        spread: -9,
+        spreadOdds: -110,
+        spreadSportsBookName: 'DraftKings',
+        spreadUrl: 'https://go.metabet.io/bet/490598/draftkings',
+      },
+      {
+        moneySportsBookName: 'SI Sportsbook',
+        moneyline: 375,
+        moneylineUrl: 'https://go.metabet.io/bet/490598/sport_888',
+        overUnder: 208.5,
+        overUnderOdds: -110,
+        overUnderSportsBookName: 'DraftKings',
+        overUnderUrl: 'https://go.metabet.io/bet/490598/draftkings',
+        spread: 9,
+        spreadOdds: -110,
+        spreadSportsBookName: 'DraftKings',
+        spreadUrl: 'https://go.metabet.io/bet/490598/draftkings',
+      },
+    ],
+    name: 'Best of Odds',
+  },
   competitors: [
     {
       id: 10207,

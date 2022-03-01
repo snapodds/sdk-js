@@ -12,6 +12,9 @@ import { OddsService } from '../../services/api/odds.service';
 import { WINDOW } from '../../services/tokens/window-token';
 import { ContentComponent } from '../content/content.component';
 import { HeaderComponent } from '../header/header.component';
+import { OddsLineComponent } from '../odds-line/odds-line.component';
+import { BestOfferLinePipe } from '../pipes/best-offer.pipe';
+import { NumberFormatPipe } from '../pipes/number-format.pipe';
 
 import { OddsComponent } from './odds.component';
 
@@ -33,7 +36,14 @@ describe('OddsComponent', () => {
         { provide: WINDOW, useValue: window },
         { provide: OddsService, useValue: oddsService },
       ],
-      declarations: [OddsComponent, HeaderComponent, ContentComponent],
+      declarations: [
+        OddsComponent,
+        OddsLineComponent,
+        HeaderComponent,
+        ContentComponent,
+        BestOfferLinePipe,
+        NumberFormatPipe,
+      ],
     }).compileComponents();
 
     register('UTC');
@@ -49,6 +59,8 @@ describe('OddsComponent', () => {
 
   it('should render the sport event', () => {
     const element: HTMLElement = fixture.nativeElement;
+    const expectedSportsBooks = lineOddsMapped.sportsBooks?.length ?? 0;
+    const expectedBestOffer = lineOddsMapped.bestOffer ? 1 : 0;
 
     const tournament = element.querySelector('.c-sport-event__tournament');
     expect(tournament?.textContent).toEqual(tvSearchResultEntry.sportEvent.tournament);
@@ -57,16 +69,10 @@ describe('OddsComponent', () => {
     expect(channel?.textContent).toEqual(`${tvSearchResultEntry.tvChannel.name} since 01:40 AM`);
 
     const sportBook = element.querySelectorAll<HTMLElement>('.c-game');
-    expect(sportBook).toHaveLength(lineOddsMapped.sportsBooks?.length ?? 0);
+    expect(sportBook).toHaveLength(expectedSportsBooks + expectedBestOffer);
 
-    const lines = element.querySelectorAll<HTMLElement>('a.c-game-line');
-    expect(lines).toHaveLength((lineOddsMapped.sportsBooks?.length ?? 0) * 2);
-  });
-
-  it('should open the outcomeUrl in a new tab', () => {
-    const redirectUrl = 'https://example.com';
-    component.openOutcomeRedirectUrl(new MouseEvent('click'), redirectUrl);
-    expect(window.open).toHaveBeenCalledWith(redirectUrl, '_blank');
+    const lines = element.querySelectorAll<HTMLElement>('snapodds-odds-line');
+    expect(lines).toHaveLength((expectedSportsBooks + expectedBestOffer) * 2);
   });
 
   it('should load lineOdds when sportEvents are changed', () => {

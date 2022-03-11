@@ -1,0 +1,91 @@
+@use 'tools';
+@use 'settings';
+
+$box--width: 4rem;
+
+:host {
+  .c-game-line {
+    display: flex;
+    justify-content: space-between;
+
+    &__competitor {
+      align-items: center;
+      display: flex;
+
+      font-size: settings.$font-sm;
+      font-weight: 700;
+      margin-right: 0.6rem;
+
+      &--above {
+        align-items: flex-end;
+      }
+
+      &--below {
+        align-items: flex-start;
+      }
+
+      &--separator {
+        border-bottom: 1px solid settings.$color-accent;
+        flex: 1;
+        margin-bottom: 0.4rem;
+        margin-top: 0.4rem;
+      }
+    }
+
+    &__boxes {
+      display: flex;
+    }
+
+    &__box {
+      align-items: stretch;
+
+      background-color: settings.$color-accent;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin: 0.2rem;
+      padding: 0.3rem;
+      text-align: right;
+      width: $box--width;
+
+      &--clickable {
+        cursor: pointer;
+      }
+
+      &--hidden {
+        visibility: hidden;
+      }
+
+      &--separator {
+        background-color: transparent;
+        border-bottom: 1px solid settings.$color-accent;
+        margin: 0.4rem 0.2rem;
+        padding: 0 0.3rem;
+      }
+    }
+
+    &__target {
+      color: settings.$color-text;
+      font-size: settings.$font-xs;
+      font-weight: 400;
+      min-height: 0.9rem;
+    }
+
+    &__odds {
+      color: settings.$color-text;
+      font-size: settings.$font-base;
+      font-weight: 700;
+    }
+
+    &__sport-books-name {
+      background-color: #002133;
+      color: #fff;
+      font-size: settings.$font-xxs;
+      font-weight: 400;
+      margin: -0.3rem;
+      margin-bottom: 0.3rem;
+      padding: 0.1rem;
+    }
+  }
+}

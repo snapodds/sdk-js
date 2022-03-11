@@ -1,7 +1,7 @@
 /**
  * Data structure used to render the combined info of offers.
  */
-export interface SportsBookLine {
+export interface SportsBookLineViewModel {
   /**
    * The target value for spread.
    */

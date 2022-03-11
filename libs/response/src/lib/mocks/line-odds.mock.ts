@@ -251,5 +251,90 @@ export const lineOddsMock: OddsResponse = {
       _links: { redirect: { href: 'https://go.metabet.io/bet/490598/wynn' } },
     },
   ],
+  bestOffers: [
+    {
+      type: 'SPREAD',
+      outcomes: [
+        {
+          type: 'WIN',
+          target: -9.0,
+          odds: 1.90909,
+          competitorId: 10207,
+          sportsBook: 'DraftKings',
+          _links: {
+            redirect: {
+              href: 'https://go.metabet.io/bet/490598/draftkings',
+            },
+          },
+        },
+        {
+          type: 'WIN',
+          target: 9.0,
+          odds: 1.90909,
+          competitorId: 10196,
+          sportsBook: 'DraftKings',
+          _links: {
+            redirect: {
+              href: 'https://go.metabet.io/bet/490598/draftkings',
+            },
+          },
+        },
+      ],
+    },
+    {
+      type: 'MONEYLINE',
+      outcomes: [
+        {
+          type: 'WIN',
+          odds: 1.22989,
+          competitorId: 10207,
+          sportsBook: 'DraftKings',
+          _links: {
+            redirect: {
+              href: 'https://go.metabet.io/bet/490598/draftkings',
+            },
+          },
+        },
+        {
+          type: 'WIN',
+          odds: 4.75,
+          competitorId: 10196,
+          sportsBook: 'SI Sportsbook',
+          _links: {
+            redirect: {
+              href: 'https://go.metabet.io/bet/490598/sport_888',
+            },
+          },
+        },
+      ],
+    },
+    {
+      type: 'OVER_UNDER',
+      outcomes: [
+        {
+          type: 'OVER',
+          target: 207.5,
+          odds: 1.91,
+          sportsBook: 'BetMGM',
+          _links: {
+            redirect: {
+              href: 'https://go.metabet.io/bet/490598/mgm',
+            },
+          },
+        },
+        {
+          type: 'UNDER',
+          target: 208.5,
+          odds: 1.90909,
+          sportsBook: 'DraftKings',
+          _links: {
+            redirect: {
+              href: 'https://go.metabet.io/bet/490598/draftkings',
+            },
+          },
+        },
+      ],
+    },
+  ],
   _links: { self: { href: 'https://api-dev.us.snapscreen.com/sport/events/241/odds/{?usState}', templated: true } },
 };

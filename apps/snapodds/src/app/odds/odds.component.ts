@@ -1,8 +1,7 @@
-import { Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChange } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChange } from '@angular/core';
 import { TvSearchResultEntry } from '@response/typings';
 import { LineOdds } from '../../models/line-odds';
 import { OddsService } from '../../services/api/odds.service';
-import { WINDOW } from '../../services/tokens/window-token';
 
 @Component({
   selector: 'snapodds-odds',
@@ -17,20 +16,7 @@ export class OddsComponent implements OnChanges {
   @Input() tvSearchResultEntry?: TvSearchResultEntry | null;
   @Output() closeOddsView: EventEmitter<void> = new EventEmitter();
 
-  constructor(@Inject(WINDOW) private readonly window: Window, private readonly oddsService: OddsService) {}
-
-  /**
-   * Opens the given URL in a new browser tab.
-   *
-   * @param $event: MouseEvent
-   * @param redirectUrl: The url that should be opened in a new tab
-   */
-  openOutcomeRedirectUrl($event: MouseEvent, redirectUrl?: string | null): void {
-    if (redirectUrl) {
-      $event.preventDefault();
-      this.window.open(redirectUrl, '_blank');
-    }
-  }
+  constructor(private readonly oddsService: OddsService) {}
 
   /**
    * Loads the lineOdds when the tvSearchResultEntry has been changed.

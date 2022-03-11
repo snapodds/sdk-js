@@ -1,9 +1,9 @@
-import { SportsBookLine } from './sports-book-line';
+import { SportsBookLineViewModel } from './sports-book-line-view-model';
 
 /**
  * Data structure used to render the sportBooks for LineOdds
  */
-export interface SportsBook {
+export interface SportsBookViewModel {
   /**
    * The name of the sports book.
    */
@@ -11,7 +11,7 @@ export interface SportsBook {
   /**
    * One line contains the various OddsOffers combined.
    */
-  lines: SportsBookLine[];
+  lines: SportsBookLineViewModel[];
 
   /**
    * The link which will be used to redirect the user to.

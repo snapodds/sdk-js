@@ -47,7 +47,7 @@
   <li>Interfaces</li>
   <li
   >
-  OddsOffer</li>
+  BestOfferViewModel</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -65,17 +65,10 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>libs/response/src/lib/typings/odds/odds-offer.ts</code>
+            <code>apps/snapodds/src/models/best-offer-view-model.ts</code>
         </p>
 
 
-            <p class="comment">
-                <h3>Description</h3>
-            </p>
-            <p class="comment">
-                <p>Represents a single odds offer.</p>
-
-            </p>
 
 
         <section>
@@ -91,29 +84,15 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#_links" 
+                                        <a href="#lines" 
 >
-                                            _links
+                                            lines
                                         </a>
                                 </li>
                                 <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#label" 
+                                        <a href="#name" 
 >
-                                            label
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#outcomes" 
->
-                                            outcomes
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#type" 
->
-                                            type
+                                            name
                                         </a>
                                 </li>
                             </ul>
@@ -131,9 +110,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="_links"></a>
-                                        <span class="name "><b>_links</b>
-                                            <a href="#_links">
+                                        <a name="lines"></a>
+                                        <span class="name "><b>lines</b>
+                                            <a href="#lines">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -141,7 +120,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>_links:     <code>literal type</code>
+                                        <code>lines:         <code><a href="../interfaces/BestOfferLineViewModel.html" target="_self" >BestOfferLineViewModel[]</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -149,29 +128,30 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>    <code>literal type</code>
+                                            <i>Type : </i>        <code><a href="../interfaces/BestOfferLineViewModel.html" target="_self" >BestOfferLineViewModel[]</a></code>
 
                                         </td>
                                     </tr>
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
 
 
 
 
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>One line contains the various OddsBestOffers combined.</p>
+</div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="label"></a>
-                                        <span class="name "><b>label</b>
-                                            <a href="#label">
+                                        <a name="name"></a>
+                                        <span class="name "><b>name</b>
+                                            <a href="#name">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -179,7 +159,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>label:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>name:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -192,96 +172,13 @@
                                         </td>
                                     </tr>
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
 
 
 
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The label of the offer.</p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="outcomes"></a>
-                                        <span class="name "><b>outcomes</b>
-                                            <a href="#outcomes">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>outcomes:     <code>OddsOfferOutcome[]</code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code>OddsOfferOutcome[]</code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>The possible outcomes of the offer to bet on.</p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="type"></a>
-                                        <span class="name "><b>type</b>
-                                            <a href="#type">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>type:     <code>&quot;SPREAD&quot; | &quot;MONEYLINE&quot; | &quot;OVER_UNDER&quot;</code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>    <code>&quot;SPREAD&quot; | &quot;MONEYLINE&quot; | &quot;OVER_UNDER&quot;</code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>The type of the offer.</p>
+                                    <div class="io-description"><p>The name of the sports book.</p>
 </div>
                                 </td>
                             </tr>
@@ -292,31 +189,17 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Link } from &#x27;../link&#x27;;
-import { OddsOfferOutcome } from &#x27;./odds-offer-outcome&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BestOfferLineViewModel } from &#x27;./best-offer-line-view-model&#x27;;
 
-/**
- * Represents a single odds offer.
- */
-export interface OddsOffer {
+export interface BestOfferViewModel {
   /**
-   * The type of the offer.
+   * The name of the sports book.
    */
-  type: &#x27;SPREAD&#x27; | &#x27;MONEYLINE&#x27; | &#x27;OVER_UNDER&#x27;;
-
+  name: string;
   /**
-   * The label of the offer.
+   * One line contains the various OddsBestOffers combined.
    */
-  label?: string;
-
-  /**
-   * The possible outcomes of the offer to bet on.
-   */
-  outcomes: OddsOfferOutcome[];
-
-  _links?: {
-    redirect?: Link;
-  };
+  lines: BestOfferLineViewModel[];
 }
 </code></pre>
     </div>
@@ -354,7 +237,7 @@ export interface OddsOffer {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'OddsOffer.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'BestOfferViewModel.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

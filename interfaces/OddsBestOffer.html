@@ -47,7 +47,7 @@
   <li>Interfaces</li>
   <li
   >
-  SportsBook</li>
+  OddsBestOffer</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -65,18 +65,17 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>libs/response/src/lib/typings/odds/sports-book.ts</code>
+            <code>libs/response/src/lib/typings/odds/odds-best-offer.ts</code>
         </p>
 
 
+
             <p class="comment">
-                <h3>Description</h3>
+                <h3>Extends</h3>
             </p>
             <p class="comment">
-                <p>Represents an odds for the specific game in the given sports book.</p>
-
+                        <code><a href="../interfaces/OddsOffer.html" target="_self" >OddsOffer</a></code>
             </p>
-
 
         <section>
             <h3 id="index">Index</h3>
@@ -91,22 +90,9 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#_links" 
+                                        <a href="#outcomes" 
 >
-                                            _links
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#name" 
->
-                                            name
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#offers" 
->
-                                            offers
+                                            outcomes
                                         </a>
                                 </li>
                             </ul>
@@ -124,9 +110,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="_links"></a>
-                                        <span class="name "><b>_links</b>
-                                            <a href="#_links">
+                                        <a name="outcomes"></a>
+                                        <span class="name "><b>outcomes</b>
+                                            <a href="#outcomes">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -134,7 +120,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>_links:     <code>literal type</code>
+                                        <code>outcomes:     <code>OddsBestOfferOutcome[]</code>
 </code>
                                     </td>
                                 </tr>
@@ -142,45 +128,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>    <code>literal type</code>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="name"></a>
-                                        <span class="name "><b>name</b>
-                                            <a href="#name">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>name:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <i>Type : </i>    <code>OddsBestOfferOutcome[]</code>
 
                                         </td>
                                     </tr>
@@ -191,46 +139,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The name of the sports book.</p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="offers"></a>
-                                        <span class="name "><b>offers</b>
-                                            <a href="#offers">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>offers:         <code><a href="../interfaces/OddsOffer.html" target="_self" >OddsOffer[]</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="../interfaces/OddsOffer.html" target="_self" >OddsOffer[]</a></code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>The odds offers available in the given sports book.</p>
+                                    <div class="io-description"><p>The possible outcomes of the offer to bet on.</p>
 </div>
                                 </td>
                             </tr>
@@ -242,25 +151,13 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { OddsOffer } from &#x27;./odds-offer&#x27;;
-import { Link } from &#x27;../link&#x27;;
+import { OddsBestOfferOutcome } from &#x27;./outcome&#x27;;
 
-/**
- * Represents an odds for the specific game in the given sports book.
- */
-export interface SportsBook {
+export interface OddsBestOffer extends OddsOffer {
   /**
-   * The name of the sports book.
+   * The possible outcomes of the offer to bet on.
    */
-  name: string;
-
-  /**
-   * The odds offers available in the given sports book.
-   */
-  offers: OddsOffer[];
-
-  _links?: {
-    redirect?: Link;
-  };
+  outcomes: OddsBestOfferOutcome[];
 }
 </code></pre>
     </div>
@@ -298,7 +195,7 @@ export interface SportsBook {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'SportsBook.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'OddsBestOffer.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

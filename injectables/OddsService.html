@@ -83,11 +83,31 @@
                                 <a href="#convertToAmericanOdds" >convertToAmericanOdds</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#findCompetitorIndexById" >findCompetitorIndexById</a>
+                            </li>
+                            <li>
                                 <a href="#gameLineOddsBySportEventId" >gameLineOddsBySportEventId</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                <a href="#mapBestOfferToViewModel" >mapBestOfferToViewModel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
                                 <a href="#mapLineOddsResponse" >mapLineOddsResponse</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#mapSportsBooksNames" >mapSportsBooksNames</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#mapSportsBooksToViewModel" >mapSportsBooksToViewModel</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#mapToOfferLines" >mapToOfferLines</a>
                             </li>
                         </ul>
                     </td>
@@ -126,7 +146,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">apps/snapodds/src/services/api/odds.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">apps/snapodds/src/services/api/odds.service.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -215,8 +235,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="116"
-                            class="link-to-prism">apps/snapodds/src/services/api/odds.service.ts:116</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="219"
+                            class="link-to-prism">apps/snapodds/src/services/api/odds.service.ts:219</a></div>
                 </td>
             </tr>
 
@@ -270,6 +290,91 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findCompetitorIndexById"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>findCompetitorIndexById</b></span>
+                        <a href="#findCompetitorIndexById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findCompetitorIndexById(competitors: <a href="../interfaces/Competitor.html" target="_self">Competitor[]</a>, competitorId: number | undefined)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="210"
+                            class="link-to-prism">apps/snapodds/src/services/api/odds.service.ts:210</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Return the index of the competitor used to find the position in the array response</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>competitors</td>
+                                    <td>
+                                                <code><a href="../interfaces/Competitor.html" target="_self" >Competitor[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>competitorId</td>
+                                    <td>
+                                            <code>number | undefined</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="gameLineOddsBySportEventId"></a>
                     <span class="name">
                         <span ><b>gameLineOddsBySportEventId</b></span>
@@ -286,8 +391,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">apps/snapodds/src/services/api/odds.service.ts:31</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">apps/snapodds/src/services/api/odds.service.ts:40</a></div>
                 </td>
             </tr>
 
@@ -346,6 +451,91 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="mapBestOfferToViewModel"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>mapBestOfferToViewModel</b></span>
+                        <a href="#mapBestOfferToViewModel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>mapBestOfferToViewModel(offers: <a href="../interfaces/OddsBestOffer.html" target="_self">OddsBestOffer[] | undefined</a>, competitors: <a href="../interfaces/Competitor.html" target="_self">Competitor[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="107"
+                            class="link-to-prism">apps/snapodds/src/services/api/odds.service.ts:107</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Map the BestOfferResponse from the API into a flatter data structure optimized for rendering</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>offers</td>
+                                    <td>
+                                                <code><a href="../interfaces/OddsBestOffer.html" target="_self" >OddsBestOffer[] | undefined</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>competitors</td>
+                                    <td>
+                                                <code><a href="../interfaces/Competitor.html" target="_self" >Competitor[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/BestOfferViewModel.html" target="_self" >undefined | BestOfferViewModel</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="mapLineOddsResponse"></a>
                     <span class="name">
                         <span class="modifier">Private</span>
@@ -364,8 +554,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">apps/snapodds/src/services/api/odds.service.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">apps/snapodds/src/services/api/odds.service.ts:56</a></div>
                 </td>
             </tr>
 
@@ -415,6 +605,309 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mapSportsBooksNames"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>mapSportsBooksNames</b></span>
+                        <a href="#mapSportsBooksNames"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>mapSportsBooksNames(outcome: <a href="../interfaces/OddsBestOfferOutcome.html" target="_self">OddsBestOfferOutcome</a>, competitors: <a href="../interfaces/Competitor.html" target="_self">Competitor[]</a>, offer: <a href="../interfaces/OddsBestOffer.html" target="_self">OddsBestOffer</a>, viewModel: <a href="../interfaces/BestOfferViewModel.html" target="_self">BestOfferViewModel</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="184"
+                            class="link-to-prism">apps/snapodds/src/services/api/odds.service.ts:184</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Extract the sportsBooksName from the given outcomes</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>outcome</td>
+                                    <td>
+                                                <code><a href="../interfaces/OddsBestOfferOutcome.html" target="_self" >OddsBestOfferOutcome</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>competitors</td>
+                                    <td>
+                                                <code><a href="../interfaces/Competitor.html" target="_self" >Competitor[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>offer</td>
+                                    <td>
+                                                <code><a href="../interfaces/OddsBestOffer.html" target="_self" >OddsBestOffer</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>viewModel</td>
+                                    <td>
+                                                <code><a href="../interfaces/BestOfferViewModel.html" target="_self" >BestOfferViewModel</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mapSportsBooksToViewModel"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>mapSportsBooksToViewModel</b></span>
+                        <a href="#mapSportsBooksToViewModel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>mapSportsBooksToViewModel(sportsBooks: <a href="../interfaces/SportsBook.html" target="_self">SportsBook[]</a>, competitors: <a href="../interfaces/Competitor.html" target="_self">Competitor[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">apps/snapodds/src/services/api/odds.service.ts:75</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Map the SportsBooksResponse from the API into a flatter data structure optimized for rendering</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>sportsBooks</td>
+                                    <td>
+                                                <code><a href="../interfaces/SportsBook.html" target="_self" >SportsBook[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>competitors</td>
+                                    <td>
+                                                <code><a href="../interfaces/Competitor.html" target="_self" >Competitor[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>SportsBookViewModel[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mapToOfferLines"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>mapToOfferLines</b></span>
+                        <a href="#mapToOfferLines"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>mapToOfferLines(outcome: <a href="../interfaces/OddsOfferOutcome.html" target="_self">OddsOfferOutcome</a>, competitors: <a href="../interfaces/Competitor.html" target="_self">Competitor[]</a>, offer: <a href="../interfaces/OddsOffer.html" target="_self">OddsOffer</a>, viewModel: <a href="../interfaces/SportsBookViewModel.html" target="_self">SportsBookViewModel</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="136"
+                            class="link-to-prism">apps/snapodds/src/services/api/odds.service.ts:136</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Extract the lines from the given outcomes</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>outcome</td>
+                                    <td>
+                                                <code><a href="../interfaces/OddsOfferOutcome.html" target="_self" >OddsOfferOutcome</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>competitors</td>
+                                    <td>
+                                                <code><a href="../interfaces/Competitor.html" target="_self" >Competitor[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>offer</td>
+                                    <td>
+                                                <code><a href="../interfaces/OddsOffer.html" target="_self" >OddsOffer</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>viewModel</td>
+                                    <td>
+                                                <code><a href="../interfaces/SportsBookViewModel.html" target="_self" >SportsBookViewModel</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
             <section>
@@ -437,7 +930,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">apps/snapodds/src/services/api/odds.service.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">apps/snapodds/src/services/api/odds.service.ts:32</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -457,10 +950,19 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient, HttpHeaders } from &#x27;@angular/common/http&#x27;;
 import { Injectable } from &#x27;@angular/core&#x27;;
-import { OddsResponse } from &#x27;@response/typings&#x27;;
+import {
+  Competitor,
+  OddsBestOffer,
+  OddsBestOfferOutcome,
+  OddsOffer,
+  OddsOfferOutcome,
+  OddsResponse,
+  SportsBook,
+} from &#x27;@response/typings&#x27;;
 import { map, Observable, switchMap } from &#x27;rxjs&#x27;;
+import { BestOfferViewModel } from &#x27;../../models/best-offer-view-model&#x27;;
 import { LineOdds } from &#x27;../../models/line-odds&#x27;;
-import { SportsBook } from &#x27;../../models/sports-book&#x27;;
+import { SportsBookViewModel } from &#x27;../../models/sports-book-view-model&#x27;;
 import { AuthService } from &#x27;../auth/auth.service&#x27;;
 import { ApplicationConfigService } from &#x27;../config/application-config.service&#x27;;
 
@@ -502,17 +1004,31 @@ export class OddsService {
    * @private
    */
   private mapLineOddsResponse(lineOdds: OddsResponse): LineOdds {
-    const { competitors, players &#x3D; [], sportsBooks } &#x3D; lineOdds;
+    const { competitors, players &#x3D; [], sportsBooks, bestOffers } &#x3D; lineOdds;
 
     if (competitors?.length &lt; 2 || !sportsBooks) {
       return { competitors, players };
     }
 
-    const sportsBookLines: SportsBook[] &#x3D; [];
+    const sportsBooksViewModel &#x3D; this.mapSportsBooksToViewModel(sportsBooks, competitors);
+    const bestOfferViewModel &#x3D; this.mapBestOfferToViewModel(bestOffers, competitors);
+
+    return { competitors, players, sportsBooks: sportsBooksViewModel, bestOffer: bestOfferViewModel };
+  }
+
+  /**
+   * Map the SportsBooksResponse from the API into a flatter data structure optimized for rendering
+   * @param sportsBooks
+   * @param competitors
+   * @private
+   */
+  private mapSportsBooksToViewModel(sportsBooks: SportsBook[], competitors: Competitor[]): SportsBookViewModel[] {
+    const sportsBookViewModels: SportsBookViewModel[] &#x3D; [];
+
     sportsBooks
       .filter((sportsBook) &#x3D;&gt; sportsBook.offers)
       .map((sportsBook) &#x3D;&gt; {
-        const converted: SportsBook &#x3D; {
+        const target: SportsBookViewModel &#x3D; {
           name: sportsBook.name,
           lines: competitors.map(() &#x3D;&gt; ({} as never)),
           redirectUrl: sportsBook._links?.redirect?.href,
@@ -520,49 +1036,129 @@ export class OddsService {
 
         sportsBook.offers
           .filter((offer) &#x3D;&gt; offer.outcomes)
-          .forEach((offer) &#x3D;&gt; {
-            offer.outcomes.forEach((outcome) &#x3D;&gt; {
-              const competitorIndex &#x3D; competitors.findIndex((competitor) &#x3D;&gt; competitor.id &#x3D;&#x3D;&#x3D; outcome.competitorId);
-              const hasCompetitor &#x3D; competitorIndex &gt; -1;
-              const redirectUrl &#x3D; outcome._links?.redirect?.href;
+          .forEach((offer) &#x3D;&gt;
+            offer.outcomes.forEach((outcome) &#x3D;&gt; this.mapToOfferLines(outcome, competitors, offer, target))
+          );
 
-              if (offer.type &#x3D;&#x3D;&#x3D; &#x27;MONEYLINE&#x27; &amp;&amp; outcome.type &#x3D;&#x3D;&#x3D; &#x27;WIN&#x27; &amp;&amp; hasCompetitor) {
-                converted.lines[competitorIndex].moneyline &#x3D; this.convertToAmericanOdds(outcome.odds);
-
-                if (redirectUrl) {
-                  converted.lines[competitorIndex].moneylineUrl &#x3D; redirectUrl;
-                }
-              } else if (offer.type &#x3D;&#x3D;&#x3D; &#x27;OVER_UNDER&#x27; &amp;&amp; outcome.type &#x3D;&#x3D;&#x3D; &#x27;OVER&#x27;) {
-                converted.lines[0].overUnder &#x3D; outcome.target ?? null;
-                converted.lines[0].overUnderOdds &#x3D; this.convertToAmericanOdds(outcome.odds);
-
-                if (redirectUrl) {
-                  converted.lines[0].overUnderUrl &#x3D; redirectUrl;
-                }
-              } else if (offer.type &#x3D;&#x3D;&#x3D; &#x27;OVER_UNDER&#x27; &amp;&amp; outcome.type &#x3D;&#x3D;&#x3D; &#x27;UNDER&#x27;) {
-                converted.lines[1].overUnder &#x3D; outcome.target ?? null;
-                converted.lines[1].overUnderOdds &#x3D; this.convertToAmericanOdds(outcome.odds);
-
-                if (redirectUrl) {
-                  converted.lines[1].overUnderUrl &#x3D; redirectUrl;
-                }
-              } else if (offer.type &#x3D;&#x3D;&#x3D; &#x27;SPREAD&#x27; &amp;&amp; outcome.type &#x3D;&#x3D;&#x3D; &#x27;WIN&#x27; &amp;&amp; hasCompetitor) {
-                converted.lines[competitorIndex].spread &#x3D; outcome.target ?? null;
-                converted.lines[competitorIndex].spreadOdds &#x3D; this.convertToAmericanOdds(outcome.odds);
-
-                if (redirectUrl) {
-                  converted.lines[competitorIndex].spreadUrl &#x3D; redirectUrl;
-                }
-              }
-            });
-          });
-
-        if (converted.lines.length &gt; 0) {
-          sportsBookLines.push(converted);
+        if (target.lines.length &gt; 0) {
+          sportsBookViewModels.push(target);
         }
       });
 
-    return { competitors, players, sportsBooks: sportsBookLines };
+    return sportsBookViewModels;
+  }
+
+  /**
+   * Map the BestOfferResponse from the API into a flatter data structure optimized for rendering
+   * @param offers
+   * @param competitors
+   * @private
+   */
+  private mapBestOfferToViewModel(
+    offers: OddsBestOffer[] | undefined,
+    competitors: Competitor[]
+  ): undefined | BestOfferViewModel {
+    if (offers &#x3D;&#x3D;&#x3D; undefined) return undefined;
+
+    const bestOfferViewModel: BestOfferViewModel &#x3D; {
+      name: &#x27;Best of Odds&#x27;,
+      lines: competitors.map(() &#x3D;&gt; ({} as never)),
+    };
+
+    offers.forEach((offer) &#x3D;&gt; {
+      offer.outcomes.forEach((outcome) &#x3D;&gt; {
+        this.mapToOfferLines(outcome, competitors, offer, bestOfferViewModel);
+        this.mapSportsBooksNames(outcome, competitors, offer, bestOfferViewModel);
+      });
+    });
+
+    return bestOfferViewModel;
+  }
+
+  /**
+   * Extract the lines from the given outcomes
+   * @param outcome
+   * @param competitors
+   * @param offer
+   * @param viewModel
+   * @private
+   */
+  private mapToOfferLines(
+    outcome: OddsOfferOutcome,
+    competitors: Competitor[],
+    offer: OddsOffer,
+    viewModel: SportsBookViewModel
+  ) {
+    const competitorIndex &#x3D; this.findCompetitorIndexById(competitors, outcome.competitorId);
+    const hasCompetitor &#x3D; competitorIndex &gt; -1;
+    const redirectUrl &#x3D; outcome._links?.redirect?.href;
+
+    if (offer.type &#x3D;&#x3D;&#x3D; &#x27;MONEYLINE&#x27; &amp;&amp; outcome.type &#x3D;&#x3D;&#x3D; &#x27;WIN&#x27; &amp;&amp; hasCompetitor) {
+      viewModel.lines[competitorIndex].moneyline &#x3D; this.convertToAmericanOdds(outcome.odds);
+
+      if (redirectUrl) {
+        viewModel.lines[competitorIndex].moneylineUrl &#x3D; redirectUrl;
+      }
+    } else if (offer.type &#x3D;&#x3D;&#x3D; &#x27;OVER_UNDER&#x27; &amp;&amp; outcome.type &#x3D;&#x3D;&#x3D; &#x27;OVER&#x27;) {
+      viewModel.lines[0].overUnder &#x3D; outcome.target ?? null;
+      viewModel.lines[0].overUnderOdds &#x3D; this.convertToAmericanOdds(outcome.odds);
+
+      if (redirectUrl) {
+        viewModel.lines[0].overUnderUrl &#x3D; redirectUrl;
+      }
+    } else if (offer.type &#x3D;&#x3D;&#x3D; &#x27;OVER_UNDER&#x27; &amp;&amp; outcome.type &#x3D;&#x3D;&#x3D; &#x27;UNDER&#x27;) {
+      viewModel.lines[1].overUnder &#x3D; outcome.target ?? null;
+      viewModel.lines[1].overUnderOdds &#x3D; this.convertToAmericanOdds(outcome.odds);
+
+      if (redirectUrl) {
+        viewModel.lines[1].overUnderUrl &#x3D; redirectUrl;
+      }
+    } else if (offer.type &#x3D;&#x3D;&#x3D; &#x27;SPREAD&#x27; &amp;&amp; outcome.type &#x3D;&#x3D;&#x3D; &#x27;WIN&#x27; &amp;&amp; hasCompetitor) {
+      viewModel.lines[competitorIndex].spread &#x3D; outcome.target ?? null;
+      viewModel.lines[competitorIndex].spreadOdds &#x3D; this.convertToAmericanOdds(outcome.odds);
+
+      if (redirectUrl) {
+        viewModel.lines[competitorIndex].spreadUrl &#x3D; redirectUrl;
+      }
+    }
+  }
+
+  /**
+   * Extract the sportsBooksName from the given outcomes
+   * @param outcome
+   * @param competitors
+   * @param offer
+   * @param viewModel
+   * @private
+   */
+  private mapSportsBooksNames(
+    outcome: OddsBestOfferOutcome,
+    competitors: Competitor[],
+    offer: OddsBestOffer,
+    viewModel: BestOfferViewModel
+  ) {
+    const competitorIndex &#x3D; this.findCompetitorIndexById(competitors, outcome.competitorId);
+    const hasCompetitor &#x3D; competitorIndex &gt; -1;
+
+    if (offer.type &#x3D;&#x3D;&#x3D; &#x27;MONEYLINE&#x27; &amp;&amp; outcome.type &#x3D;&#x3D;&#x3D; &#x27;WIN&#x27; &amp;&amp; hasCompetitor) {
+      viewModel.lines[competitorIndex].moneySportsBookName &#x3D; outcome.sportsBook;
+    } else if (offer.type &#x3D;&#x3D;&#x3D; &#x27;OVER_UNDER&#x27; &amp;&amp; outcome.type &#x3D;&#x3D;&#x3D; &#x27;OVER&#x27;) {
+      viewModel.lines[0].overUnderSportsBookName &#x3D; outcome.sportsBook;
+    } else if (offer.type &#x3D;&#x3D;&#x3D; &#x27;OVER_UNDER&#x27; &amp;&amp; outcome.type &#x3D;&#x3D;&#x3D; &#x27;UNDER&#x27;) {
+      viewModel.lines[1].overUnderSportsBookName &#x3D; outcome.sportsBook;
+    } else if (offer.type &#x3D;&#x3D;&#x3D; &#x27;SPREAD&#x27; &amp;&amp; outcome.type &#x3D;&#x3D;&#x3D; &#x27;WIN&#x27; &amp;&amp; hasCompetitor) {
+      viewModel.lines[competitorIndex].spreadSportsBookName &#x3D; outcome.sportsBook;
+    }
+  }
+
+  /**
+   * Return the index of the competitor used to find the position in the array response
+   * @param competitors
+   * @param competitorId
+   * @private
+   */
+  private findCompetitorIndexById(competitors: Competitor[], competitorId: number | undefined): number {
+    return competitors.findIndex((competitor) &#x3D;&gt; competitor.id &#x3D;&#x3D;&#x3D; competitorId);
   }
 
   /**

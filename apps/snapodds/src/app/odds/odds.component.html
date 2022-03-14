@@ -10,9 +10,9 @@
 <snapodds-content *ngIf="tvSearchResultEntry as result">
   <p class="c-sport-event">
     <span class="c-sport-event__tournament">{{ result.sportEvent.tournament }}</span>
-    <span class="c-sport-event__channel"
-      >{{ result.tvChannel.name }} since {{ result.sportEvent.startTime | date: 'hh:mm a' }}</span
-    >
+    <span class="c-sport-event__channel">
+      {{ result.tvChannel.name }} <br />{{ result.sportEvent.startTime | date: 'short' }}
+    </span>
   </p>
 
   <div class="c-competitors">
@@ -37,9 +37,9 @@
         <div class="c-game-header__sportbook">{{ bestOffer.name }}</div>
 
         <div class="c-game-header__lines">
-          <div class="c-game-header__line">Best Spread</div>
-          <div class="c-game-header__line">Best Money</div>
-          <div class="c-game-header__line">Best Total</div>
+          <div class="c-game-header__line">Spread</div>
+          <div class="c-game-header__line">Moneyline</div>
+          <div class="c-game-header__line">Total</div>
         </div>
       </div>
 
@@ -57,7 +57,7 @@
 
         <div class="c-game-header__lines">
           <div class="c-game-header__line">Spread</div>
-          <div class="c-game-header__line">Money</div>
+          <div class="c-game-header__line">Moneyline</div>
           <div class="c-game-header__line">Total</div>
         </div>
       </div>

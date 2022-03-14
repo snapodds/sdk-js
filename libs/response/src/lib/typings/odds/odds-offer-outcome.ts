@@ -29,6 +29,11 @@ export interface OddsOfferOutcome {
    */
   playerId?: number;
 
+  /**
+   * Flag to indicate if it is the best offer in the outcomes
+   */
+  best?: boolean;
+
   _links?: {
     redirect?: Link;
   };

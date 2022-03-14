@@ -33,6 +33,7 @@ $box--width: 4rem;
   }
 
   .c-sport-event {
+    align-items: center;
     background-color: settings.$color-background;
     display: flex;
     font-size: settings.$font-sm;
@@ -47,6 +48,10 @@ $box--width: 4rem;
 
     &__tournament {
       font-weight: 700;
+    }
+
+    &__channel {
+      text-align: right;
     }
   }
 
@@ -83,8 +88,8 @@ $box--width: 4rem;
     }
 
     &--best-offer {
-      background-color: #0085cd;
-      color: #fff;
+      background-color: settings.$color-info;
+      color: settings.$color-info-text;
     }
   }
 
@@ -119,6 +124,7 @@ $box--width: 4rem;
       justify-content: flex-end;
 
       margin: 0.2rem;
+      text-align: right;
       width: $box--width;
     }
   }

@@ -66,7 +66,7 @@ describe('OddsComponent', () => {
     expect(tournament?.textContent).toEqual(tvSearchResultEntry.sportEvent.tournament);
 
     const channel = element.querySelector('.c-sport-event__channel');
-    expect(channel?.textContent).toEqual(`${tvSearchResultEntry.tvChannel.name} since 01:40 AM`);
+    expect(channel?.textContent?.trim()).toEqual(`${tvSearchResultEntry.tvChannel.name} 9/6/21, 1:40 AM`);
 
     const sportBook = element.querySelectorAll<HTMLElement>('.c-game');
     expect(sportBook).toHaveLength(expectedSportsBooks + expectedBestOffer);

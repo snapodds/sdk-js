@@ -145,6 +145,7 @@ export class OddsService {
 
     if (offer.type === 'MONEYLINE' && outcome.type === 'WIN' && hasCompetitor) {
       viewModel.lines[competitorIndex].moneyline = this.convertToAmericanOdds(outcome.odds);
+      viewModel.lines[competitorIndex].moneylineBest = outcome.best === true;
 
       if (redirectUrl) {
         viewModel.lines[competitorIndex].moneylineUrl = redirectUrl;
@@ -152,6 +153,7 @@ export class OddsService {
     } else if (offer.type === 'OVER_UNDER' && outcome.type === 'OVER') {
       viewModel.lines[0].overUnder = outcome.target ?? null;
       viewModel.lines[0].overUnderOdds = this.convertToAmericanOdds(outcome.odds);
+      viewModel.lines[0].overUnderBest = outcome.best === true;
 
       if (redirectUrl) {
         viewModel.lines[0].overUnderUrl = redirectUrl;
@@ -159,6 +161,7 @@ export class OddsService {
     } else if (offer.type === 'OVER_UNDER' && outcome.type === 'UNDER') {
       viewModel.lines[1].overUnder = outcome.target ?? null;
       viewModel.lines[1].overUnderOdds = this.convertToAmericanOdds(outcome.odds);
+      viewModel.lines[1].overUnderBest = outcome.best === true;
 
       if (redirectUrl) {
         viewModel.lines[1].overUnderUrl = redirectUrl;
@@ -166,6 +169,7 @@ export class OddsService {
     } else if (offer.type === 'SPREAD' && outcome.type === 'WIN' && hasCompetitor) {
       viewModel.lines[competitorIndex].spread = outcome.target ?? null;
       viewModel.lines[competitorIndex].spreadOdds = this.convertToAmericanOdds(outcome.odds);
+      viewModel.lines[competitorIndex].spreadBest = outcome.best === true;
 
       if (redirectUrl) {
         viewModel.lines[competitorIndex].spreadUrl = redirectUrl;

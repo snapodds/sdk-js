@@ -13,22 +13,22 @@ export const lineOddsMock: OddsResponse = {
         {
           type: 'SPREAD',
           outcomes: [
-            { type: 'WIN', target: -9.5, odds: 1.909091, competitorId: 10207 },
-            { type: 'WIN', target: 9.5, odds: 1.909091, competitorId: 10196 },
+            { type: 'WIN', target: -9.5, odds: 1.909, competitorId: 10207 },
+            { type: 'WIN', target: 9.5, odds: 1.909, competitorId: 10196 },
           ],
         },
         {
           type: 'MONEYLINE',
           outcomes: [
             { type: 'WIN', odds: 1.2, competitorId: 10207 },
-            { type: 'WIN', odds: 4.75, competitorId: 10196 },
+            { type: 'WIN', odds: 4.75, competitorId: 10196, best: true },
           ],
         },
         {
           type: 'OVER_UNDER',
           outcomes: [
-            { type: 'OVER', target: 207.5, odds: 1.909091 },
-            { type: 'UNDER', target: 207.5, odds: 1.909091 },
+            { type: 'OVER', target: 207.5, odds: 1.909 },
+            { type: 'UNDER', target: 207.5, odds: 1.909 },
           ],
         },
       ],
@@ -40,22 +40,22 @@ export const lineOddsMock: OddsResponse = {
         {
           type: 'SPREAD',
           outcomes: [
-            { type: 'WIN', target: -9.0, odds: 1.909091, competitorId: 10207 },
-            { type: 'WIN', target: 9.0, odds: 1.909091, competitorId: 10196 },
+            { type: 'WIN', target: -9.0, odds: 1.90909, competitorId: 10207, best: true },
+            { type: 'WIN', target: 9.0, odds: 1.90909, competitorId: 10196, best: true },
           ],
         },
         {
           type: 'MONEYLINE',
           outcomes: [
-            { type: 'WIN', odds: 1.2298851, competitorId: 10207 },
+            { type: 'WIN', odds: 1.22989, competitorId: 10207, best: true },
             { type: 'WIN', odds: 4.3, competitorId: 10196 },
           ],
         },
         {
           type: 'OVER_UNDER',
           outcomes: [
-            { type: 'OVER', target: 208.5, odds: 1.909091 },
-            { type: 'UNDER', target: 208.5, odds: 1.909091 },
+            { type: 'OVER', target: 208.5, odds: 1.90909 },
+            { type: 'UNDER', target: 208.5, odds: 1.90909, best: true },
           ],
         },
       ],
@@ -67,22 +67,22 @@ export const lineOddsMock: OddsResponse = {
         {
           type: 'SPREAD',
           outcomes: [
-            { type: 'WIN', target: -9.5, odds: 1.877193, competitorId: 10207 },
-            { type: 'WIN', target: 9.5, odds: 1.9433962, competitorId: 10196 },
+            { type: 'WIN', target: -9.5, odds: 1.87719, competitorId: 10207 },
+            { type: 'WIN', target: 9.5, odds: 1.9434, competitorId: 10196 },
           ],
         },
         {
           type: 'MONEYLINE',
           outcomes: [
-            { type: 'WIN', odds: 1.2083334, competitorId: 10207 },
+            { type: 'WIN', odds: 1.20833, competitorId: 10207 },
             { type: 'WIN', odds: 4.7, competitorId: 10196 },
           ],
         },
         {
           type: 'OVER_UNDER',
           outcomes: [
-            { type: 'OVER', target: 207.5, odds: 1.8928571 },
-            { type: 'UNDER', target: 207.5, odds: 1.925926 },
+            { type: 'OVER', target: 207.5, odds: 1.89286 },
+            { type: 'UNDER', target: 207.5, odds: 1.92593 },
           ],
         },
       ],
@@ -94,26 +94,26 @@ export const lineOddsMock: OddsResponse = {
         {
           type: 'SPREAD',
           outcomes: [
-            { type: 'WIN', target: -9.5, odds: 1.909091, competitorId: 10207 },
-            { type: 'WIN', target: 9.5, odds: 1.909091, competitorId: 10196 },
+            { type: 'WIN', target: -9.5, odds: 1.91, competitorId: 10207 },
+            { type: 'WIN', target: 9.5, odds: 1.91, competitorId: 10196 },
           ],
         },
         {
           type: 'MONEYLINE',
           outcomes: [
-            { type: 'WIN', odds: 1.2197802, competitorId: 10207 },
+            { type: 'WIN', odds: 1.22, competitorId: 10207 },
             { type: 'WIN', odds: 4.4, competitorId: 10196 },
           ],
         },
         {
           type: 'OVER_UNDER',
           outcomes: [
-            { type: 'OVER', target: 207.5, odds: 1.909091 },
-            { type: 'UNDER', target: 207.5, odds: 1.909091 },
+            { type: 'OVER', target: 207.5, odds: 1.91, best: true },
+            { type: 'UNDER', target: 207.5, odds: 1.91 },
           ],
         },
       ],
-      _links: { redirect: { href: 'https://nj.unibet.com/sports/#event/1008150973' } },
+      _links: { redirect: { href: 'https://go.metabet.io/bet/490598/mgm' } },
     },
     {
       name: 'PointsBet',
@@ -121,22 +121,22 @@ export const lineOddsMock: OddsResponse = {
         {
           type: 'SPREAD',
           outcomes: [
-            { type: 'WIN', target: -9.5, odds: 1.909091, competitorId: 10207 },
-            { type: 'WIN', target: 9.5, odds: 1.909091, competitorId: 10196 },
+            { type: 'WIN', target: -9.5, odds: 1.91, competitorId: 10207 },
+            { type: 'WIN', target: 9.5, odds: 1.91, competitorId: 10196 },
           ],
         },
         {
           type: 'MONEYLINE',
           outcomes: [
-            { type: 'WIN', odds: 1.2222222, competitorId: 10207 },
+            { type: 'WIN', odds: 1.2222, competitorId: 10207 },
             { type: 'WIN', odds: 4.4, competitorId: 10196 },
           ],
         },
         {
           type: 'OVER_UNDER',
           outcomes: [
-            { type: 'OVER', target: 208.0, odds: 1.909091 },
-            { type: 'UNDER', target: 208.0, odds: 1.909091 },
+            { type: 'OVER', target: 208.0, odds: 1.9091 },
+            { type: 'UNDER', target: 208.0, odds: 1.9091 },
           ],
         },
       ],
@@ -148,22 +148,22 @@ export const lineOddsMock: OddsResponse = {
         {
           type: 'SPREAD',
           outcomes: [
-            { type: 'WIN', target: -9.5, odds: 1.8928571, competitorId: 10207 },
-            { type: 'WIN', target: 9.5, odds: 1.9174311, competitorId: 10196 },
+            { type: 'WIN', target: -9.5, odds: 1.89286, competitorId: 10207 },
+            { type: 'WIN', target: 9.5, odds: 1.91743, competitorId: 10196 },
           ],
         },
         {
           type: 'MONEYLINE',
           outcomes: [
-            { type: 'WIN', odds: 1.2083334, competitorId: 10207 },
+            { type: 'WIN', odds: 1.20833, competitorId: 10207 },
             { type: 'WIN', odds: 4.6, competitorId: 10196 },
           ],
         },
         {
           type: 'OVER_UNDER',
           outcomes: [
-            { type: 'OVER', target: 208.5, odds: 1.925926 },
-            { type: 'UNDER', target: 208.5, odds: 1.8849558 },
+            { type: 'OVER', target: 208.5, odds: 1.92593 },
+            { type: 'UNDER', target: 208.5, odds: 1.88496 },
           ],
         },
       ],
@@ -175,22 +175,22 @@ export const lineOddsMock: OddsResponse = {
         {
           type: 'SPREAD',
           outcomes: [
-            { type: 'WIN', target: -9.5, odds: 1.8928571, competitorId: 10207 },
-            { type: 'WIN', target: 9.5, odds: 1.9174311, competitorId: 10196 },
+            { type: 'WIN', target: -9.5, odds: 1.89286, competitorId: 10207 },
+            { type: 'WIN', target: 9.5, odds: 1.91743, competitorId: 10196 },
           ],
         },
         {
           type: 'MONEYLINE',
           outcomes: [
-            { type: 'WIN', odds: 1.2083334, competitorId: 10207 },
+            { type: 'WIN', odds: 1.20833, competitorId: 10207 },
             { type: 'WIN', odds: 4.6, competitorId: 10196 },
           ],
         },
         {
           type: 'OVER_UNDER',
           outcomes: [
-            { type: 'OVER', target: 208.5, odds: 1.925926 },
-            { type: 'UNDER', target: 208.5, odds: 1.8849558 },
+            { type: 'OVER', target: 208.5, odds: 1.92593 },
+            { type: 'UNDER', target: 208.5, odds: 1.88496 },
           ],
         },
       ],
@@ -202,22 +202,22 @@ export const lineOddsMock: OddsResponse = {
         {
           type: 'SPREAD',
           outcomes: [
-            { type: 'WIN', target: -9.5, odds: 1.909091, competitorId: 10207 },
-            { type: 'WIN', target: 9.5, odds: 1.909091, competitorId: 10196 },
+            { type: 'WIN', target: -9.5, odds: 1.91, competitorId: 10207 },
+            { type: 'WIN', target: 9.5, odds: 1.91, competitorId: 10196 },
           ],
         },
         {
           type: 'MONEYLINE',
           outcomes: [
-            { type: 'WIN', odds: 1.2100841, competitorId: 10207 },
+            { type: 'WIN', odds: 1.21, competitorId: 10207 },
             { type: 'WIN', odds: 4.6, competitorId: 10196 },
           ],
         },
         {
           type: 'OVER_UNDER',
           outcomes: [
-            { type: 'OVER', target: 208.0, odds: 1.909091 },
-            { type: 'UNDER', target: 208.0, odds: 1.909091 },
+            { type: 'OVER', target: 208.0, odds: 1.91 },
+            { type: 'UNDER', target: 208.0, odds: 1.91 },
           ],
         },
       ],
@@ -229,22 +229,22 @@ export const lineOddsMock: OddsResponse = {
         {
           type: 'SPREAD',
           outcomes: [
-            { type: 'WIN', target: -9.5, odds: 1.909091, competitorId: 10207 },
-            { type: 'WIN', target: 9.5, odds: 1.909091, competitorId: 10196 },
+            { type: 'WIN', target: -9.5, odds: 1.91, competitorId: 10207 },
+            { type: 'WIN', target: 9.5, odds: 1.91, competitorId: 10196 },
           ],
         },
         {
           type: 'MONEYLINE',
           outcomes: [
-            { type: 'WIN', odds: 1.2100841, competitorId: 10207 },
+            { type: 'WIN', odds: 1.22, competitorId: 10207 },
             { type: 'WIN', odds: 4.6, competitorId: 10196 },
           ],
         },
         {
           type: 'OVER_UNDER',
           outcomes: [
-            { type: 'OVER', target: 208.0, odds: 1.909091 },
-            { type: 'UNDER', target: 208.0, odds: 1.909091 },
+            { type: 'OVER', target: 208.0, odds: 1.91 },
+            { type: 'UNDER', target: 208.0, odds: 1.91 },
           ],
         },
       ],
@@ -261,11 +261,7 @@ export const lineOddsMock: OddsResponse = {
           odds: 1.90909,
           competitorId: 10207,
           sportsBook: 'DraftKings',
-          _links: {
-            redirect: {
-              href: 'https://go.metabet.io/bet/490598/draftkings',
-            },
-          },
+          _links: { redirect: { href: 'https://go.metabet.io/bet/490598/draftkings' } },
         },
         {
           type: 'WIN',
@@ -273,11 +269,7 @@ export const lineOddsMock: OddsResponse = {
           odds: 1.90909,
           competitorId: 10196,
           sportsBook: 'DraftKings',
-          _links: {
-            redirect: {
-              href: 'https://go.metabet.io/bet/490598/draftkings',
-            },
-          },
+          _links: { redirect: { href: 'https://go.metabet.io/bet/490598/draftkings' } },
         },
       ],
     },
@@ -289,22 +281,14 @@ export const lineOddsMock: OddsResponse = {
           odds: 1.22989,
           competitorId: 10207,
           sportsBook: 'DraftKings',
-          _links: {
-            redirect: {
-              href: 'https://go.metabet.io/bet/490598/draftkings',
-            },
-          },
+          _links: { redirect: { href: 'https://go.metabet.io/bet/490598/draftkings' } },
         },
         {
           type: 'WIN',
           odds: 4.75,
           competitorId: 10196,
           sportsBook: 'SI Sportsbook',
-          _links: {
-            redirect: {
-              href: 'https://go.metabet.io/bet/490598/sport_888',
-            },
-          },
+          _links: { redirect: { href: 'https://go.metabet.io/bet/490598/sport_888' } },
         },
       ],
     },
@@ -316,22 +300,14 @@ export const lineOddsMock: OddsResponse = {
           target: 207.5,
           odds: 1.91,
           sportsBook: 'BetMGM',
-          _links: {
-            redirect: {
-              href: 'https://go.metabet.io/bet/490598/mgm',
-            },
-          },
+          _links: { redirect: { href: 'https://go.metabet.io/bet/490598/mgm' } },
         },
         {
           type: 'UNDER',
           target: 208.5,
           odds: 1.90909,
           sportsBook: 'DraftKings',
-          _links: {
-            redirect: {
-              href: 'https://go.metabet.io/bet/490598/draftkings',
-            },
-          },
+          _links: { redirect: { href: 'https://go.metabet.io/bet/490598/draftkings' } },
         },
       ],
     },

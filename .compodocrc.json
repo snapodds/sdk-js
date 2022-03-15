@@ -1,0 +1,6 @@
+{
+  "name": "SnapOdds SDK",
+  "tsconfig": "./tsconfig.doc.json",
+  "output": "./docs/snapodds",
+  "hideGenerator": true
+}

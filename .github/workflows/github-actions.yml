@@ -20,7 +20,7 @@ jobs:
     - run: npm install
     - run: npm run test
     - run: npm run build:elements
-    - run: npm run docs
+    - run: npm run docs:builder
 
     - name: Upload SDK as artifact
       uses: actions/upload-artifact@v2
@@ -32,7 +32,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@v4.2.3
       with:
         branch: gh-pages
-        folder: docs
+        folder: docs/snapodds-builder
 
   pr:
     runs-on: ubuntu-latest
@@ -49,4 +49,4 @@ jobs:
     - run: npm install
     - run: npm run test
     - run: npm run build:elements
-    - run: npm run docs
+    - run: npm run docs:builder

@@ -1,0 +1,12 @@
+{
+  "name": "SnapOdds Builder",
+  "tsconfig": "./tsconfig.doc.json",
+  "output": "../../docs/snapodds-builder",
+  "disableCoverage": true,
+  "disableDependencies": true,
+  "disableProtected": true,
+  "disablePrivate": true,
+  "disableSourceCode": true,
+  "hideGenerator": true,
+  "toggleMenuItems": "classes,interfaces"
+}

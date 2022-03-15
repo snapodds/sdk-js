@@ -38,7 +38,7 @@ export abstract class SdkBuilder {
     return this;
   }
 
-  setLogLevel(logLevel: string): this {
+  setLogLevel(logLevel: 'debug' | 'info' | 'warn' | 'error' | 'silent'): this {
     this.logLevel = logLevel;
     return this;
   }

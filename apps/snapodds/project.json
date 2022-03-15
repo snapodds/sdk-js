@@ -101,7 +101,7 @@
       "options": {
         "commands": [
           {
-            "command": "npx compodoc -n 'SnapOdds SDK' -p tsconfig.doc.json -d docs/"
+            "command": "npx compodoc"
           }
         ]
       }

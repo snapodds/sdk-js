@@ -1,13 +1,11 @@
-# SnapOdds SDK Builder
+# Documentation
 
-This application was generated with [Nx](https://nx.dev).
+For the SDK documentation go to [SnapOdds Docs](https://docs.snapodds.com/docs/) and [SnapOdds Web-SDK Docs](https://docs.snapodds.com/docs/web-sdk)
 
-It is used to provide a wrapper for the initialization and configuration of the SnapOdds web component.
+# Example
 
-## Building
+For a basic sample integration using the SnapOdds SDK, please check out [SnapOdds Web-SDK Sample](https://github.com/snapodds/sdk-js-sample)
 
-Run `nx build snapodds-builder` to build the application.
+# Support
 
-## Running unit tests
-
-Run `nx test snapodds-builder` to execute the unit tests via [Jest](https://jestjs.io).
+In case of any questions or problems please contact us at support@snapodds.com.

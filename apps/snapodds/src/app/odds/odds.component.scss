@@ -87,6 +87,10 @@ $box--width: 4rem;
       text-decoration: none;
     }
 
+    &--clickable {
+      cursor: pointer;
+    }
+
     &--best-offer {
       background-color: settings.$color-info;
       color: settings.$color-info-text;
@@ -102,7 +106,7 @@ $box--width: 4rem;
     display: flex;
     justify-content: space-between;
 
-    &__sportbook {
+    &__sports-book {
       font-size: settings.$font-base;
       font-weight: 700;
 

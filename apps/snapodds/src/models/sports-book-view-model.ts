@@ -1,7 +1,7 @@
 import { SportsBookLineViewModel } from './sports-book-line-view-model';
 
 /**
- * Data structure used to render the sportBooks for LineOdds
+ * Data structure used to render the sportsBooks for LineOdds
  */
 export interface SportsBookViewModel {
   /**

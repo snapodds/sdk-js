@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChange } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChange } from '@angular/core';
 import { TvSearchResultEntry } from '@response/typings';
 import { LineOdds } from '../../models/line-odds';
 import { OddsService } from '../../services/api/odds.service';
+import { WINDOW } from '../../services/tokens/window-token';
 
 @Component({
   selector: 'snapodds-odds',
@@ -16,7 +17,7 @@ export class OddsComponent implements OnChanges {
   @Input() tvSearchResultEntry?: TvSearchResultEntry | null;
   @Output() closeOddsView: EventEmitter<void> = new EventEmitter();
 
-  constructor(private readonly oddsService: OddsService) {}
+  constructor(private readonly oddsService: OddsService, @Inject(WINDOW) private readonly window: Window) {}
 
   /**
    * Loads the lineOdds when the tvSearchResultEntry has been changed.
@@ -31,8 +32,8 @@ export class OddsComponent implements OnChanges {
 
   /**
    * Loads the lineOdds for a given sportEvent.
-   * If sportBooks are found, then lineOdds will be assigned.
-   * if no sportBooks are found or if the call fails, an error message will be shown.
+   * If sportsBooks are found, then lineOdds will be assigned.
+   * if no sportsBooks are found or if the call fails, an error message will be shown.
    *
    * @param sportEventId: The identifier of the sportEvent
    * @private
@@ -51,6 +52,19 @@ export class OddsComponent implements OnChanges {
       },
       error: () => this.onLineOddsLoadFailed(),
     });
+  }
+
+  /**
+   * Opens the given URL in a new browser tab.
+   *
+   * @param $event: MouseEvent
+   * @param redirectUrl: The url that should be opened in a new tab
+   */
+  openSportsBookRedirectUrl($event: MouseEvent, redirectUrl?: string | null): void {
+    if (redirectUrl) {
+      $event.preventDefault();
+      this.window.open(redirectUrl, '_blank');
+    }
   }
 
   /**

@@ -68,8 +68,8 @@ describe('OddsComponent', () => {
     const channel = element.querySelector('.c-sport-event__channel');
     expect(channel?.textContent?.trim()).toEqual(`${tvSearchResultEntry.tvChannel.name} 9/6/21, 1:40 AM`);
 
-    const sportBook = element.querySelectorAll<HTMLElement>('.c-game');
-    expect(sportBook).toHaveLength(expectedSportsBooks + expectedBestOffer);
+    const sportsBooks = element.querySelectorAll<HTMLElement>('.c-game');
+    expect(sportsBooks).toHaveLength(expectedSportsBooks + expectedBestOffer);
 
     const lines = element.querySelectorAll<HTMLElement>('snapodds-odds-line');
     expect(lines).toHaveLength((expectedSportsBooks + expectedBestOffer) * 2);
@@ -97,7 +97,7 @@ describe('OddsComponent', () => {
     expect(component.loading).toBe(false);
   });
 
-  it('should show noResults if sportBooks are empty ', () => {
+  it('should show noResults if sportsBooks are empty ', () => {
     oddsService.gameLineOddsBySportEventId.mockReturnValue(of({ ...lineOddsMapped, sportsBooks: [] }));
 
     component.ngOnChanges({ tvSearchResultEntry: new SimpleChange(null, tvSearchResultEntry, true) });
@@ -108,7 +108,7 @@ describe('OddsComponent', () => {
     expect(component.loading).toBe(false);
   });
 
-  it('should show noResults if no sportBooks', () => {
+  it('should show noResults if no sportsBooks', () => {
     oddsService.gameLineOddsBySportEventId.mockReturnValue(of({ ...lineOddsMapped, sportsBooks: undefined }));
 
     component.ngOnChanges({ tvSearchResultEntry: new SimpleChange(null, tvSearchResultEntry, true) });
@@ -117,5 +117,11 @@ describe('OddsComponent', () => {
     expect(component.lineOdds).toBe(null);
     expect(component.noResults).toBe(true);
     expect(component.loading).toBe(false);
+  });
+
+  it('should open the outcomeUrl in a new tab', () => {
+    const redirectUrl = 'https://example.com';
+    component.openSportsBookRedirectUrl(new MouseEvent('click'), redirectUrl);
+    expect(window.open).toHaveBeenCalledWith(redirectUrl, '_blank');
   });
 });

@@ -7,7 +7,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "outputs": [],
       "options": {
-        "command": "npx parcel build src/index.ts",
+        "command": "npx --yes parcel build src/index.ts",
         "cwd": "apps/snapodds-builder"
       }
     },

@@ -34,7 +34,7 @@
   <div class="c-game-container" *ngIf="lineOdds as lineOdds">
     <div class="c-game c-game--best-offer" *ngIf="lineOdds.bestOffer as bestOffer">
       <div class="c-game-header">
-        <div class="c-game-header__sportbook">{{ bestOffer.name }}</div>
+        <div class="c-game-header__sports-book">{{ bestOffer.name }}</div>
 
         <div class="c-game-header__lines">
           <div class="c-game-header__line">Spread</div>
@@ -51,9 +51,14 @@
       ></snapodds-odds-line>
     </div>
 
-    <div class="c-game" *ngFor="let sportBook of lineOdds.sportsBooks">
+    <div
+      class="c-game"
+      [class.c-game--clickable]="sportsBook.redirectUrl"
+      *ngFor="let sportsBook of lineOdds.sportsBooks"
+      (click)="openSportsBookRedirectUrl($event, sportsBook.redirectUrl)"
+    >
       <div class="c-game-header">
-        <div class="c-game-header__sportbook">{{ sportBook.name }}</div>
+        <div class="c-game-header__sports-book">{{ sportsBook.name }}</div>
 
         <div class="c-game-header__lines">
           <div class="c-game-header__line">Spread</div>
@@ -64,10 +69,10 @@
 
       <a
         class="c-game__link"
-        href="{{ sportBook.redirectUrl }}"
+        href="{{ sportsBook.redirectUrl }}"
         rel="noopener noreferrer"
         target="_blank"
-        *ngFor="let line of sportBook.lines; let i = index"
+        *ngFor="let line of sportsBook.lines; let i = index"
       >
         <snapodds-odds-line
           [line]="line"

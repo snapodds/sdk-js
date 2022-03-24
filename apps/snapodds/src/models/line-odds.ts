@@ -16,7 +16,7 @@ export interface LineOdds {
   players?: Player[];
 
   /**
-   * List of sportBooks
+   * List of sportsBooks
    */
   sportsBooks?: SportsBookViewModel[];
 

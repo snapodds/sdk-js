@@ -1,8 +1,22 @@
 import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { TvSearchResult } from '@response/typings';
-import { defer, delay, mergeMap, Observable, race, retryWhen, Subject, switchMap, take, takeUntil, timer } from 'rxjs';
+import {
+  defer,
+  filter,
+  mergeMap,
+  Observable,
+  race,
+  retryWhen,
+  Subject,
+  switchMap,
+  take,
+  takeUntil,
+  throwError,
+  timer,
+} from 'rxjs';
 import { TvSearchNoResultError } from '../../services/api/api-errors';
 import { ApplicationConfigService } from '../../services/config/application-config.service';
+import { CustomerApplicationConfigService } from '../../services/config/customer-application-config.service';
 import { ManipulatedImage } from '../../services/image-manipulation/manipulated-image';
 import { LoggerService } from '../../services/logger/logger.service';
 import { NotificationService } from '../../services/notification/notification.service';
@@ -12,6 +26,7 @@ import { GoogleAnalyticsService } from '../../services/tracking/google-analytics
 import { AppState, AppStateStore } from '../../states/app-state.store';
 import { MediaDeviceState, MediaDeviceStateStore } from '../../states/media-device-state.store';
 import { WebcamComponent } from '../webcam/webcam.component';
+import { AutoSnapMaxAttemptsReached } from './snap-errors';
 
 @Component({
   selector: 'snapodds-snap',
@@ -35,6 +50,7 @@ export class SnapComponent implements OnInit, OnDestroy {
     private readonly appStateStore: AppStateStore,
     private readonly mediaDeviceStateStore: MediaDeviceStateStore,
     private readonly notificationService: NotificationService,
+    readonly customerApplicationConfigService: CustomerApplicationConfigService,
     @Inject(LOCATION) private readonly location: Location
   ) {}
 
@@ -46,14 +62,26 @@ export class SnapComponent implements OnInit, OnDestroy {
    * Triggers the snap view opened analytics event.
    */
   ngOnInit(): void {
-    if (this.applicationConfigService.isAutoSnapEnabled()) {
-      this.registerAutoSnap();
-    }
-
+    this.subscribeToCustomerApplicationConfig();
     this.subscribeToStateStores();
 
     this.appStateStore.dispatch(AppState.SNAP_READY);
     this.analyticsService.snapViewOpened();
+  }
+
+  /**
+   * Load the customer and retrieve the application relevant config options.
+   * If enabled, start auto snapping
+   * @private
+   */
+  private subscribeToCustomerApplicationConfig() {
+    this.customerApplicationConfigService.load();
+    this.customerApplicationConfigService.loaded$
+      .pipe(
+        takeUntil(this.destroyed$),
+        filter(() => this.customerApplicationConfigService.isAutoSnapEnabled())
+      )
+      .subscribe(() => this.registerAutoSnap());
   }
 
   /**
@@ -106,7 +134,10 @@ export class SnapComponent implements OnInit, OnDestroy {
         takeUntil(this.destroyed$),
         switchMap(() => this.startAutoSnapWithDelay())
       )
-      .subscribe((response) => this.handleSuccess(response));
+      .subscribe({
+        next: (response) => this.handleSuccess(response),
+        error: () => this.logger.info('AutoSnap stopped unsuccessfully'),
+      });
   }
 
   /**
@@ -116,13 +147,33 @@ export class SnapComponent implements OnInit, OnDestroy {
    * @private
    */
   private startAutoSnapWithDelay(): Observable<TvSearchResult> {
-    return timer(this.applicationConfigService.getAutoSnapDelay(true)).pipe(
-      mergeMap(() =>
-        this.loadSportEvents(true).pipe(
-          retryWhen((errors) => errors.pipe(delay(this.applicationConfigService.getAutoSnapDelay())))
-        )
-      ),
+    return timer(this.customerApplicationConfigService.getAutoSnapInterval(true)).pipe(
+      mergeMap(() => this.loadSportEvents(true).pipe(retryWhen((errors) => this.maxAutoSnapAttemptsReached(errors)))),
       takeUntil(race(this.destroyed$, this.snapshot$))
+    );
+  }
+
+  /**
+   * If the max number of retries for attempting to snap a sports event has been reached
+   * The timer is aborted and the customer has to manually take a snapshot
+   * @param errors
+   * @private
+   */
+  private maxAutoSnapAttemptsReached(errors: Observable<unknown>): Observable<number> {
+    return errors.pipe(
+      mergeMap((error, retryCount) => {
+        const retryAttempt = retryCount + 1;
+        const maxRetryAttempts = this.customerApplicationConfigService.getAutoSnapMaxRetries();
+
+        if (retryAttempt >= maxRetryAttempts) {
+          this.logger.info(`Max attempts (${maxRetryAttempts}) for auto snapping has been reached`);
+          return throwError(() => new AutoSnapMaxAttemptsReached());
+        }
+
+        this.logger.debug(`AutoSnap Attempt ${retryAttempt} of ${maxRetryAttempts}`);
+
+        return timer(this.customerApplicationConfigService.getAutoSnapInterval());
+      })
     );
   }
 

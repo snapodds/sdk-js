@@ -5,6 +5,7 @@ export interface TranslationEntries {
   Snapodds_Title_Snap_TV: string;
   Snapodds_Title_Odds: string;
   Snapodds_Title_Help: string;
+  Snapodds_Odds_BestOdds: string;
   Snapodds_Action_Cancel: string;
   Snapodds_Action_Reload: string;
   Snapodds_Action_Help: string;

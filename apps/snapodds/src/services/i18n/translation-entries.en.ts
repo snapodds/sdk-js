@@ -18,4 +18,5 @@ export const TRANSLATION_ENTRIES_EN: TranslationEntries = {
     'Your Snap returned no results. Make sure your TV is visible within the viewfinder.<br />Please try again.',
   Snapodds_Lines_Loading: 'Loading game lines',
   Snapodds_Lines_No_Results: 'Sorry, no game lines found',
+  Snapodds_Odds_BestOdds: 'Best Odds',
 };

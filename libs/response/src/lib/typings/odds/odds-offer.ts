@@ -1,5 +1,6 @@
 import { Link } from '../link';
 import { OddsOfferOutcome } from './odds-offer-outcome';
+import { OddsOfferType } from './odds-offer-type';
 
 /**
  * Represents a single odds offer.
@@ -8,7 +9,7 @@ export interface OddsOffer {
   /**
    * The type of the offer.
    */
-  type: 'SPREAD' | 'MONEYLINE' | 'OVER_UNDER';
+  type: OddsOfferType;
 
   /**
    * The label of the offer.

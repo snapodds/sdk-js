@@ -54,16 +54,30 @@ export class OddsService {
    * @private
    */
   private mapLineOddsResponse(lineOdds: OddsResponse): LineOdds {
-    const { competitors, players = [], sportsBooks, bestOffers } = lineOdds;
+    const {
+      competitors,
+      players = [],
+      sportsBooks,
+      sport,
+      oddsOfferOrder = ['SPREAD', 'MONEYLINE', 'OVER_UNDER'],
+      bestOffers,
+    } = lineOdds;
 
     if (competitors?.length < 2 || !sportsBooks) {
-      return { competitors, players };
+      return { competitors, players, sport, oddsOfferOrder };
     }
 
     const sportsBooksViewModel = this.mapSportsBooksToViewModel(sportsBooks, competitors);
     const bestOfferViewModel = this.mapBestOfferToViewModel(bestOffers, competitors);
 
-    return { competitors, players, sportsBooks: sportsBooksViewModel, bestOffer: bestOfferViewModel };
+    return {
+      competitors,
+      players,
+      sport,
+      oddsOfferOrder,
+      sportsBooks: sportsBooksViewModel,
+      bestOffer: bestOfferViewModel,
+    };
   }
 
   /**
@@ -111,7 +125,6 @@ export class OddsService {
     if (offers === undefined) return undefined;
 
     const bestOfferViewModel: BestOfferViewModel = {
-      name: 'Best of Odds',
       lines: competitors.map(() => ({} as never)),
     };
 
@@ -137,8 +150,8 @@ export class OddsService {
     outcome: OddsOfferOutcome,
     competitors: Competitor[],
     offer: OddsOffer,
-    viewModel: SportsBookViewModel
-  ) {
+    viewModel: BestOfferViewModel | SportsBookViewModel
+  ): void {
     const competitorIndex = this.findCompetitorIndexById(competitors, outcome.competitorId);
     const hasCompetitor = competitorIndex > -1;
     const redirectUrl = outcome._links?.redirect?.href;

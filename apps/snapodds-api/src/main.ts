@@ -3,7 +3,7 @@
  * This is only a minimal backend to get started.
  */
 
-import { lineOddsMock, sportEventTvSearchMock } from '@response/mocks';
+import { customerMock, lineOddsMock, sportEventTvSearchMock } from '@response/mocks';
 import * as cors from 'cors';
 import * as express from 'express';
 import { readFileSync } from 'fs';
@@ -44,6 +44,14 @@ app.post('/api/tv-search/sport/near-timestamp/by-image', (req, res) => {
  */
 app.get('/api/sport/events/:eventId/odds/lines', (req, res) => {
   res.json(lineOddsMock);
+});
+
+/**
+ * Return a mocked response for a customer snap
+ * For development purpose only.
+ */
+app.get('/api/customers/:customerId', (req, res) => {
+  res.json(customerMock);
 });
 
 const port = process.env.port || 3333;

@@ -1,0 +1,36 @@
+@use 'tools';
+@use 'settings';
+
+:host {
+  .c-game-line {
+    display: flex;
+    justify-content: space-between;
+
+    &__competitor {
+      align-items: center;
+      display: flex;
+
+      font-size: settings.$font-sm;
+      font-weight: 400;
+      margin-right: 0.6rem;
+    }
+
+    &__boxes {
+      display: flex;
+    }
+  }
+
+  .l-order {
+    &-1 {
+      order: 1;
+    }
+
+    &-2 {
+      order: 2;
+    }
+
+    &-3 {
+      order: 3;
+    }
+  }
+}

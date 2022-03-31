@@ -1,0 +1,53 @@
+@use 'settings';
+@use '../odds-settings';
+
+:host {
+  .c-game-header {
+    display: flex;
+    justify-content: space-between;
+
+    &__sports-book {
+      font-size: settings.$font-base;
+      font-weight: 700;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      &--best-offer {
+        font-size: settings.$font-lg;
+      }
+    }
+
+    &__lines {
+      align-items: center;
+      display: flex;
+    }
+
+    &__line {
+      box-sizing: border-box;
+      display: flex;
+
+      font-size: settings.$font-xs;
+      font-weight: 400;
+      justify-content: flex-end;
+
+      margin: 0.2rem;
+      padding: 0 0.3rem;
+      width: odds-settings.$box--width;
+    }
+  }
+
+  .l-order {
+    &-1 {
+      order: 1;
+    }
+
+    &-2 {
+      order: 2;
+    }
+
+    &-3 {
+      order: 3;
+    }
+  }
+}

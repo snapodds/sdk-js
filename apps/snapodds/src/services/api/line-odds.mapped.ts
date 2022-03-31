@@ -1,6 +1,9 @@
+import { Sports } from '@response/typings';
 import { LineOdds } from '../../models/line-odds';
 
 export const lineOddsMapped: LineOdds = {
+  oddsOfferOrder: ['MONEYLINE', 'SPREAD', 'OVER_UNDER'],
+  sport: Sports.BASEBALL,
   bestOffer: {
     lines: [
       {
@@ -36,7 +39,6 @@ export const lineOddsMapped: LineOdds = {
         spreadUrl: 'https://go.metabet.io/bet/490598/draftkings',
       },
     ],
-    name: 'Best of Odds',
   },
   competitors: [
     {

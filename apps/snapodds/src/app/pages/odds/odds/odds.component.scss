@@ -1,0 +1,114 @@
+@use 'tools';
+@use 'settings';
+
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  button {
+    @include tools.button-reset();
+    font-size: settings.$font-base;
+  }
+
+  snapodds-content {
+    background-color: settings.$color-accent;
+    justify-content: flex-start;
+  }
+
+  .c-feedback {
+    align-items: center;
+    background-color: settings.$color-background;
+    display: flex;
+    font-size: settings.$font-sm;
+    justify-content: center;
+    padding: settings.$spacing-base;
+
+    &__spinner {
+      line-height: 1;
+      margin-right: settings.$spacing-sm;
+    }
+  }
+
+  .c-sport-event {
+    align-items: center;
+    background-color: settings.$color-accent;
+    display: flex;
+    font-size: settings.$font-base;
+    font-weight: 400;
+    justify-content: space-between;
+    margin: 0;
+    padding: settings.$spacing-base;
+
+    @include tools.media-tiny--portrait {
+      padding: settings.$spacing-sm;
+    }
+
+    &__tournament-info {
+      font-weight: 700;
+    }
+
+    &__time-of-day {
+      text-align: right;
+    }
+  }
+
+  .c-competitors {
+    background-color: settings.$color-primary;
+    box-sizing: border-box;
+    color: settings.$color-text-focus;
+    display: flex;
+    flex-direction: column;
+    font-size: settings.$font-base;
+    padding: settings.$spacing-base;
+    text-align: center;
+
+    &__separator {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      display: inline-block;
+      margin: 0.5rem 0;
+    }
+  }
+
+  .c-game {
+    border-bottom: 2px solid settings.$color-accent;
+    color: settings.$color-text;
+    display: flex;
+    flex-direction: column;
+    padding: settings.$spacing-base;
+    text-decoration: none;
+
+    @include tools.media-tiny--portrait {
+      padding: settings.$spacing-sm;
+    }
+
+    &--best-offer {
+      background-color: settings.$color-info;
+      color: settings.$color-info-text;
+    }
+  }
+
+  .c-game-line {
+    &__separator {
+      border-bottom: 1px solid settings.$color-accent;
+      flex: 1;
+
+      &--best-offer {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      }
+    }
+  }
+
+  .c-game-container {
+    background-color: settings.$color-background;
+  }
+
+  .c-footer {
+    &__powered-by {
+      font-size: settings.$font-sm;
+      font-weight: 400;
+      padding: settings.$spacing-base;
+      text-align: center;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { OddsResponse } from '../typings';
+import { OddsResponse, Sports } from '../typings';
 
 export const lineOddsMock: OddsResponse = {
   startTime: '2021-09-06T01:40:00Z',
@@ -312,5 +312,7 @@ export const lineOddsMock: OddsResponse = {
       ],
     },
   ],
+  oddsOfferOrder: ['MONEYLINE', 'SPREAD', 'OVER_UNDER'],
+  sport: Sports.BASEBALL,
   _links: { self: { href: 'https://api-dev.us.snapscreen.com/sport/events/241/odds/{?usState}', templated: true } },
 };

@@ -67,8 +67,14 @@ describe('ApplicationConfig', () => {
     });
 
     it('should return different delays based on he status', () => {
-      expect(service.getAutoSnapDelay()).toBe(1000);
-      expect(service.getAutoSnapDelay(true)).toBe(2500);
+      expect(service.getAutoSnapInterval()).toBe(1000);
+      expect(service.getAutoSnapInterval(true)).toBe(2500);
+    });
+  });
+
+  describe('autoSnapMaxRetries', () => {
+    it('should calculate the maxRetries based on the min and max intervals', () => {
+      expect(service.getAutoSnapMaxRetries()).toBe(5);
     });
   });
 });

@@ -10,6 +10,13 @@
   .l-flex {
     display: flex;
     flex: 1;
+
+    &__center {
+      align-items: center;
+      display: flex;
+      flex: 1;
+      justify-content: center;
+    }
   }
 
   @media (orientation: landscape) {

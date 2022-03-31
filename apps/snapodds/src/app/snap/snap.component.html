@@ -8,41 +8,47 @@
 </snapodds-header>
 
 <div class="l-flex l-flex__row--landscape l-flex__column--portrait">
-  <snapodds-webcam #webcam></snapodds-webcam>
+  <ng-container *ngIf="customerApplicationConfigService.loaded$ | async; else loadingSpinner">
+    <snapodds-webcam #webcam></snapodds-webcam>
 
-  <div class="l-flex l-flex__column--landscape l-flex__column--portrait">
-    <snapodds-content>
-      <snapodds-user-feedback-message [appState]="appState"></snapodds-user-feedback-message>
-    </snapodds-content>
+    <div class="l-flex l-flex__column--landscape l-flex__column--portrait">
+      <snapodds-content>
+        <snapodds-user-feedback-message [appState]="appState"></snapodds-user-feedback-message>
+      </snapodds-content>
 
-    <snapodds-footer>
-      <div class="c-footer">
-        <ng-container *ngIf="appState === 'DEVICE_NO_PERMISSION'; else hasCameraAccess">
-          <button class="c-footer__reload-button" (click)="reloadPage()">
-            {{ 'Snapodds_Action_Reload' | translate }}
-          </button>
-        </ng-container>
-
-        <ng-template #hasCameraAccess>
-          <span class="c-footer__spacer"></span>
-
-          <snapodds-trigger
-            (clicked)="takeSnapshot()"
-            [disabled]="appState === 'SNAP_IN_PROGRESS' || mediaDeviceState !== 'DEVICE_CAMERA_READY'"
-            [processing]="appState === 'SNAP_IN_PROGRESS'"
-          ></snapodds-trigger>
-
-          <div class="c-footer__spacer">
-            <button
-              class="c-footer__switch-camera"
-              *ngIf="webcam.hasMultipleWebcams"
-              (click)="webcam.switchToNextWebcam()"
-            >
-              <snapodds-switch-svg></snapodds-switch-svg>
+      <snapodds-footer>
+        <div class="c-footer">
+          <ng-container *ngIf="appState === 'DEVICE_NO_PERMISSION'; else hasCameraAccess">
+            <button class="c-footer__reload-button" (click)="reloadPage()">
+              {{ 'Snapodds_Action_Reload' | translate }}
             </button>
-          </div>
-        </ng-template>
-      </div>
-    </snapodds-footer>
-  </div>
+          </ng-container>
+
+          <ng-template #hasCameraAccess>
+            <span class="c-footer__spacer"></span>
+
+            <snapodds-trigger
+              (clicked)="takeSnapshot()"
+              [disabled]="appState === 'SNAP_IN_PROGRESS' || mediaDeviceState !== 'DEVICE_CAMERA_READY'"
+              [processing]="appState === 'SNAP_IN_PROGRESS'"
+            ></snapodds-trigger>
+
+            <div class="c-footer__spacer">
+              <button
+                class="c-footer__switch-camera"
+                *ngIf="webcam.hasMultipleWebcams"
+                (click)="webcam.switchToNextWebcam()"
+              >
+                <snapodds-switch-svg></snapodds-switch-svg>
+              </button>
+            </div>
+          </ng-template>
+        </div>
+      </snapodds-footer>
+    </div>
+  </ng-container>
+
+  <ng-template #loadingSpinner>
+    <snapodds-spinner class="l-flex__center"></snapodds-spinner>
+  </ng-template>
 </div>

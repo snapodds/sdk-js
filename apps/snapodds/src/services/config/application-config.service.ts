@@ -25,15 +25,16 @@ export class ApplicationConfigService {
 
   private readonly SNAP_MAX_DIMENSION = 1024;
   private readonly AUTOSNAP_MAX_DIMENSION = 512;
-  private readonly AUTOSNAP_DELAY_INITIAL = 2500;
-  private readonly AUTOSNAP_DELAY = 1000;
+  private readonly AUTOSNAP_INITIAL_DELAY = 1500;
+  private readonly AUTOSNAP_INTERVAL = 1000;
+  private readonly AUTOSNAP_MAX_INTERVAL = 5000;
 
   /**
    * Merges the given applicationConfig with the default values.
    * @param applicationConfig
    */
   setConfig(applicationConfig: Partial<ApplicationConfig>): void {
-    this.config = { ...DEFAULT_APPLICATION_CONFIG, ...this.omitUndefinedProperties(applicationConfig) };
+    this.config = { ...this.config, ...this.omitUndefinedProperties(applicationConfig) };
   }
 
   /**
@@ -71,10 +72,24 @@ export class ApplicationConfigService {
 
   /**
    * Returns the delay used to programmatically trigger a snap
-   * @param initial: the initial delay takes longer in order for the user to correctly align the camera
+   * @param withInitialDelay: the initial delay takes longer in order for the user to correctly align the camera
    */
-  getAutoSnapDelay(initial: boolean = false): number {
-    return initial ? this.AUTOSNAP_DELAY_INITIAL : this.AUTOSNAP_DELAY;
+  getAutoSnapInterval(withInitialDelay: boolean = false): number {
+    return this.AUTOSNAP_INTERVAL + (withInitialDelay ? this.AUTOSNAP_INITIAL_DELAY : 0);
+  }
+
+  /**
+   * Returns the initial delay before the webcam has been pointed on the tv
+   */
+  getAutoSnapInitialDelay(): number {
+    return this.AUTOSNAP_INITIAL_DELAY;
+  }
+
+  /**
+   * Returns the number of max retries before the user has to perform a manual snap
+   */
+  getAutoSnapMaxRetries(): number {
+    return Math.ceil(this.AUTOSNAP_MAX_INTERVAL / this.AUTOSNAP_INTERVAL);
   }
 
   /**

@@ -74,21 +74,14 @@ $box--width: 4rem;
 
   .c-game {
     border-bottom: 2px solid settings.$color-accent;
+    color: settings.$color-text;
     display: flex;
     flex-direction: column;
     padding: settings.$spacing-sm settings.$spacing-base;
+    text-decoration: none;
 
     @include tools.media-tiny--portrait {
       padding: settings.$spacing-sm;
-    }
-
-    &__link {
-      color: settings.$color-text;
-      text-decoration: none;
-    }
-
-    &--clickable {
-      cursor: pointer;
     }
 
     &--best-offer {

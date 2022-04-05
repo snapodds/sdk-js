@@ -51,11 +51,13 @@
       ></snapodds-odds-line>
     </div>
 
-    <div
+    <a
       class="c-game"
-      [class.c-game--clickable]="sportsBook.redirectUrl"
       *ngFor="let sportsBook of lineOdds.sportsBooks"
+      href="{{ sportsBook.redirectUrl }}"
       (click)="openSportsBookRedirectUrl($event, sportsBook.redirectUrl)"
+      rel="noopener noreferrer"
+      target="_blank"
     >
       <div class="c-game-header">
         <div class="c-game-header__sports-book">{{ sportsBook.name }}</div>
@@ -67,19 +69,12 @@
         </div>
       </div>
 
-      <a
-        class="c-game__link"
-        href="{{ sportsBook.redirectUrl }}"
-        rel="noopener noreferrer"
-        target="_blank"
+      <snapodds-odds-line
         *ngFor="let line of sportsBook.lines; let i = index"
-      >
-        <snapodds-odds-line
-          [line]="line"
-          [lineIndex]="i"
-          [competitorName]="lineOdds.competitors[i].name"
-        ></snapodds-odds-line>
-      </a>
-    </div>
+        [line]="line"
+        [lineIndex]="i"
+        [competitorName]="lineOdds.competitors[i].name"
+      ></snapodds-odds-line>
+    </a>
   </div>
 </snapodds-content>

@@ -62,8 +62,8 @@ describe('OddsComponent', () => {
     const expectedSportsBooks = lineOddsMapped.sportsBooks?.length ?? 0;
     const expectedBestOffer = lineOddsMapped.bestOffer ? 1 : 0;
 
-    const tournament = element.querySelector('.c-sport-event__tournament');
-    expect(tournament?.textContent).toEqual(tvSearchResultEntry.sportEvent.tournament);
+    const tournament = element.querySelector('.c-sport-event__identifier');
+    expect(tournament?.textContent).toEqual(tvSearchResultEntry.sportEvent.league);
 
     const channel = element.querySelector('.c-sport-event__channel');
     expect(channel?.textContent?.trim()).toEqual(`${tvSearchResultEntry.tvChannel.name} 9/6/21, 1:40 AM`);

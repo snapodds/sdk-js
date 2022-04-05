@@ -29,7 +29,8 @@ export const sportEventTvSearchMock: TvSearchResult = {
         endTime: '2022-09-09T04:40:00Z',
         sport: 'Basketball',
         category: 'USA',
-        tournament: 'NBA',
+        tournament: 'NBA, Regular',
+        league: 'NBA',
         competitors: [
           {
             name: 'Miami Heat',

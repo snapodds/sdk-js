@@ -9,7 +9,7 @@
 
 <snapodds-content *ngIf="tvSearchResultEntry as result">
   <p class="c-sport-event">
-    <span class="c-sport-event__tournament">{{ result.sportEvent.tournament }}</span>
+    <span class="c-sport-event__identifier">{{ result.sportEvent.league || result.sportEvent.tournament }}</span>
     <span class="c-sport-event__channel">
       {{ result.tvChannel.name }} <br />{{ result.sportEvent.startTime | date: 'short' }}
     </span>

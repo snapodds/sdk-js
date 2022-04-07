@@ -11,6 +11,9 @@ const DEFAULT_APPLICATION_CONFIG: ApplicationConfig = {
   apiUrl: 'https://api.us.snapscreen.com',
   language: 'en',
   autoSnap: false,
+  autoSnapInitialDelay: 1500,
+  autoSnapInterval: 1000,
+  autoSnapMaxInterval: 5000,
   logLevel: LogLevel.SILENT,
   vibrate: false,
   logCallback: noop,
@@ -25,9 +28,6 @@ export class ApplicationConfigService {
 
   private readonly SNAP_MAX_DIMENSION = 1024;
   private readonly AUTOSNAP_MAX_DIMENSION = 512;
-  private readonly AUTOSNAP_INITIAL_DELAY = 1500;
-  private readonly AUTOSNAP_INTERVAL = 1000;
-  private readonly AUTOSNAP_MAX_INTERVAL = 5000;
 
   /**
    * Merges the given applicationConfig with the default values.
@@ -75,21 +75,21 @@ export class ApplicationConfigService {
    * @param withInitialDelay: the initial delay takes longer in order for the user to correctly align the camera
    */
   getAutoSnapInterval(withInitialDelay: boolean = false): number {
-    return this.AUTOSNAP_INTERVAL + (withInitialDelay ? this.AUTOSNAP_INITIAL_DELAY : 0);
+    return this.config.autoSnapInterval + (withInitialDelay ? this.config.autoSnapInitialDelay : 0);
   }
 
   /**
    * Returns the initial delay before the webcam has been pointed on the tv
    */
   getAutoSnapInitialDelay(): number {
-    return this.AUTOSNAP_INITIAL_DELAY;
+    return this.config.autoSnapInitialDelay;
   }
 
   /**
    * Returns the number of max retries before the user has to perform a manual snap
    */
   getAutoSnapMaxRetries(): number {
-    return Math.ceil(this.AUTOSNAP_MAX_INTERVAL / this.AUTOSNAP_INTERVAL);
+    return Math.ceil(this.config.autoSnapMaxInterval / this.config.autoSnapInterval);
   }
 
   /**

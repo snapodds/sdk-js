@@ -14,6 +14,9 @@ describe('SdkBuilder', () => {
 
   const apiUrl = 'http://example.org';
   const autoSnap = true;
+  const autoSnapInitialDelay = 500;
+  const autoSnapInterval = 600;
+  const autoSnapMaxInterval = 12000;
   const language = 'en';
   const logLevel = 'info';
   const vibrate = true;
@@ -34,6 +37,9 @@ describe('SdkBuilder', () => {
     builder
       .setApiUrl(apiUrl)
       .setAutoSnap(autoSnap)
+      .setAutoSnapInitialDelay(autoSnapInitialDelay)
+      .setAutoSnapInterval(autoSnapInterval)
+      .setAutoSnapMaxInterval(autoSnapMaxInterval)
       .setLanguage(language)
       .setLogLevel(logLevel)
       .setVibrate(vibrate)
@@ -50,6 +56,9 @@ describe('SdkBuilder', () => {
     expect(body.appendChild).toHaveBeenCalled();
     expect(sdk.apiUrl).toBe(apiUrl);
     expect(sdk.autoSnap).toBe(autoSnap);
+    expect(sdk.autoSnapInitialDelay).toBe(autoSnapInitialDelay);
+    expect(sdk.autoSnapInterval).toBe(autoSnapInterval);
+    expect(sdk.autoSnapMaxInterval).toBe(autoSnapMaxInterval);
     expect(sdk.language).toBe(language);
     expect(sdk.logLevel).toBe(logLevel);
     expect(sdk.vibrate).toBe(vibrate);

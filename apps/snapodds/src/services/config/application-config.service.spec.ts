@@ -70,6 +70,34 @@ describe('ApplicationConfig', () => {
       expect(service.getAutoSnapInterval()).toBe(1000);
       expect(service.getAutoSnapInterval(true)).toBe(2500);
     });
+
+    it('should use configured autoSnap interval', () => {
+      expect(service.getAutoSnapInterval()).toBe(1000);
+      expect(service.getAutoSnapInterval(true)).toBe(2500);
+
+      service.setConfig({ autoSnapInterval: 2000 });
+
+      expect(service.getAutoSnapInterval()).toBe(2000);
+      expect(service.getAutoSnapInterval(true)).toBe(3500);
+    });
+
+    it('should use configured autoSnap initial delay', () => {
+      expect(service.getAutoSnapInterval()).toBe(1000);
+      expect(service.getAutoSnapInterval(true)).toBe(2500);
+
+      service.setConfig({ autoSnapInitialDelay: 500 });
+
+      expect(service.getAutoSnapInterval()).toBe(1000);
+      expect(service.getAutoSnapInterval(true)).toBe(1500);
+    });
+
+    it('should use configured autoSnap max interval', () => {
+      expect(service.getAutoSnapMaxRetries()).toBe(5);
+
+      service.setConfig({ autoSnapMaxInterval: 60000 });
+
+      expect(service.getAutoSnapMaxRetries()).toBe(60);
+    });
   });
 
   describe('autoSnapMaxRetries', () => {

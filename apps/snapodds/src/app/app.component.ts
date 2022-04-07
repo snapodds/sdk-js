@@ -22,6 +22,9 @@ export class AppComponent implements OnInit {
 
   @Input() apiUrl?: string;
   @Input() autoSnap?: boolean;
+  @Input() autoSnapInitialDelay?: number;
+  @Input() autoSnapInterval?: number;
+  @Input() autoSnapMaxInterval?: number;
   @Input() language?: string;
   @Input() logLevel?: string;
   @Input() vibrate?: boolean;
@@ -88,6 +91,9 @@ export class AppComponent implements OnInit {
     this.applicationConfigService.setConfig({
       apiUrl: this.apiUrl,
       autoSnap: this.autoSnap,
+      autoSnapInitialDelay: this.autoSnapInitialDelay,
+      autoSnapInterval: this.autoSnapInterval,
+      autoSnapMaxInterval: this.autoSnapMaxInterval,
       language: this.language,
       logLevel: toLogLevel(this.logLevel),
       vibrate: this.vibrate,

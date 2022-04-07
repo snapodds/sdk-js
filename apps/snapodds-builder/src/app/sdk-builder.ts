@@ -7,6 +7,9 @@ import { SnapOddsSdkElement } from './snap-odds-sdk-element.type';
 export abstract class SdkBuilder {
   protected apiUrl?: string;
   protected autoSnap?: boolean;
+  protected autoSnapInitialDelay?: number;
+  protected autoSnapInterval?: number;
+  protected autoSnapMaxInterval?: number;
   protected language?: string;
   protected logLevel?: string;
   protected vibrate?: boolean;
@@ -30,6 +33,21 @@ export abstract class SdkBuilder {
 
   setAutoSnap(autoSnap: boolean): this {
     this.autoSnap = autoSnap;
+    return this;
+  }
+
+  setAutoSnapInitialDelay(autoSnapInitialDelay: number): this {
+    this.autoSnapInitialDelay = autoSnapInitialDelay;
+    return this;
+  }
+
+  setAutoSnapInterval(autoSnapInterval: number): this {
+    this.autoSnapInterval = autoSnapInterval;
+    return this;
+  }
+
+  setAutoSnapMaxInterval(autoSnapMaxInterval: number): this {
+    this.autoSnapMaxInterval = autoSnapMaxInterval;
     return this;
   }
 
@@ -76,6 +94,9 @@ export abstract class SdkBuilder {
     this.sdk.language = this.language;
     this.sdk.apiUrl = this.apiUrl;
     this.sdk.autoSnap = this.autoSnap;
+    this.sdk.autoSnapInitialDelay = this.autoSnapInitialDelay;
+    this.sdk.autoSnapInterval = this.autoSnapInterval;
+    this.sdk.autoSnapMaxInterval = this.autoSnapMaxInterval;
     this.sdk.logLevel = this.logLevel;
     this.sdk.vibrate = this.vibrate;
     this.sdk.accessTokenProvider = this.accessTokenProvider;

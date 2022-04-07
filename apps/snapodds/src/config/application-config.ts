@@ -11,6 +11,18 @@ export interface ApplicationConfig {
    */
   autoSnap: boolean;
   /**
+   * The delay before first AutoSnap attempts (in milliseconds)
+   */
+  autoSnapInitialDelay: number;
+  /**
+   * The interval between two AutoSnap attempts (in milliseconds)
+   */
+  autoSnapInterval: number;
+  /**
+   * The maximum time interval until we stop AutoSnapping after no results were found and the user has to perform a manual snap instead (in milliseconds)
+   */
+  autoSnapMaxInterval: number;
+  /**
    * The view language used for i18n
    */
   language: string;

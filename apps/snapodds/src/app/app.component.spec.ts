@@ -52,6 +52,9 @@ describe('AppComponent', () => {
 
       const apiUrl = 'http://example.org';
       const autoSnap = true;
+      const autoSnapInitialDelay = 500;
+      const autoSnapInterval = 600;
+      const autoSnapMaxInterval = 12000;
       const language = 'en';
       const logLevel = 'info';
       const vibrate = true;
@@ -63,6 +66,9 @@ describe('AppComponent', () => {
         accessTokenProvider,
         apiUrl,
         autoSnap,
+        autoSnapInitialDelay,
+        autoSnapInterval,
+        autoSnapMaxInterval,
         language,
         logLevel: toLogLevel(logLevel),
         vibrate,
@@ -75,6 +81,9 @@ describe('AppComponent', () => {
 
       component.apiUrl = apiUrl;
       component.autoSnap = autoSnap;
+      component.autoSnapInitialDelay = autoSnapInitialDelay;
+      component.autoSnapInterval = autoSnapInterval;
+      component.autoSnapMaxInterval = autoSnapMaxInterval;
       component.language = language;
       component.logLevel = logLevel;
       component.vibrate = vibrate;

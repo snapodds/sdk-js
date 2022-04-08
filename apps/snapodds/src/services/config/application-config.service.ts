@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AccessToken, TvSearchResultEntry } from '@response/typings';
 import { noop } from 'rxjs';
-import { ApplicationConfig } from '../../config/application-config';
 import { fromLogLevel, LogLevel } from '../logger/log-level';
+import { ApplicationConfig } from './application-config';
+import { SdkMode } from './sdk-mode';
 
 /**
  * Default application configuration
@@ -19,6 +20,7 @@ const DEFAULT_APPLICATION_CONFIG: ApplicationConfig = {
   logCallback: noop,
   closeCallback: noop,
   resultsCallback: noop,
+  sdkMode: SdkMode.SPORTMEDIA,
   accessTokenProvider: () => Promise.reject('No accessTokenProvider specified'),
 };
 
@@ -142,5 +144,12 @@ export class ApplicationConfigService {
    */
   isVibrateEnabled(): boolean {
     return this.config.vibrate;
+  }
+
+  /**
+   * Determines the mode depending on how the Snap View was initialized
+   */
+  getSdkMode(): SdkMode {
+    return this.config.sdkMode;
   }
 }

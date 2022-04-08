@@ -1,15 +1,18 @@
-import { Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChange } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChange } from '@angular/core';
 import { TvSearchResultEntry } from '@response/typings';
+import { first } from 'rxjs';
 import { LineOdds } from '../../../../models/line-odds';
 import { OddsService } from '../../../../services/api/odds.service';
+import { CustomerApplicationConfigService } from '../../../../services/config/customer-application-config.service';
 import { WINDOW } from '../../../../services/tokens/window-token';
+import { AnalyticsService } from '../../../../services/tracking/analytics.service';
 
 @Component({
   selector: 'snapodds-odds',
   templateUrl: './odds.component.html',
   styleUrls: ['./odds.component.scss'],
 })
-export class OddsComponent implements OnChanges {
+export class OddsComponent implements OnInit, OnChanges {
   lineOdds: LineOdds | null = null;
   loading = false;
   noResults = false;
@@ -17,7 +20,19 @@ export class OddsComponent implements OnChanges {
   @Input() tvSearchResultEntry?: TvSearchResultEntry | null;
   @Output() closeOddsView: EventEmitter<void> = new EventEmitter();
 
-  constructor(private readonly oddsService: OddsService, @Inject(WINDOW) private readonly window: Window) {}
+  constructor(
+    private readonly oddsService: OddsService,
+    private readonly analyticsService: AnalyticsService,
+    private readonly customerApplicationConfigService: CustomerApplicationConfigService,
+    @Inject(WINDOW) private readonly window: Window
+  ) {}
+
+  /**
+   * Triggers the loading of the customerConfig
+   */
+  ngOnInit(): void {
+    this.customerApplicationConfigService.load();
+  }
 
   /**
    * Loads the lineOdds when the tvSearchResultEntry has been changed.
@@ -25,9 +40,23 @@ export class OddsComponent implements OnChanges {
    * @param changes: SimpleChanges
    */
   ngOnChanges(changes: { tvSearchResultEntry: SimpleChange }): void {
-    if (changes.tvSearchResultEntry.currentValue) {
-      this.loadLineOdds(changes.tvSearchResultEntry.currentValue.sportEvent.id);
+    const tvSearchResultEntry = changes.tvSearchResultEntry.currentValue;
+
+    if (tvSearchResultEntry) {
+      this.loadLineOdds(tvSearchResultEntry.sportEvent.id);
+      this.trackOddsOpenEvent(tvSearchResultEntry.sportEvent.id);
     }
+  }
+
+  /**
+   * After the customerApplicationConfig has been loaded, perform tracking of the oddsOpen Event
+   * @param sportEventId
+   * @private
+   */
+  private trackOddsOpenEvent(sportEventId: number) {
+    this.customerApplicationConfigService.loaded$
+      .pipe(first())
+      .subscribe(() => this.analyticsService.snapOddsOpen({ sportevent_id: sportEventId }));
   }
 
   /**

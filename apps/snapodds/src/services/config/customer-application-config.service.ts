@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Customer } from '@response/typings';
 import { catchError, map, mapTo, Observable, of, ReplaySubject } from 'rxjs';
-import { CustomerApplicationConfig } from '../../config/customer-application-config';
 import { CustomersService } from '../api/customers.service';
 import { ApplicationConfigService } from './application-config.service';
+import { CustomerApplicationConfig } from './customer-application-config';
 
 @Injectable({ providedIn: 'root' })
 export class CustomerApplicationConfigService {
@@ -53,6 +53,13 @@ export class CustomerApplicationConfigService {
   }
 
   /**
+   *  Returns the write key for the Segment Analytics.
+   */
+  getSegmentWriteKey(): string | undefined {
+    return this.config?.segmentWriteKey;
+  }
+
+  /**
    * Loads the customer config and will always finish successfully
    * even if the http call fails to ensure that the application works
    * without customer settings
@@ -77,6 +84,7 @@ export class CustomerApplicationConfigService {
       autoSnapEnabled: customer.autoSnapEnabled,
       autoSnapMinInterval: customer.autoSnapMinInterval,
       autoSnapMaxTimeoutDuration: customer.autoSnapMaxTimeoutDuration,
+      segmentWriteKey: customer.segmentWriteKey,
     };
   }
 }

@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { TvSearchResult } from '@response/typings';
 import {
+  catchError,
   defer,
   filter,
   mergeMap,
@@ -11,18 +13,19 @@ import {
   switchMap,
   take,
   takeUntil,
+  tap,
   throwError,
   timer,
 } from 'rxjs';
 import { TvSearchNoResultError } from '../../../../services/api/api-errors';
+import { TvSearchService } from '../../../../services/api/tv-search.service';
 import { ApplicationConfigService } from '../../../../services/config/application-config.service';
 import { CustomerApplicationConfigService } from '../../../../services/config/customer-application-config.service';
 import { ManipulatedImage } from '../../../../services/image-manipulation/manipulated-image';
 import { LoggerService } from '../../../../services/logger/logger.service';
 import { NotificationService } from '../../../../services/notification/notification.service';
-import { SnapOddsFacade } from '../../../../services/snap-odds/snap-odds-facade.service';
 import { LOCATION } from '../../../../services/tokens/location-token';
-import { GoogleAnalyticsService } from '../../../../services/tracking/google-analytics.service';
+import { AnalyticsService } from '../../../../services/tracking/analytics.service';
 import { AppState, AppStateStore } from '../../../../states/app-state.store';
 import { MediaDeviceState, MediaDeviceStateStore } from '../../../../states/media-device-state.store';
 import { WebcamComponent } from '../webcam/webcam.component';
@@ -45,8 +48,8 @@ export class SnapComponent implements OnInit, OnDestroy {
   constructor(
     private readonly logger: LoggerService,
     private readonly applicationConfigService: ApplicationConfigService,
-    private readonly analyticsService: GoogleAnalyticsService,
-    private readonly snapOddsFacade: SnapOddsFacade,
+    private readonly analyticsService: AnalyticsService,
+    private readonly tvSearchService: TvSearchService,
     private readonly appStateStore: AppStateStore,
     private readonly mediaDeviceStateStore: MediaDeviceStateStore,
     private readonly notificationService: NotificationService,
@@ -116,6 +119,7 @@ export class SnapComponent implements OnInit, OnDestroy {
    */
   takeSnapshot(): void {
     this.snapshot$.next();
+    this.analyticsService.snapViewSnap();
 
     this.loadSportEvents().subscribe({
       next: (response) => this.handleSuccess(response),
@@ -208,18 +212,73 @@ export class SnapComponent implements OnInit, OnDestroy {
    * @private
    */
   private loadSportEvents(autoSnap = false): Observable<TvSearchResult> {
+    const snapStartTime = Date.now();
+
     if (!autoSnap) {
       this.appStateStore.dispatch(AppState.SNAP_IN_PROGRESS);
     }
+
     return defer(() => this.webcamComponent.triggerSnapshot()).pipe(
-      switchMap((webcamImage: ManipulatedImage) => {
-        if (autoSnap) {
-          return this.snapOddsFacade.autoSearchSport(webcamImage.blob);
-        } else {
-          return this.snapOddsFacade.searchSport(webcamImage.blob);
-        }
-      })
+      switchMap((webcamImage: ManipulatedImage) =>
+        autoSnap
+          ? this.tvSearchService.autoSearchSport(webcamImage.blob)
+          : this.tvSearchService.searchSport(webcamImage.blob)
+      ),
+      catchError((error: HttpErrorResponse) => this.trackUnsuccessfulSnapResult(error, autoSnap, snapStartTime)),
+      tap((response) => this.trackSuccessfulSnapResult(response, autoSnap, snapStartTime))
     );
+  }
+
+  /**
+   * Prepare response data for tracking an unsuccessful snap event
+   * @param error
+   * @param autoSnap
+   * @param snapStartTime
+   * @private
+   */
+  private trackUnsuccessfulSnapResult(
+    error: HttpErrorResponse | TvSearchNoResultError,
+    autoSnap: boolean,
+    snapStartTime: number
+  ): Observable<never> {
+    const duration = Date.now() - snapStartTime;
+
+    if (error instanceof TvSearchNoResultError) {
+      this.analyticsService.snapViewSnapWithoutResult({ duration, autosnap: autoSnap, request: error.requestUuid });
+    } else {
+      const { status: http_status_code } = error;
+      const { status_code, status_message, request } = error.error;
+
+      this.analyticsService.snapViewSnapFailed({
+        autosnap: autoSnap,
+        duration,
+        http_status_code,
+        status_code,
+        status_message,
+        request,
+      });
+    }
+    return throwError(() => error);
+  }
+
+  /**
+   * Prepare response data for tracking a successful snap event
+   * @param response
+   * @param autoSnap
+   * @param snapStartTime
+   * @private
+   */
+  private trackSuccessfulSnapResult(response: TvSearchResult, autoSnap: boolean, snapStartTime: number): void {
+    const scores: number[] = response.resultEntries.map((resultEntry) => resultEntry.score);
+    const results: number[] = response.resultEntries.map((resultEntry) => resultEntry.sportEvent.id);
+
+    this.analyticsService.snapViewSnapResult({
+      duration: Date.now() - snapStartTime,
+      request: response.requestUuid,
+      autosnap: autoSnap,
+      scores,
+      results,
+    });
   }
 
   /**

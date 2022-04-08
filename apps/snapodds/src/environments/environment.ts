@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   debugImageManipulations: false,
+  sdkVersion: `0.0.0-dev`,
 };
 
 /*

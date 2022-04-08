@@ -5,11 +5,13 @@ import { TranslateModule } from '@ngx-translate/core';
 import { sportEventTvSearchMock } from '@response/mocks';
 import { TvSearchResultEntry } from '@response/typings';
 import { mock, MockProxy } from 'jest-mock-extended';
-import { of, throwError } from 'rxjs';
+import { of, ReplaySubject, throwError } from 'rxjs';
 import { register } from 'timezone-mock';
 import { lineOddsMapped } from '../../../../services/api/line-odds.mapped';
 import { OddsService } from '../../../../services/api/odds.service';
+import { CustomerApplicationConfigService } from '../../../../services/config/customer-application-config.service';
 import { WINDOW } from '../../../../services/tokens/window-token';
+import { AnalyticsService } from '../../../../services/tracking/analytics.service';
 import { ContentComponent } from '../../../shared/content/content.component';
 import { HeaderComponent } from '../../../shared/header/header.component';
 import { OddsBoxComponent } from '../odds-box/odds-box.component';
@@ -27,18 +29,31 @@ describe('OddsComponent', () => {
   let fixture: ComponentFixture<OddsComponent>;
   let window: MockProxy<Window>;
   let oddsService: MockProxy<OddsService>;
+  let analyticsService: MockProxy<AnalyticsService>;
+  let customerApplicationConfigService: MockProxy<CustomerApplicationConfigService>;
+  let customerApplicationConfigLoaded$: ReplaySubject<boolean>;
 
   const tvSearchResultEntry: TvSearchResultEntry = sportEventTvSearchMock.resultEntries[0];
 
   beforeEach(async () => {
     window = mock<Window>();
     oddsService = mock<OddsService>();
+    analyticsService = mock<AnalyticsService>();
+    customerApplicationConfigService = mock<CustomerApplicationConfigService>();
+    customerApplicationConfigLoaded$ = new ReplaySubject<boolean>(1);
+    customerApplicationConfigLoaded$.next(true);
+
+    Object.defineProperty(customerApplicationConfigService, 'loaded$', {
+      value: customerApplicationConfigLoaded$.asObservable(),
+    });
 
     await TestBed.configureTestingModule({
       imports: [TranslateModule.forRoot(), HttpClientTestingModule],
       providers: [
         { provide: WINDOW, useValue: window },
         { provide: OddsService, useValue: oddsService },
+        { provide: AnalyticsService, useValue: analyticsService },
+        { provide: CustomerApplicationConfigService, useValue: customerApplicationConfigService },
       ],
       declarations: [
         OddsComponent,
@@ -90,6 +105,7 @@ describe('OddsComponent', () => {
 
     component.ngOnChanges({ tvSearchResultEntry: new SimpleChange(null, tvSearchResultEntry, true) });
 
+    expect(analyticsService.snapOddsOpen).toHaveBeenCalledWith({ sportevent_id: tvSearchResultEntry.sportEvent.id });
     expect(component.lineOdds).toBe(lineOddsMapped);
     expect(oddsService.gameLineOddsBySportEventId).toHaveBeenCalledWith(tvSearchResultEntry.sportEvent.id);
     expect(component.noResults).toBe(false);

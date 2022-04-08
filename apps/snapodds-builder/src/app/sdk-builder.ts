@@ -14,6 +14,7 @@ export abstract class SdkBuilder {
   protected logLevel?: string;
   protected vibrate?: boolean;
   protected tvSearchResult?: TvSearchResultEntry;
+  protected sdkMode?: 'sportmedia' | 'operator';
 
   protected accessTokenProvider?: () => Promise<AccessToken>;
   protected logCallback?: (logLevel: string, data: unknown[]) => void;
@@ -102,6 +103,7 @@ export abstract class SdkBuilder {
     this.sdk.accessTokenProvider = this.accessTokenProvider;
     this.sdk.logCallback = this.logCallback;
     this.sdk.resultsCallback = this.resultsCallback;
+    this.sdk.sdkMode = this.sdkMode;
 
     this.sdk.closeCallback = () => {
       this.closeCallback?.();

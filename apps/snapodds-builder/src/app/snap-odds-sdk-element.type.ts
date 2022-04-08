@@ -16,4 +16,5 @@ export type SnapOddsSdkElement = NgElement &
     logCallback?: (logLevel: string, data: unknown[]) => void;
     resultsCallback?: (tvSearchResult: TvSearchResultEntry) => void;
     closeCallback?: () => void;
+    sdkMode?: 'sportmedia' | 'operator';
   }>;

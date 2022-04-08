@@ -1,5 +1,6 @@
 import { AccessToken, TvSearchResultEntry } from '@response/typings';
-import { LogLevel } from '../services/logger/log-level';
+import { LogLevel } from '../logger/log-level';
+import { SdkMode } from './sdk-mode';
 
 export interface ApplicationConfig {
   /**
@@ -50,4 +51,9 @@ export interface ApplicationConfig {
    * Callback executed when the view is closed
    */
   accessTokenProvider: () => Promise<AccessToken>;
+  /**
+   * Either operator or sportmedia depending on how the Snap View was initialized.
+   * If the Odds View is opened directly (without snapping) the mode is always “operator”
+   */
+  sdkMode: SdkMode.SPORTMEDIA;
 }

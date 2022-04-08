@@ -71,7 +71,7 @@ export class TvSearchService {
         if (response.body?.resultEntries.length) {
           return response.body;
         } else {
-          throw new TvSearchNoResultError();
+          throw new TvSearchNoResultError(response.body?.requestUuid);
         }
       })
     );

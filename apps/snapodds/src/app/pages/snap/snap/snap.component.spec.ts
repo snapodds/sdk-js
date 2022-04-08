@@ -1,16 +1,17 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { sportEventTvSearchMock } from '@response/mocks';
 import { mock, MockProxy } from 'jest-mock-extended';
 import { of, ReplaySubject, throwError } from 'rxjs';
 import { TvSearchNoResultError } from '../../../../services/api/api-errors';
+import { TvSearchService } from '../../../../services/api/tv-search.service';
 import { ApplicationConfigService } from '../../../../services/config/application-config.service';
 import { CustomerApplicationConfigService } from '../../../../services/config/customer-application-config.service';
 import { ManipulatedImage } from '../../../../services/image-manipulation/manipulated-image';
 import { LoggerService } from '../../../../services/logger/logger.service';
 import { NotificationService } from '../../../../services/notification/notification.service';
-import { SnapOddsFacade } from '../../../../services/snap-odds/snap-odds-facade.service';
 import { LOCATION } from '../../../../services/tokens/location-token';
-import { GoogleAnalyticsService } from '../../../../services/tracking/google-analytics.service';
+import { AnalyticsService } from '../../../../services/tracking/analytics.service';
 import { AppState, AppStateStore } from '../../../../states/app-state.store';
 import { MediaDeviceState, MediaDeviceStateStore } from '../../../../states/media-device-state.store';
 import { WebcamComponent } from '../webcam/webcam.component';
@@ -22,8 +23,8 @@ describe('SnapComponent', () => {
   let mediaDeviceStateStore: MediaDeviceStateStore;
   let logger: MockProxy<LoggerService>;
   let applicationConfigService: MockProxy<ApplicationConfigService>;
-  let analyticsService: MockProxy<GoogleAnalyticsService>;
-  let snapOddsFacade: MockProxy<SnapOddsFacade>;
+  let analyticsService: MockProxy<AnalyticsService>;
+  let tvSearchService: MockProxy<TvSearchService>;
   let appStateStore: MockProxy<AppStateStore>;
   let webcamComponent: MockProxy<WebcamComponent>;
   let location: MockProxy<Location>;
@@ -42,8 +43,8 @@ describe('SnapComponent', () => {
     logger = mock<LoggerService>();
     applicationConfigService = mock<ApplicationConfigService>();
     customerApplicationConfigService = mock<CustomerApplicationConfigService>();
-    analyticsService = mock<GoogleAnalyticsService>();
-    snapOddsFacade = mock<SnapOddsFacade>();
+    analyticsService = mock<AnalyticsService>();
+    tvSearchService = mock<TvSearchService>();
     appStateStore = mock<AppStateStore>();
     webcamComponent = mock<WebcamComponent>();
     location = mock<Location>();
@@ -54,8 +55,8 @@ describe('SnapComponent', () => {
         SnapComponent,
         { provide: LoggerService, useValue: logger },
         { provide: ApplicationConfigService, useValue: applicationConfigService },
-        { provide: GoogleAnalyticsService, useValue: analyticsService },
-        { provide: SnapOddsFacade, useValue: snapOddsFacade },
+        { provide: AnalyticsService, useValue: analyticsService },
+        { provide: TvSearchService, useValue: tvSearchService },
         { provide: AppStateStore, useValue: appStateStore },
         { provide: NotificationService, useValue: notificationService },
         { provide: CustomerApplicationConfigService, useValue: customerApplicationConfigService },
@@ -78,28 +79,92 @@ describe('SnapComponent', () => {
     });
   });
 
-  it('should take snapshot and query api for snapOdd results', (done) => {
-    snapOddsFacade.searchSport.mockReturnValue(of(sportEventTvSearchMock));
+  describe('takeSnapshot', () => {
+    beforeEach(() => {
+      component.ngOnInit();
+    });
 
-    component.ngOnInit();
-    component.takeSnapshot();
+    it('should take snapshot and query api for snapOdd results', (done) => {
+      tvSearchService.searchSport.mockReturnValue(of(sportEventTvSearchMock));
 
-    setTimeout(() => {
-      expect(notificationService.notify).toHaveBeenCalled();
-      expect(applicationConfigService.emitResultsEvent).toHaveBeenCalledWith(sportEventTvSearchMock.resultEntries[0]);
-      expect(appStateStore.dispatch).toHaveBeenCalledWith(AppState.SNAP_IN_PROGRESS);
-      expect(snapOddsFacade.searchSport).toHaveBeenCalledWith(webcamImage.blob);
+      component.takeSnapshot();
 
-      done();
+      setTimeout(() => {
+        expect(notificationService.notify).toHaveBeenCalled();
+        expect(applicationConfigService.emitResultsEvent).toHaveBeenCalledWith(sportEventTvSearchMock.resultEntries[0]);
+        expect(appStateStore.dispatch).toHaveBeenCalledWith(AppState.SNAP_IN_PROGRESS);
+        expect(tvSearchService.searchSport).toHaveBeenCalledWith(webcamImage.blob);
+
+        expect(analyticsService.snapViewSnap).toHaveBeenCalled();
+        expect(analyticsService.snapViewSnapResult).toHaveBeenCalled();
+        expect(analyticsService.snapViewSnapFailed).not.toHaveBeenCalled();
+        expect(analyticsService.snapViewSnapWithoutResult).not.toHaveBeenCalled();
+
+        done();
+      });
+    });
+
+    it('should report failed snap to analytic service when error', (done) => {
+      tvSearchService.searchSport.mockReturnValue(
+        throwError(
+          () =>
+            new HttpErrorResponse({
+              error: '500 error',
+              status: 500,
+              statusText: 'Internal Server Error',
+            })
+        )
+      );
+
+      component.takeSnapshot();
+
+      setTimeout(() => {
+        expect(appStateStore.dispatch).toHaveBeenCalledWith(AppState.SNAP_FAILED);
+        expect(analyticsService.snapViewSnap).toHaveBeenCalled();
+        expect(analyticsService.snapViewSnapResult).not.toHaveBeenCalled();
+        expect(analyticsService.snapViewSnapWithoutResult).not.toHaveBeenCalled();
+        expect(analyticsService.snapViewSnapFailed).toHaveBeenCalled();
+
+        done();
+      });
+    });
+
+    it('should report negative snap to analytic service when no result error', (done) => {
+      tvSearchService.searchSport.mockReturnValue(throwError(() => new TvSearchNoResultError('uuid-x123')));
+
+      component.takeSnapshot();
+
+      setTimeout(() => {
+        expect(appStateStore.dispatch).toHaveBeenCalledWith(AppState.SNAP_NO_RESULTS);
+        expect(analyticsService.snapViewSnap).toHaveBeenCalled();
+        expect(analyticsService.snapViewSnapResult).not.toHaveBeenCalled();
+        expect(analyticsService.snapViewSnapFailed).not.toHaveBeenCalled();
+        expect(analyticsService.snapViewSnapWithoutResult).toHaveBeenCalled();
+
+        done();
+      });
     });
   });
 
   describe('autoSnap', () => {
+    it('should search sport events near a timestamp by image', (done) => {
+      tvSearchService.autoSearchSport.mockReturnValue(of(sportEventTvSearchMock));
+
+      tvSearchService.autoSearchSport(webcamImage.blob).subscribe({
+        next: (sportEventResult) => {
+          expect(sportEventResult).toBe(sportEventTvSearchMock);
+          expect(tvSearchService.autoSearchSport).toHaveBeenCalledWith(webcamImage.blob);
+          done();
+        },
+        error: () => done.fail(),
+      });
+    });
+
     it('should retry snapping until a match has been found if autoSnap is enabled', (done) => {
       customerApplicationConfigService.isAutoSnapEnabled.mockReturnValue(true);
 
-      snapOddsFacade.autoSearchSport.mockReturnValueOnce(throwError(() => new Error()));
-      snapOddsFacade.autoSearchSport.mockReturnValueOnce(of(sportEventTvSearchMock));
+      tvSearchService.autoSearchSport.mockReturnValueOnce(throwError(() => new Error()));
+      tvSearchService.autoSearchSport.mockReturnValueOnce(of(sportEventTvSearchMock));
       mediaDeviceStateStore.dispatch(MediaDeviceState.DEVICE_CAMERA_READY);
 
       component.ngOnInit();
@@ -120,9 +185,9 @@ describe('SnapComponent', () => {
       customerApplicationConfigService.getAutoSnapMaxRetries.mockReturnValue(maxRetries);
       customerApplicationConfigService.isAutoSnapEnabled.mockReturnValue(true);
 
-      snapOddsFacade.autoSearchSport.mockReturnValueOnce(throwError(() => new Error()));
-      snapOddsFacade.autoSearchSport.mockReturnValueOnce(throwError(() => new Error()));
-      snapOddsFacade.autoSearchSport.mockReturnValueOnce(throwError(() => new Error()));
+      tvSearchService.autoSearchSport.mockReturnValueOnce(throwError(() => new Error()));
+      tvSearchService.autoSearchSport.mockReturnValueOnce(throwError(() => new Error()));
+      tvSearchService.autoSearchSport.mockReturnValueOnce(throwError(() => new Error()));
       mediaDeviceStateStore.dispatch(MediaDeviceState.DEVICE_CAMERA_READY);
 
       component.ngOnInit();
@@ -158,32 +223,10 @@ describe('SnapComponent', () => {
       expect(appStateStore.dispatch).toHaveBeenCalledWith(AppState.SNAP_READY);
     });
 
-    it('should set state to SNAP_NO_RESULTS if searchSport returns SnapOddsNoResultError', (done) => {
-      snapOddsFacade.searchSport.mockReturnValue(throwError(() => new TvSearchNoResultError()));
-
-      component.takeSnapshot();
-
-      setTimeout(() => {
-        expect(appStateStore.dispatch).toHaveBeenCalledWith(AppState.SNAP_NO_RESULTS);
-        done();
-      });
+    it('should show the help page', () => {
+      component.showHelpPage();
+      expect(appStateStore.dispatch).toHaveBeenCalledWith(AppState.SHOW_HELP);
     });
-
-    it('should set state to SNAP_FAILED if searchSport failed', (done) => {
-      snapOddsFacade.searchSport.mockReturnValue(throwError(() => new Error('ERROR')));
-
-      component.takeSnapshot();
-
-      setTimeout(() => {
-        expect(appStateStore.dispatch).toHaveBeenCalledWith(AppState.SNAP_FAILED);
-        done();
-      });
-    });
-  });
-
-  it('should show the help page', () => {
-    component.showHelpPage();
-    expect(appStateStore.dispatch).toHaveBeenCalledWith(AppState.SHOW_HELP);
   });
 
   it('should reload page', () => {

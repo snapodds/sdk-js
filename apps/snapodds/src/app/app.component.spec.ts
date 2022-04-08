@@ -2,19 +2,19 @@ import { TestBed } from '@angular/core/testing';
 import { TranslateService } from '@ngx-translate/core';
 import { sportEventTvSearchMock } from '@response/mocks';
 import { mock, MockProxy } from 'jest-mock-extended';
-import { ApplicationConfig } from '../config/application-config';
 import { AuthService } from '../services/auth/auth.service';
+import { ApplicationConfig } from '../services/config/application-config';
 import { ApplicationConfigService } from '../services/config/application-config.service';
 import { toLogLevel } from '../services/logger/log-level';
 import { NotificationService } from '../services/notification/notification.service';
-import { GoogleAnalyticsService } from '../services/tracking/google-analytics.service';
+import { AnalyticsService } from '../services/tracking/analytics.service';
 import { AppState, AppStateStore } from '../states/app-state.store';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   let component: AppComponent;
   let applicationConfigService: MockProxy<ApplicationConfigService>;
-  let analyticsService: MockProxy<GoogleAnalyticsService>;
+  let analyticsService: MockProxy<AnalyticsService>;
   let translateService: MockProxy<TranslateService>;
   let authService: MockProxy<AuthService>;
   let notificationService: MockProxy<NotificationService>;
@@ -22,7 +22,7 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     applicationConfigService = mock<ApplicationConfigService>();
-    analyticsService = mock<GoogleAnalyticsService>();
+    analyticsService = mock<AnalyticsService>();
     translateService = mock<TranslateService>();
     authService = mock<AuthService>();
     notificationService = mock<NotificationService>();
@@ -32,7 +32,7 @@ describe('AppComponent', () => {
       providers: [
         AppComponent,
         { provide: ApplicationConfigService, useValue: applicationConfigService },
-        { provide: GoogleAnalyticsService, useValue: analyticsService },
+        { provide: AnalyticsService, useValue: analyticsService },
         { provide: TranslateService, useValue: translateService },
         { provide: AuthService, useValue: authService },
         { provide: NotificationService, useValue: notificationService },

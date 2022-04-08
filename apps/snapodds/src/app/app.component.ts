@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AccessToken, TvSearchResultEntry } from '@response/typings';
 import { ApplicationConfigService } from '../services/config/application-config.service';
 import { toLogLevel } from '../services/logger/log-level';
-import { GoogleAnalyticsService } from '../services/tracking/google-analytics.service';
+import { AnalyticsService } from '../services/tracking/analytics.service';
 import { AppState, AppStateStore } from '../states/app-state.store';
 
 @Component({
@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
   constructor(
     private readonly applicationConfigService: ApplicationConfigService,
     private readonly translateService: TranslateService,
-    private readonly analyticsService: GoogleAnalyticsService,
+    private readonly analyticsService: AnalyticsService,
     readonly appStateStore: AppStateStore
   ) {}
 

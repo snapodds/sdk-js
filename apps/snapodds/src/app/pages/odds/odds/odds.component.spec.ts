@@ -6,7 +6,6 @@ import { sportEventTvSearchMock } from '@response/mocks';
 import { TvSearchResultEntry } from '@response/typings';
 import { mock, MockProxy } from 'jest-mock-extended';
 import { of, ReplaySubject, throwError } from 'rxjs';
-import { register } from 'timezone-mock';
 import { lineOddsMapped } from '../../../../services/api/line-odds.mapped';
 import { OddsService } from '../../../../services/api/odds.service';
 import { CustomerApplicationConfigService } from '../../../../services/config/customer-application-config.service';
@@ -15,8 +14,10 @@ import { AnalyticsService } from '../../../../services/tracking/analytics.servic
 import { ContentComponent } from '../../../shared/content/content.component';
 import { HeaderComponent } from '../../../shared/header/header.component';
 import { OddsBoxComponent } from '../odds-box/odds-box.component';
-import { OddsHeaderComponent } from '../odds-header/odds-header.component';
+import { OddsGameInfoComponent } from '../odds-game-info/odds-game-info.component';
+import { OddsHeaderLineComponent } from '../odds-header-line/odds-header-line.component';
 import { OddsLineComponent } from '../odds-line/odds-line.component';
+import { OddsTableComponent } from '../odds-table/odds-table.component';
 import { BestOfferLinePipe } from '../pipes/best-offer.pipe';
 import { NumberFormatPipe } from '../pipes/number-format.pipe';
 import { OddsOrderingPipe } from '../pipes/odds-ordering.pipe';
@@ -59,17 +60,17 @@ describe('OddsComponent', () => {
         OddsComponent,
         OddsLineComponent,
         OddsBoxComponent,
-        OddsHeaderComponent,
+        OddsHeaderLineComponent,
         HeaderComponent,
         ContentComponent,
         BestOfferLinePipe,
         NumberFormatPipe,
         OverUnderPipe,
         OddsOrderingPipe,
+        OddsTableComponent,
+        OddsGameInfoComponent,
       ],
     }).compileComponents();
-
-    register('UTC');
   });
 
   beforeEach(() => {
@@ -85,15 +86,10 @@ describe('OddsComponent', () => {
     const expectedSportsBooks = lineOddsMapped.sportsBooks?.length ?? 0;
     const expectedBestOffer = lineOddsMapped.bestOffer ? 1 : 0;
 
-    const tournament = element.querySelector('.c-sport-event__tournament-info');
-    expect(tournament?.textContent?.trim()).toEqual(
-      `${tvSearchResultEntry.sportEvent.league} @ ${tvSearchResultEntry.tvChannel.name}`
-    );
+    const gameInfo = element.querySelectorAll<HTMLElement>('snapodds-odds-game-info');
+    expect(gameInfo).toHaveLength(1);
 
-    const channel = element.querySelector('.c-sport-event__time-of-day');
-    expect(channel?.textContent?.trim()).toEqual(`9/6/21, 1:40 AM`);
-
-    const sportsBooks = element.querySelectorAll<HTMLElement>('.c-game');
+    const sportsBooks = element.querySelectorAll<HTMLElement>('snapodds-odds-table');
     expect(sportsBooks).toHaveLength(expectedSportsBooks + expectedBestOffer);
 
     const lines = element.querySelectorAll<HTMLElement>('snapodds-odds-line');

@@ -1,9 +1,9 @@
-<div class="c-game-line">
-  <div class="c-game-line__competitor">
+<div class="c-odds-line">
+  <div class="c-odds-line__competitor">
     {{ competitorName }}
   </div>
 
-  <div class="c-game-line__boxes">
+  <div class="c-odds-line__boxes">
     <snapodds-odds-box
       class="l-order-{{ oddsOfferOrder | oddsOrdering: 'SPREAD' }}"
       [best]="line.spreadBest"

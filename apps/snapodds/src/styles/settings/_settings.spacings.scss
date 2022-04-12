@@ -1,6 +1,6 @@
 @use 'sass:math';
 
-$spacing-base: 1rem;
+$spacing-base: 16px;
 
 $spacing-xs: math.div($spacing-base, 4);
 $spacing-sm: math.div($spacing-base, 2);

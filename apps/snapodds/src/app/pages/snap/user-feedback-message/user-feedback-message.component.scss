@@ -3,6 +3,8 @@
 
 :host {
   .c-user-feedback {
+    font-size: settings.$font-base;
+    padding: settings.$spacing-base;
     text-align: center;
 
     @include tools.media-tiny--portrait {
@@ -13,24 +15,8 @@
     }
 
     &--error {
+      background-color: settings.$color-warn-shade;
       color: settings.$color-warn;
-    }
-
-    &__headline {
-      font-size: settings.$font-xl;
-      margin-bottom: settings.$spacing-sm;
-
-      @include tools.media-tiny--portrait {
-        display: none;
-      }
-
-      @include tools.media-tiny--landscape {
-        display: none;
-      }
-
-      @include tools.media-small--portrait {
-        font-size: settings.$font-lg;
-      }
     }
   }
 }

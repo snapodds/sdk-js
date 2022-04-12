@@ -3,8 +3,9 @@
 @mixin button-reset {
   background-color: transparent;
   border: 0;
+  border-radius: 6px;
   box-shadow: none;
-  color: settings.$color-primary;
+  color: settings.$color-text;
   cursor: pointer;
   font-family: inherit;
   outline: none;

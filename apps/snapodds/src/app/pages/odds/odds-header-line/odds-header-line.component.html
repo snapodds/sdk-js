@@ -1,0 +1,12 @@
+<div class="c-odds-header-line">
+  <div class="c-odds-header-line__sports-book" [class.c-odds-header-line__sports-book--best-offer]="best">
+    <ng-container *ngIf="best">{{ 'Snapodds_Odds_BestOdds' | translate }}</ng-container>
+    <ng-container *ngIf="!best">{{ name }}</ng-container>
+  </div>
+
+  <div class="c-odds-header-line__titles">
+    <div class="c-odds-header-line__title l-order-{{ oddsOfferOrder | oddsOrdering: 'SPREAD' }}">Spread</div>
+    <div class="c-odds-header-line__title l-order-{{ oddsOfferOrder | oddsOrdering: 'MONEYLINE' }}">Money</div>
+    <div class="c-odds-header-line__title l-order-{{ oddsOfferOrder | oddsOrdering: 'OVER_UNDER' }}">Total</div>
+  </div>
+</div>

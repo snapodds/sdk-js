@@ -45,7 +45,7 @@ describe('OddsLineComponent', () => {
     fixture.detectChanges();
 
     const element: HTMLElement = fixture.nativeElement;
-    expect(element.querySelector('.c-game-line__competitor')?.textContent?.trim()).toBe(competitorName);
+    expect(element.querySelector('.c-odds-line__competitor')?.textContent?.trim()).toBe(competitorName);
     expect(element.querySelectorAll('snapodds-odds-box').length).toBe(3);
   });
 

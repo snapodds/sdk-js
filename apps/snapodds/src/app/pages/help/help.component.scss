@@ -1,8 +1,6 @@
 @use 'tools';
 @use 'settings';
 
-$box--width: 4rem;
-
 :host {
   display: flex;
   flex: 1;

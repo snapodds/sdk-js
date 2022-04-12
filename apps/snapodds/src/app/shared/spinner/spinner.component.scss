@@ -1,7 +1,7 @@
 @use 'sass:math';
 
-$spinner-width: 3rem;
-$spinner-width--small: 1.5rem;
+$spinner-width: 48px;
+$spinner-width--small: 24px;
 $bar--width: math.div($spinner-width, 4);
 $bar--width--small: math.div($spinner-width--small, 4);
 $bar--count: 8;

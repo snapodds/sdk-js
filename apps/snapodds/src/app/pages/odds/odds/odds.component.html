@@ -8,21 +8,7 @@
 </snapodds-header>
 
 <snapodds-content *ngIf="tvSearchResultEntry as result">
-  <p class="c-sport-event">
-    <span class="c-sport-event__tournament-info">
-      {{ result.sportEvent.league || result.sportEvent.tournament }} @ {{ result.tvChannel.name }}
-    </span>
-    <span class="c-sport-event__time-of-day">
-      {{ result.sportEvent.startTime | date: 'short' }}
-    </span>
-  </p>
-
-  <div class="c-competitors">
-    <ng-container *ngFor="let competitor of result.sportEvent.competitors; let first = first">
-      <span>{{ competitor.name }}</span>
-      <span *ngIf="first" class="c-competitors__separator"></span>
-    </ng-container>
-  </div>
+  <snapodds-odds-game-info [sportEvent]="result.sportEvent"></snapodds-odds-game-info>
 
   <div *ngIf="loading" class="c-feedback">
     <snapodds-spinner size="small" class="c-feedback__spinner"></snapodds-spinner>
@@ -33,43 +19,32 @@
     {{ 'Snapodds_Lines_No_Results' | translate }}
   </div>
 
-  <div class="c-game-container" *ngIf="lineOdds as lineOdds">
-    <div class="c-game c-game--best-offer" *ngIf="lineOdds.bestOffer as bestOffer">
-      <snapodds-odds-header [best]="true" [oddsOfferOrder]="lineOdds.oddsOfferOrder"></snapodds-odds-header>
-
-      <ng-container *ngFor="let line of bestOffer.lines; let i = index">
-        <snapodds-odds-line
-          [line]="line"
-          [lineIndex]="i"
-          [competitorName]="lineOdds.competitors[i].name"
-        ></snapodds-odds-line>
-
-        <div class="c-game-line__separator c-game-line__separator--best-offer" *ngIf="i === 0"></div>
-      </ng-container>
-    </div>
+  <ng-container *ngIf="lineOdds as lineOdds">
+    <ng-container *ngIf="lineOdds.bestOffer as bestOffer">
+      <snapodds-odds-table
+        [best]="true"
+        [competitors]="lineOdds.competitors"
+        [lines]="bestOffer.lines"
+        [oddsOfferOrder]="lineOdds.oddsOfferOrder"
+      >
+      </snapodds-odds-table>
+    </ng-container>
 
     <a
-      class="c-game"
       *ngFor="let sportsBook of lineOdds.sportsBooks"
       href="{{ sportsBook.redirectUrl }}"
       (click)="openSportsBookRedirectUrl($event, sportsBook.redirectUrl)"
       rel="noopener noreferrer"
       target="_blank"
     >
-      <snapodds-odds-header [name]="sportsBook.name" [oddsOfferOrder]="lineOdds.oddsOfferOrder"></snapodds-odds-header>
-
-      <ng-container *ngFor="let line of sportsBook.lines; let i = index">
-        <snapodds-odds-line
-          [line]="line"
-          [lineIndex]="i"
-          [competitorName]="lineOdds.competitors[i].name"
-          [oddsOfferOrder]="lineOdds.oddsOfferOrder"
-        ></snapodds-odds-line>
-
-        <div class="c-game-line__separator" *ngIf="i === 0"></div>
-      </ng-container>
+      <snapodds-odds-table
+        [competitors]="lineOdds.competitors"
+        [lines]="sportsBook.lines"
+        [oddsOfferOrder]="lineOdds.oddsOfferOrder"
+      >
+      </snapodds-odds-table>
     </a>
-  </div>
+  </ng-container>
 
-  <div class="c-footer__powered-by">Powered by SnapOdds</div>
+  <div class="c-footer__powered-by">Powered by <strong>SnapOdds</strong></div>
 </snapodds-content>

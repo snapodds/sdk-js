@@ -1,0 +1,18 @@
+<div class="c-odds-table" [class.c-odds-table--best-offer]="best">
+  <snapodds-odds-header-line [best]="best" [oddsOfferOrder]="oddsOfferOrder"></snapodds-odds-header-line>
+
+  <ng-container *ngFor="let line of lines; let i = index">
+    <snapodds-odds-line
+      [line]="line"
+      [lineIndex]="i"
+      [competitorName]="competitors[i].name"
+      [oddsOfferOrder]="oddsOfferOrder"
+    ></snapodds-odds-line>
+
+    <div
+      *ngIf="i === 0"
+      class="c-odds-table-lines__separator"
+      [class.c-odds-table-lines__separator--best-offer]="best"
+    ></div>
+  </ng-container>
+</div>

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { OddsOrderingPipe } from '../pipes/odds-ordering.pipe';
 
-import { OddsHeaderComponent } from './odds-header.component';
+import { OddsHeaderLineComponent } from './odds-header-line.component';
 
-describe('OddsHeaderComponent', () => {
-  let component: OddsHeaderComponent;
-  let fixture: ComponentFixture<OddsHeaderComponent>;
+describe('OddsHeaderLineComponent', () => {
+  let component: OddsHeaderLineComponent;
+  let fixture: ComponentFixture<OddsHeaderLineComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [OddsHeaderComponent, OddsOrderingPipe],
+      declarations: [OddsHeaderLineComponent, OddsOrderingPipe],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OddsHeaderComponent);
+    fixture = TestBed.createComponent(OddsHeaderLineComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -49,7 +49,7 @@
   }
 
   snapodds-content {
-    margin: settings.$spacing-lg;
+    margin: settings.$spacing-base;
 
     @include tools.media-small--portrait {
       margin: settings.$spacing-base settings.$spacing-lg;

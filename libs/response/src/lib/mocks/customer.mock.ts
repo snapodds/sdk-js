@@ -2,7 +2,7 @@ import { Customer } from '../typings';
 
 export const customerMock: Customer = {
   _links: { self: { href: '' } },
-  autoSnapEnabled: true,
+  autoSnapEnabled: false,
   autoSnapMaxTimeoutDuration: 5000,
   autoSnapMinInterval: 1000,
   clientId: '',

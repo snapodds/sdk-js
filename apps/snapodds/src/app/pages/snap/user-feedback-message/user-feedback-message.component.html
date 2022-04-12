@@ -5,16 +5,13 @@
 ></div>
 
 <div class="c-user-feedback c-user-feedback--error" *ngIf="appState === 'DEVICE_NO_PERMISSION'">
-  <div class="c-user-feedback__headline">{{ 'Snapodds_Device_No_Permission_Headline' | translate }}</div>
   <span [innerHTML]="'Snapodds_Device_No_Permission' | translate"></span>
 </div>
 
 <div class="c-user-feedback c-user-feedback--error" *ngIf="appState === 'SNAP_NO_RESULTS'">
-  <div class="c-user-feedback__headline">{{ 'Snapodds_Snapping_No_results_Headline' | translate }}</div>
   <div [innerHTML]="'Snapodds_Snapping_No_results' | translate"></div>
 </div>
 
 <div class="c-user-feedback c-user-feedback--error" *ngIf="appState === 'SNAP_FAILED'">
-  <div class="c-user-feedback__headline">{{ 'Snapodds_Snapping_Failed_Headline' | translate }}</div>
   <div [innerHTML]="'Snapodds_Snapping_Failed' | translate"></div>
 </div>

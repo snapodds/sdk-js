@@ -6,6 +6,8 @@
   (click)="openRedirectUrl($event, url)"
 >
   <div class="c-odds__label" *ngIf="label">{{ label }}</div>
-  <div class="c-odds__odds">{{ odds }}</div>
-  <div class="c-odds__target">{{ target }}</div>
+  <div class="c-odds__values">
+    <div class="c-odds__target" *ngIf="target">{{ target }}</div>
+    <div class="c-odds__odds">{{ odds }}</div>
+  </div>
 </div>

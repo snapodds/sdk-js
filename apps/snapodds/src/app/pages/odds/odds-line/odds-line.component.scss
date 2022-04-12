@@ -2,21 +2,21 @@
 @use 'settings';
 
 :host {
-  .c-game-line {
+  .c-odds-line {
     display: flex;
     justify-content: space-between;
 
     &__competitor {
       align-items: center;
       display: flex;
-
       font-size: settings.$font-sm;
       font-weight: 400;
-      margin-right: 0.6rem;
+      padding-right: settings.$spacing-base;
     }
 
     &__boxes {
       display: flex;
+      margin-right: -(settings.$spacing-xs);
     }
   }
 

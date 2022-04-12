@@ -58,13 +58,47 @@
         );
       }
 
-      SnapoddsSdk.sportsMediaBuilder()
+      SnapoddsSdk.oddsBuilder()
         .setLanguage('en')
         .setApiUrl('https://api-dev.us.snapscreen.com')
         .setApiUrl('https://local.dev:3333/api')
         .setAutoSnap(false)
         .setLogLevel('error')
         .setAccessTokenProvider(() => fetchAccessTokenFromApi())
+        .setTvSearchResult({
+          tvChannel: {
+            name: 'CNBC',
+            id: 4,
+            code: 'us-cnbc',
+            grabbed: true,
+            _links: {
+              self: { href: 'https://api-dev.us.snapscreen.com/tv-channels/4' },
+              logo: { href: 'https://api-dev.us.snapscreen.com/tv-channels/4/logo' },
+              poster: { href: 'https://api-dev.us.snapscreen.com/tv-channels/4/poster' },
+            },
+          },
+          sportEvent: {
+            sportDataProviderCode: 'betradar_uof',
+            sportDataProviderMatchId: 'sr:match:28809366',
+            tvChannelId: 4,
+            startTime: '2021-09-06T01:40:00Z',
+            endTime: '2022-09-09T04:40:00Z',
+            sport: 'Basketball',
+            category: 'USA',
+            tournament: 'NBA, Regular',
+            league: 'NBA',
+            competitors: [{ name: 'Miami Heat' }, { name: 'Detroit Pistons' }],
+            externalId: 'sr:match:28809366',
+            _links: {
+              self: { href: 'https://api-dev.us.snapscreen.com/sport/events/241' },
+              tvChannel: { href: 'https://api-dev.us.snapscreen.com/tv-channels/4' },
+              tvChannelLogo: { href: 'https://api-dev.us.snapscreen.com/tv-channels/4/logo' },
+            },
+            id: 241,
+          },
+          timestampRef: 1640295318810,
+          score: 0.191640625,
+        })
         .onResults((tvSearchResult) => console.log('SDK:onResults', tvSearchResult))
         .onLog((logLevel, data) => console.log('SDK:onLog', logLevel, ...data))
         .onClose(() => console.log('SDK:onClose'))

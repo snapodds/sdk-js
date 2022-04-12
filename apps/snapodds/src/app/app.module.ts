@@ -11,7 +11,8 @@ import { SegmentAnalyticsService } from '../services/tracking/segment/segment-an
 import { AppComponent } from './app.component';
 import { HelpComponent } from './pages/help/help.component';
 import { OddsBoxComponent } from './pages/odds/odds-box/odds-box.component';
-import { OddsHeaderComponent } from './pages/odds/odds-header/odds-header.component';
+import { OddsGameInfoComponent } from './pages/odds/odds-game-info/odds-game-info.component';
+import { OddsHeaderLineComponent } from './pages/odds/odds-header-line/odds-header-line.component';
 import { OddsLineComponent } from './pages/odds/odds-line/odds-line.component';
 import { OddsComponent } from './pages/odds/odds/odds.component';
 import { BestOfferLinePipe } from './pages/odds/pipes/best-offer.pipe';
@@ -28,6 +29,7 @@ import { ContentComponent } from './shared/content/content.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { OddsTableComponent } from './pages/odds/odds-table/odds-table.component';
 
 @NgModule({
   declarations: [
@@ -49,8 +51,10 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     NumberFormatPipe,
     OddsBoxComponent,
     OverUnderPipe,
-    OddsHeaderComponent,
+    OddsHeaderLineComponent,
     OddsOrderingPipe,
+    OddsGameInfoComponent,
+    OddsTableComponent,
   ],
   imports: [
     BrowserModule,

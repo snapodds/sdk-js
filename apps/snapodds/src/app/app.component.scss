@@ -12,3 +12,16 @@
   font-weight: 500;
   line-height: 1.3;
 }
+
+/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+::ng-deep {
+  /**
+    Used when disabling global scrolling.
+    @see https://github.com/angular/components/blob/f8dadb3246c778a3916db72ead9033ebb32bc814/src/cdk/overlay/_index.scss
+   */
+  .cdk-global-scrollblock {
+    overflow-y: scroll;
+    position: fixed;
+    width: 100%;
+  }
+}

@@ -1,3 +1,4 @@
+import { BlockScrollStrategy, ScrollStrategyOptions } from '@angular/cdk/overlay';
 import { TestBed } from '@angular/core/testing';
 import { TranslateService } from '@ngx-translate/core';
 import { sportEventTvSearchMock } from '@response/mocks';
@@ -19,6 +20,8 @@ describe('AppComponent', () => {
   let authService: MockProxy<AuthService>;
   let notificationService: MockProxy<NotificationService>;
   let appStateStore: MockProxy<AppStateStore>;
+  let scrollStrategyOptions: MockProxy<ScrollStrategyOptions>;
+  let blockScrollStrategy: MockProxy<BlockScrollStrategy>;
 
   beforeEach(async () => {
     applicationConfigService = mock<ApplicationConfigService>();
@@ -27,6 +30,9 @@ describe('AppComponent', () => {
     authService = mock<AuthService>();
     notificationService = mock<NotificationService>();
     appStateStore = mock<AppStateStore>();
+    blockScrollStrategy = mock<BlockScrollStrategy>();
+    scrollStrategyOptions = mock<ScrollStrategyOptions>();
+    scrollStrategyOptions.block.mockReturnValue(blockScrollStrategy);
 
     TestBed.configureTestingModule({
       providers: [
@@ -37,6 +43,7 @@ describe('AppComponent', () => {
         { provide: AuthService, useValue: authService },
         { provide: NotificationService, useValue: notificationService },
         { provide: AppStateStore, useValue: appStateStore },
+        { provide: ScrollStrategyOptions, useValue: scrollStrategyOptions },
       ],
     });
 
@@ -120,5 +127,13 @@ describe('AppComponent', () => {
 
     expect(component.tvSearchResult).toBe(sportEventTvSearchMock.resultEntries[0]);
     expect(appStateStore.dispatch).toHaveBeenCalledWith(AppState.SHOW_ODDS);
+  });
+
+  it(`should toggle the overflow property on the document's body`, () => {
+    component.ngOnInit();
+    expect(blockScrollStrategy.enable).toHaveBeenCalled();
+
+    component.ngOnDestroy();
+    expect(blockScrollStrategy.disable).toHaveBeenCalled();
   });
 });

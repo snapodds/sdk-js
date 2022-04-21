@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ScrollStrategy, ScrollStrategyOptions } from '@angular/cdk/overlay';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AccessToken, TvSearchResultEntry } from '@response/typings';
 import { ApplicationConfigService } from '../services/config/application-config.service';
@@ -11,7 +12,7 @@ import { AppState, AppStateStore } from '../states/app-state.store';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   /**
    * Holds the value of the TvSearchResultEntry for loading and rendering the lineOdds
    * Only to be accessed by property accessors.
@@ -33,6 +34,8 @@ export class AppComponent implements OnInit {
   @Input() resultsCallback?: (tvSearchResult: TvSearchResultEntry) => void;
   @Input() closeCallback?: () => void;
 
+  private blockScrollStrategy: ScrollStrategy;
+
   @Input()
   set tvSearchResult(tvSearchResultEntry: TvSearchResultEntry | null) {
     this.#tvSearchResult = tvSearchResultEntry;
@@ -53,8 +56,11 @@ export class AppComponent implements OnInit {
     private readonly applicationConfigService: ApplicationConfigService,
     private readonly translateService: TranslateService,
     private readonly analyticsService: AnalyticsService,
+    readonly scrollStrategies: ScrollStrategyOptions,
     readonly appStateStore: AppStateStore
-  ) {}
+  ) {
+    this.blockScrollStrategy = scrollStrategies.block();
+  }
 
   /**
    * Sets up the applicationConfig, translations and analytics.
@@ -64,6 +70,11 @@ export class AppComponent implements OnInit {
     this.setupApplicationConfig();
     this.setupTranslations();
     this.setupAnalytics();
+    this.blockScrollStrategy.enable();
+  }
+
+  ngOnDestroy(): void {
+    this.blockScrollStrategy.disable();
   }
 
   /**

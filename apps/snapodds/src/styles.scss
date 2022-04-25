@@ -1,8 +1,11 @@
 snapodds-sdk {
   --snapodds__color--accent: #f2f2f2;
+  --snapodds__color--accent-shade: #fffc;
   --snapodds__color--primary: #2dd4bf;
   --snapodds__color--warn: #ea436e;
+  --snapodds__color--warn-shade: #ea436e33;
   --snapodds__color-background: #fff;
+  --snapodds__color-background--shade: #e5e5e5;
   --snapodds__color-text: #101010;
   --snapodds__color-text--focus: #000;
   --snapodds__font-family: 'Helvetica Neue', 'Arial', sans-serif;
@@ -10,8 +13,10 @@ snapodds-sdk {
 
 @media (prefers-color-scheme: dark) {
   snapodds-sdk {
-    --snapodds__color--accent: #e5e7eb7f;
+    --snapodds__color--accent: #222;
+    --snapodds__color--accent-shade: #000c;
     --snapodds__color-background: #09131d;
+    --snapodds__color-background--shade: #4b4b4b;
     --snapodds__color-text: #fff;
   }
 }

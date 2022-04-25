@@ -1,0 +1,44 @@
+@use 'tools';
+@use 'settings';
+
+:host {
+  .c-game-info {
+    &__time-of-day {
+      background-color: settings.$color-background;
+      font-weight: 500;
+      margin: 0;
+      padding: settings.$spacing-base;
+      text-align: center;
+    }
+
+    &__tournament-info {
+      align-items: center;
+      background-color: settings.$color-accent;
+      font-size: settings.$font-sm;
+      font-weight: 500;
+      margin: 0;
+      padding: settings.$spacing-base settings.$spacing-base 0;
+      text-align: center;
+    }
+
+    &__competitors {
+      background-color: settings.$color-background;
+      border-radius: settings.$spacing-base;
+      box-shadow: 0 settings.$spacing-xs settings.$spacing-base settings.$color-background-shade;
+      box-sizing: border-box;
+      color: settings.$color-text;
+      display: flex;
+      flex-direction: column;
+      font-size: settings.$font-base;
+      margin: settings.$spacing-base;
+      padding: settings.$spacing-base;
+      text-align: center;
+
+      &-separator {
+        border-bottom: 1px solid settings.$color-primary;
+        display: inline-block;
+        margin: settings.$spacing-sm 0;
+      }
+    }
+  }
+}

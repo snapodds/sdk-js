@@ -7,12 +7,12 @@
       "executor": "@nrwl/workspace:run-commands",
       "outputs": [],
       "options": {
-        "command": "npx parcel build src/index.ts",
+        "command": "npx --yes parcel build src/index.ts",
         "cwd": "apps/snapodds-builder"
       }
     },
     "serve": {
-      "executor": "@nrwl/js:node",
+      "executor": "@nrwl/node:node",
       "options": {
         "buildTarget": "snapodds-builder:build"
       }
@@ -30,6 +30,16 @@
       "options": {
         "jestConfig": "apps/snapodds-builder/jest.config.js",
         "passWithNoTests": true
+      }
+    },
+    "docs": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "cd apps/snapodds-builder/ && npx compodoc"
+          }
+        ]
       }
     }
   },

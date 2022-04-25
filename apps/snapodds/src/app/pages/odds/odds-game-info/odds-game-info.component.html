@@ -1,0 +1,14 @@
+<p class="c-game-info__time-of-day">
+  {{ sportEvent.startTime | date: 'short' }}
+</p>
+
+<p class="c-game-info__tournament-info">
+  {{ sportEvent.league || sportEvent.tournament }}
+</p>
+
+<div class="c-game-info__competitors">
+  <ng-container *ngFor="let competitor of sportEvent.competitors; let first = first; let last = last">
+    <span><ng-container *ngIf="last">@ </ng-container>{{ competitor.name }}</span>
+    <div *ngIf="first" class="c-game-info__competitors-separator"></div>
+  </ng-container>
+</div>

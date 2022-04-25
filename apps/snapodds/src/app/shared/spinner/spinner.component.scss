@@ -1,0 +1,67 @@
+@use 'sass:math';
+
+$spinner-width: 48px;
+$spinner-width--small: 24px;
+$bar--width: math.div($spinner-width, 4);
+$bar--width--small: math.div($spinner-width--small, 4);
+$bar--count: 8;
+
+:host {
+  .spinner {
+    color: currentColor;
+    display: inline-block;
+    height: $spinner-width;
+    position: relative;
+    width: $spinner-width;
+
+    div {
+      animation: spinner $bar--count * 0.1s linear infinite;
+      transform-origin: math.div($spinner-width, 2) math.div($spinner-width, 2);
+    }
+
+    div::after {
+      background: currentColor;
+      border-radius: 20%;
+      content: ' ';
+      display: block;
+      height: $bar--width;
+      left: math.div($spinner-width, 2) - math.div($bar--width, 6);
+      position: absolute;
+      top: math.div($bar--width, 6);
+      width: math.div($bar--width, 3);
+    }
+
+    &--small {
+      height: $spinner-width--small;
+      width: $spinner-width--small;
+
+      div {
+        transform-origin: math.div($spinner-width--small, 2) math.div($spinner-width--small, 2);
+      }
+
+      div::after {
+        height: $bar--width--small;
+        left: math.div($spinner-width--small, 2) - math.div($bar--width--small, 6);
+        top: math.div($bar--width--small, 6);
+        width: math.div($bar--width--small, 3);
+      }
+    }
+
+    @for $i from 1 through $bar--count {
+      div:nth-child(#{$i}) {
+        animation-delay: $bar--count * -0.1s + $i * 0.1s;
+        transform: rotate(#{(math.div(360, $bar--count) * $i)}deg);
+      }
+    }
+  }
+
+  @keyframes spinner {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+}

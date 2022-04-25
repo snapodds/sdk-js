@@ -1,0 +1,50 @@
+<snapodds-header>
+  {{ 'Snapodds_Title_Odds' | translate }}
+  <div right>
+    <button (click)="closeOddsView.next()">
+      {{ 'Snapodds_Title_Snap_TV' | translate }}
+    </button>
+  </div>
+</snapodds-header>
+
+<snapodds-content *ngIf="tvSearchResultEntry as result">
+  <snapodds-odds-game-info [sportEvent]="result.sportEvent"></snapodds-odds-game-info>
+
+  <div *ngIf="loading" class="c-feedback">
+    <snapodds-spinner size="small" class="c-feedback__spinner"></snapodds-spinner>
+    {{ 'Snapodds_Lines_Loading' | translate }}
+  </div>
+
+  <div *ngIf="noResults" class="c-feedback">
+    {{ 'Snapodds_Lines_No_Results' | translate }}
+  </div>
+
+  <ng-container *ngIf="lineOdds as lineOdds">
+    <ng-container *ngIf="lineOdds.bestOffer as bestOffer">
+      <snapodds-odds-table
+        [best]="true"
+        [competitors]="lineOdds.competitors"
+        [lines]="bestOffer.lines"
+        [oddsOfferOrder]="lineOdds.oddsOfferOrder"
+      >
+      </snapodds-odds-table>
+    </ng-container>
+
+    <a
+      *ngFor="let sportsBook of lineOdds.sportsBooks"
+      href="{{ sportsBook.redirectUrl }}"
+      (click)="openSportsBookRedirectUrl($event, sportsBook.redirectUrl)"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      <snapodds-odds-table
+        [competitors]="lineOdds.competitors"
+        [lines]="sportsBook.lines"
+        [oddsOfferOrder]="lineOdds.oddsOfferOrder"
+      >
+      </snapodds-odds-table>
+    </a>
+  </ng-container>
+
+  <div class="c-footer__powered-by">Powered by <strong>SnapOdds</strong></div>
+</snapodds-content>

@@ -18,6 +18,11 @@ export interface SportsBookLineViewModel {
   spreadUrl?: string | null;
 
   /**
+   * Flag indicating if spread is the best offer in the outcomes
+   */
+  spreadBest?: boolean;
+
+  /**
    * The target value for the money line.
    */
   moneyline: number | null;
@@ -26,6 +31,11 @@ export interface SportsBookLineViewModel {
    * The url pointing to the money line.
    */
   moneylineUrl?: string | null;
+
+  /**
+   * Flag indicating if overUnder is the best offer in the outcomes
+   */
+  moneylineBest?: boolean;
 
   /**
    * The target value for over/under.
@@ -41,4 +51,9 @@ export interface SportsBookLineViewModel {
    * The url pointing to the over/under.
    */
   overUnderUrl?: string | null;
+
+  /**
+   * Flag indicating if overUnder is the best offer in the outcomes
+   */
+  overUnderBest?: boolean;
 }

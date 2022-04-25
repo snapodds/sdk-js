@@ -7,10 +7,14 @@ import { SnapOddsSdkElement } from './snap-odds-sdk-element.type';
 export abstract class SdkBuilder {
   protected apiUrl?: string;
   protected autoSnap?: boolean;
+  protected autoSnapInitialDelay?: number;
+  protected autoSnapInterval?: number;
+  protected autoSnapMaxInterval?: number;
   protected language?: string;
   protected logLevel?: string;
   protected vibrate?: boolean;
   protected tvSearchResult?: TvSearchResultEntry;
+  protected sdkMode?: 'sportmedia' | 'operator';
 
   protected accessTokenProvider?: () => Promise<AccessToken>;
   protected logCallback?: (logLevel: string, data: unknown[]) => void;
@@ -33,12 +37,27 @@ export abstract class SdkBuilder {
     return this;
   }
 
+  setAutoSnapInitialDelay(autoSnapInitialDelay: number): this {
+    this.autoSnapInitialDelay = autoSnapInitialDelay;
+    return this;
+  }
+
+  setAutoSnapInterval(autoSnapInterval: number): this {
+    this.autoSnapInterval = autoSnapInterval;
+    return this;
+  }
+
+  setAutoSnapMaxInterval(autoSnapMaxInterval: number): this {
+    this.autoSnapMaxInterval = autoSnapMaxInterval;
+    return this;
+  }
+
   setLanguage(language: string): this {
     this.language = language;
     return this;
   }
 
-  setLogLevel(logLevel: string): this {
+  setLogLevel(logLevel: 'debug' | 'info' | 'warn' | 'error' | 'silent'): this {
     this.logLevel = logLevel;
     return this;
   }
@@ -76,11 +95,15 @@ export abstract class SdkBuilder {
     this.sdk.language = this.language;
     this.sdk.apiUrl = this.apiUrl;
     this.sdk.autoSnap = this.autoSnap;
+    this.sdk.autoSnapInitialDelay = this.autoSnapInitialDelay;
+    this.sdk.autoSnapInterval = this.autoSnapInterval;
+    this.sdk.autoSnapMaxInterval = this.autoSnapMaxInterval;
     this.sdk.logLevel = this.logLevel;
     this.sdk.vibrate = this.vibrate;
     this.sdk.accessTokenProvider = this.accessTokenProvider;
     this.sdk.logCallback = this.logCallback;
     this.sdk.resultsCallback = this.resultsCallback;
+    this.sdk.sdkMode = this.sdkMode;
 
     this.sdk.closeCallback = () => {
       this.closeCallback?.();

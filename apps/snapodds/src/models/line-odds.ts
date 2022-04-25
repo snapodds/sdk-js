@@ -1,4 +1,4 @@
-import { Competitor, Player } from '@response/typings';
+import { Competitor, OddsOfferType, Player, Sports } from '@response/typings';
 import { BestOfferViewModel } from './best-offer-view-model';
 import { SportsBookViewModel } from './sports-book-view-model';
 
@@ -16,7 +16,7 @@ export interface LineOdds {
   players?: Player[];
 
   /**
-   * List of sportBooks
+   * List of sportsBooks
    */
   sportsBooks?: SportsBookViewModel[];
 
@@ -24,4 +24,14 @@ export interface LineOdds {
    * Best available odds for either side of the live spread
    */
   bestOffer?: BestOfferViewModel;
+
+  /**
+   *  Limited list of supported team sports
+   */
+  sport: Sports;
+
+  /**
+   * Ordering of odds in the odds list
+   */
+  oddsOfferOrder: OddsOfferType[];
 }

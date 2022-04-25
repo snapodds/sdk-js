@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ScrollStrategy, ScrollStrategyOptions } from '@angular/cdk/overlay';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AccessToken, TvSearchResultEntry } from '@response/typings';
 import { ApplicationConfigService } from '../services/config/application-config.service';
 import { toLogLevel } from '../services/logger/log-level';
-import { GoogleAnalyticsService } from '../services/tracking/google-analytics.service';
+import { AnalyticsService } from '../services/tracking/analytics.service';
 import { AppState, AppStateStore } from '../states/app-state.store';
 
 @Component({
@@ -11,7 +12,7 @@ import { AppState, AppStateStore } from '../states/app-state.store';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   /**
    * Holds the value of the TvSearchResultEntry for loading and rendering the lineOdds
    * Only to be accessed by property accessors.
@@ -22,6 +23,9 @@ export class AppComponent implements OnInit {
 
   @Input() apiUrl?: string;
   @Input() autoSnap?: boolean;
+  @Input() autoSnapInitialDelay?: number;
+  @Input() autoSnapInterval?: number;
+  @Input() autoSnapMaxInterval?: number;
   @Input() language?: string;
   @Input() logLevel?: string;
   @Input() vibrate?: boolean;
@@ -29,6 +33,8 @@ export class AppComponent implements OnInit {
   @Input() logCallback?: (logLevel: string, data: unknown[]) => void;
   @Input() resultsCallback?: (tvSearchResult: TvSearchResultEntry) => void;
   @Input() closeCallback?: () => void;
+
+  private blockScrollStrategy: ScrollStrategy;
 
   @Input()
   set tvSearchResult(tvSearchResultEntry: TvSearchResultEntry | null) {
@@ -49,9 +55,12 @@ export class AppComponent implements OnInit {
   constructor(
     private readonly applicationConfigService: ApplicationConfigService,
     private readonly translateService: TranslateService,
-    private readonly analyticsService: GoogleAnalyticsService,
+    private readonly analyticsService: AnalyticsService,
+    readonly scrollStrategies: ScrollStrategyOptions,
     readonly appStateStore: AppStateStore
-  ) {}
+  ) {
+    this.blockScrollStrategy = scrollStrategies.block();
+  }
 
   /**
    * Sets up the applicationConfig, translations and analytics.
@@ -61,6 +70,11 @@ export class AppComponent implements OnInit {
     this.setupApplicationConfig();
     this.setupTranslations();
     this.setupAnalytics();
+    this.blockScrollStrategy.enable();
+  }
+
+  ngOnDestroy(): void {
+    this.blockScrollStrategy.disable();
   }
 
   /**
@@ -88,6 +102,9 @@ export class AppComponent implements OnInit {
     this.applicationConfigService.setConfig({
       apiUrl: this.apiUrl,
       autoSnap: this.autoSnap,
+      autoSnapInitialDelay: this.autoSnapInitialDelay,
+      autoSnapInterval: this.autoSnapInterval,
+      autoSnapMaxInterval: this.autoSnapMaxInterval,
       language: this.language,
       logLevel: toLogLevel(this.logLevel),
       vibrate: this.vibrate,

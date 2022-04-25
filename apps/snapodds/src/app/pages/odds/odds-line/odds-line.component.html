@@ -1,0 +1,36 @@
+<div class="c-odds-line">
+  <div class="c-odds-line__competitor">
+    {{ competitorName }}
+  </div>
+
+  <div class="c-odds-line__boxes">
+    <snapodds-odds-box
+      class="l-order-{{ oddsOfferOrder | oddsOrdering: 'SPREAD' }}"
+      [best]="line.spreadBest"
+      [empty]="!line.spreadOdds"
+      [url]="line.spreadUrl"
+      [label]="(line | bestOfferLine).spreadSportsBookName"
+      [target]="line.spread | numberFormat"
+      [odds]="line.spreadOdds | numberFormat"
+    ></snapodds-odds-box>
+
+    <snapodds-odds-box
+      class="l-order-{{ oddsOfferOrder | oddsOrdering: 'MONEYLINE' }}"
+      [best]="line.moneylineBest"
+      [empty]="!line.moneyline"
+      [url]="line.moneylineUrl"
+      [label]="(line | bestOfferLine).moneySportsBookName"
+      [odds]="line.moneyline | numberFormat"
+    ></snapodds-odds-box>
+
+    <snapodds-odds-box
+      class="l-order-{{ oddsOfferOrder | oddsOrdering: 'OVER_UNDER' }}"
+      [best]="line.overUnderBest"
+      [empty]="!line.overUnderOdds"
+      [url]="line.overUnderUrl"
+      [label]="(line | bestOfferLine).overUnderSportsBookName"
+      [target]="line.overUnder | overUnder: lineIndex"
+      [odds]="line.overUnderOdds | numberFormat"
+    ></snapodds-odds-box>
+  </div>
+</div>

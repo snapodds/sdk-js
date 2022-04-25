@@ -1,42 +1,49 @@
+import { BlockScrollStrategy, ScrollStrategyOptions } from '@angular/cdk/overlay';
 import { TestBed } from '@angular/core/testing';
 import { TranslateService } from '@ngx-translate/core';
 import { sportEventTvSearchMock } from '@response/mocks';
 import { mock, MockProxy } from 'jest-mock-extended';
-import { ApplicationConfig } from '../config/application-config';
 import { AuthService } from '../services/auth/auth.service';
+import { ApplicationConfig } from '../services/config/application-config';
 import { ApplicationConfigService } from '../services/config/application-config.service';
 import { toLogLevel } from '../services/logger/log-level';
 import { NotificationService } from '../services/notification/notification.service';
-import { GoogleAnalyticsService } from '../services/tracking/google-analytics.service';
+import { AnalyticsService } from '../services/tracking/analytics.service';
 import { AppState, AppStateStore } from '../states/app-state.store';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   let component: AppComponent;
   let applicationConfigService: MockProxy<ApplicationConfigService>;
-  let analyticsService: MockProxy<GoogleAnalyticsService>;
+  let analyticsService: MockProxy<AnalyticsService>;
   let translateService: MockProxy<TranslateService>;
   let authService: MockProxy<AuthService>;
   let notificationService: MockProxy<NotificationService>;
   let appStateStore: MockProxy<AppStateStore>;
+  let scrollStrategyOptions: MockProxy<ScrollStrategyOptions>;
+  let blockScrollStrategy: MockProxy<BlockScrollStrategy>;
 
   beforeEach(async () => {
     applicationConfigService = mock<ApplicationConfigService>();
-    analyticsService = mock<GoogleAnalyticsService>();
+    analyticsService = mock<AnalyticsService>();
     translateService = mock<TranslateService>();
     authService = mock<AuthService>();
     notificationService = mock<NotificationService>();
     appStateStore = mock<AppStateStore>();
+    blockScrollStrategy = mock<BlockScrollStrategy>();
+    scrollStrategyOptions = mock<ScrollStrategyOptions>();
+    scrollStrategyOptions.block.mockReturnValue(blockScrollStrategy);
 
     TestBed.configureTestingModule({
       providers: [
         AppComponent,
         { provide: ApplicationConfigService, useValue: applicationConfigService },
-        { provide: GoogleAnalyticsService, useValue: analyticsService },
+        { provide: AnalyticsService, useValue: analyticsService },
         { provide: TranslateService, useValue: translateService },
         { provide: AuthService, useValue: authService },
         { provide: NotificationService, useValue: notificationService },
         { provide: AppStateStore, useValue: appStateStore },
+        { provide: ScrollStrategyOptions, useValue: scrollStrategyOptions },
       ],
     });
 
@@ -52,6 +59,9 @@ describe('AppComponent', () => {
 
       const apiUrl = 'http://example.org';
       const autoSnap = true;
+      const autoSnapInitialDelay = 500;
+      const autoSnapInterval = 600;
+      const autoSnapMaxInterval = 12000;
       const language = 'en';
       const logLevel = 'info';
       const vibrate = true;
@@ -63,6 +73,9 @@ describe('AppComponent', () => {
         accessTokenProvider,
         apiUrl,
         autoSnap,
+        autoSnapInitialDelay,
+        autoSnapInterval,
+        autoSnapMaxInterval,
         language,
         logLevel: toLogLevel(logLevel),
         vibrate,
@@ -75,6 +88,9 @@ describe('AppComponent', () => {
 
       component.apiUrl = apiUrl;
       component.autoSnap = autoSnap;
+      component.autoSnapInitialDelay = autoSnapInitialDelay;
+      component.autoSnapInterval = autoSnapInterval;
+      component.autoSnapMaxInterval = autoSnapMaxInterval;
       component.language = language;
       component.logLevel = logLevel;
       component.vibrate = vibrate;
@@ -111,5 +127,13 @@ describe('AppComponent', () => {
 
     expect(component.tvSearchResult).toBe(sportEventTvSearchMock.resultEntries[0]);
     expect(appStateStore.dispatch).toHaveBeenCalledWith(AppState.SHOW_ODDS);
+  });
+
+  it(`should toggle the overflow property on the document's body`, () => {
+    component.ngOnInit();
+    expect(blockScrollStrategy.enable).toHaveBeenCalled();
+
+    component.ngOnDestroy();
+    expect(blockScrollStrategy.disable).toHaveBeenCalled();
   });
 });

@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "projects": {
+    "response": "libs/response",
+    "snapodds": "apps/snapodds",
+    "snapodds-api": "apps/snapodds-api",
+    "snapodds-builder": "apps/snapodds-builder"
+  }
+}

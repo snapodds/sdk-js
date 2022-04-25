@@ -1,0 +1,79 @@
+@use 'tools';
+@use 'settings';
+@use '../odds-settings';
+
+:host {
+  display: flex;
+
+  .c-odds {
+    &__box {
+      align-items: stretch;
+
+      background-color: settings.$color-accent;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin: 2px settings.$spacing-xs;
+      padding: 6px;
+      text-align: center;
+      width: odds-settings.$box--width;
+
+      &--clickable {
+        cursor: pointer;
+      }
+
+      &--hidden {
+        visibility: hidden;
+      }
+
+      &--best {
+        background: linear-gradient(0deg, settings.$color-accent-shade, settings.$color-accent-shade),
+          settings.$color-primary;
+        box-shadow: inset 0 -2px 0 settings.$color-primary;
+      }
+
+      &--separator {
+        background-color: transparent;
+        border-bottom: 1px solid settings.$color-accent;
+        margin: 6px 3px;
+        padding: 0 6px;
+      }
+    }
+
+    &__values {
+      display: flex;
+      flex: auto;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 40px;
+    }
+
+    &__target {
+      color: settings.$color-text;
+      font-size: settings.$font-sm;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    &__odds {
+      color: settings.$color-text;
+      font-size: settings.$font-sm;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+
+    &__label {
+      background-color: #000;
+      color: #fff;
+      font-size: settings.$font-xs;
+      font-weight: 400;
+      margin: -6px;
+      margin-bottom: 3px;
+      overflow: hidden;
+      padding: 2px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}

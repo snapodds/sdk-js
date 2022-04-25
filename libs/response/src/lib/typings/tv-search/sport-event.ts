@@ -49,6 +49,11 @@ export interface SportEvent {
   category: string;
 
   /**
+   * The league of this sport event.
+   */
+  league?: string;
+
+  /**
    * The tournament of this sport event.
    */
   tournament: string;

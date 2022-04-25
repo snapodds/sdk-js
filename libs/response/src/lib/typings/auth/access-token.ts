@@ -1,3 +1,6 @@
+/**
+ * OAuth 2.0 Access Token
+ */
 export interface AccessToken {
   access_token: string;
   token_type?: string;

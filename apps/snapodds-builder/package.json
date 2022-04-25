@@ -1,6 +1,6 @@
 {
   "name": "@snapodds/builder",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "source": "src/index.ts",
   "main": "../../dist/apps/snapodds-builder/snapodds-builder.js",
   "targets": {

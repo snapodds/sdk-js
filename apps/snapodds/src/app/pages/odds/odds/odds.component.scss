@@ -1,0 +1,45 @@
+@use 'tools';
+@use 'settings';
+
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  button {
+    @include tools.button-reset();
+    font-size: settings.$font-base;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  snapodds-content {
+    background-color: settings.$color-accent;
+    justify-content: flex-start;
+  }
+
+  .c-feedback {
+    align-items: center;
+    background-color: settings.$color-background;
+    display: flex;
+    font-size: settings.$font-sm;
+    justify-content: center;
+    padding: settings.$spacing-base;
+
+    &__spinner {
+      line-height: 1;
+      margin-right: settings.$spacing-sm;
+    }
+  }
+
+  .c-footer {
+    &__powered-by {
+      font-size: settings.$font-xs;
+      font-weight: 400;
+      padding: settings.$spacing-base;
+      text-align: center;
+    }
+  }
+}

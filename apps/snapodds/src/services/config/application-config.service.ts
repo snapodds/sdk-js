@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AccessToken, TvSearchResultEntry } from '@response/typings';
 import { noop } from 'rxjs';
-import { ApplicationConfig } from '../../config/application-config';
 import { fromLogLevel, LogLevel } from '../logger/log-level';
+import { ApplicationConfig } from './application-config';
+import { SdkMode } from './sdk-mode';
 
 /**
  * Default application configuration
@@ -11,11 +12,15 @@ const DEFAULT_APPLICATION_CONFIG: ApplicationConfig = {
   apiUrl: 'https://api.us.snapscreen.com',
   language: 'en',
   autoSnap: false,
+  autoSnapInitialDelay: 1500,
+  autoSnapInterval: 1000,
+  autoSnapMaxInterval: 5000,
   logLevel: LogLevel.SILENT,
   vibrate: false,
   logCallback: noop,
   closeCallback: noop,
   resultsCallback: noop,
+  sdkMode: SdkMode.SPORTMEDIA,
   accessTokenProvider: () => Promise.reject('No accessTokenProvider specified'),
 };
 
@@ -25,15 +30,13 @@ export class ApplicationConfigService {
 
   private readonly SNAP_MAX_DIMENSION = 1024;
   private readonly AUTOSNAP_MAX_DIMENSION = 512;
-  private readonly AUTOSNAP_DELAY_INITIAL = 2500;
-  private readonly AUTOSNAP_DELAY = 1000;
 
   /**
    * Merges the given applicationConfig with the default values.
    * @param applicationConfig
    */
   setConfig(applicationConfig: Partial<ApplicationConfig>): void {
-    this.config = { ...DEFAULT_APPLICATION_CONFIG, ...this.omitUndefinedProperties(applicationConfig) };
+    this.config = { ...this.config, ...this.omitUndefinedProperties(applicationConfig) };
   }
 
   /**
@@ -71,10 +74,24 @@ export class ApplicationConfigService {
 
   /**
    * Returns the delay used to programmatically trigger a snap
-   * @param initial: the initial delay takes longer in order for the user to correctly align the camera
+   * @param withInitialDelay: the initial delay takes longer in order for the user to correctly align the camera
    */
-  getAutoSnapDelay(initial: boolean = false): number {
-    return initial ? this.AUTOSNAP_DELAY_INITIAL : this.AUTOSNAP_DELAY;
+  getAutoSnapInterval(withInitialDelay: boolean = false): number {
+    return this.config.autoSnapInterval + (withInitialDelay ? this.config.autoSnapInitialDelay : 0);
+  }
+
+  /**
+   * Returns the initial delay before the webcam has been pointed on the tv
+   */
+  getAutoSnapInitialDelay(): number {
+    return this.config.autoSnapInitialDelay;
+  }
+
+  /**
+   * Returns the number of max retries before the user has to perform a manual snap
+   */
+  getAutoSnapMaxRetries(): number {
+    return Math.ceil(this.config.autoSnapMaxInterval / this.config.autoSnapInterval);
   }
 
   /**
@@ -127,5 +144,12 @@ export class ApplicationConfigService {
    */
   isVibrateEnabled(): boolean {
     return this.config.vibrate;
+  }
+
+  /**
+   * Determines the mode depending on how the Snap View was initialized
+   */
+  getSdkMode(): SdkMode {
+    return this.config.sdkMode;
   }
 }

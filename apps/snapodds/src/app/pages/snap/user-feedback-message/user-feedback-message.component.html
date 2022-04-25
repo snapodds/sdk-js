@@ -1,0 +1,17 @@
+<div
+  class="c-user-feedback"
+  *ngIf="appState === 'SNAP_READY' || appState === 'SNAP_IN_PROGRESS'"
+  [innerHTML]="'Snapodds_ViewFinder_Hint' | translate"
+></div>
+
+<div class="c-user-feedback c-user-feedback--error" *ngIf="appState === 'DEVICE_NO_PERMISSION'">
+  <span [innerHTML]="'Snapodds_Device_No_Permission' | translate"></span>
+</div>
+
+<div class="c-user-feedback c-user-feedback--error" *ngIf="appState === 'SNAP_NO_RESULTS'">
+  <div [innerHTML]="'Snapodds_Snapping_No_results' | translate"></div>
+</div>
+
+<div class="c-user-feedback c-user-feedback--error" *ngIf="appState === 'SNAP_FAILED'">
+  <div [innerHTML]="'Snapodds_Snapping_Failed' | translate"></div>
+</div>

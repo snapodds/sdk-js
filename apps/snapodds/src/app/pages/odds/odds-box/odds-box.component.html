@@ -1,0 +1,13 @@
+<div
+  class="c-odds__box"
+  [class.c-odds__box--best]="best"
+  [class.c-odds__box--clickable]="!url"
+  [class.c-odds__box--hidden]="empty"
+  (click)="openRedirectUrl($event, url)"
+>
+  <div class="c-odds__label" *ngIf="label">{{ label }}</div>
+  <div class="c-odds__values">
+    <div class="c-odds__target" *ngIf="target">{{ target }}</div>
+    <div class="c-odds__odds">{{ odds }}</div>
+  </div>
+</div>

@@ -1,7 +1,9 @@
 import { Link } from '../link';
 import { Competitor } from './competitor';
 import { OddsBestOffer } from './odds-best-offer';
+import { OddsOfferType } from './odds-offer-type';
 import { Player } from './player';
+import { Sports } from './sports';
 import { SportsBook } from './sports-book';
 
 /**
@@ -32,6 +34,16 @@ export interface OddsResponse {
    * The best offers for the sport event.
    */
   bestOffers?: OddsBestOffer[];
+
+  /**
+   *  Limited list of supported team sports
+   */
+  sport: Sports;
+
+  /**
+   * Ordering of odds in the odds list
+   */
+  oddsOfferOrder?: OddsOfferType[];
 
   _links?: {
     self?: Link;

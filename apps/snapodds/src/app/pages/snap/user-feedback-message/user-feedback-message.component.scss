@@ -1,0 +1,22 @@
+@use 'settings';
+@use 'tools';
+
+:host {
+  .c-user-feedback {
+    font-size: settings.$font-base;
+    padding: settings.$spacing-base;
+    text-align: center;
+
+    @include tools.media-tiny--portrait {
+      /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+      ::ng-deep {
+        @include tools.flat-breaks;
+      }
+    }
+
+    &--error {
+      background-color: settings.$color-warn-shade;
+      color: settings.$color-warn;
+    }
+  }
+}

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>SnapOdds SDK</title>
+        <title>SnapOdds Builder</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">SnapOdds SDK</a>
+            <a href="../" class="navbar-brand">SnapOdds Builder</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -54,9 +54,6 @@
         <li class="active">
             <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
-        </li>
 </ul>
 
 <div class="tab-content">
@@ -65,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>libs/response/src/lib/typings/tv-search/tv-search-result-entry.ts</code>
+            <code>/home/runner/work/sdk-js/sdk-js/libs/response/src/lib/typings/tv-search/tv-search-result-entry.ts</code>
         </p>
 
 
@@ -285,37 +282,8 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { SportEvent } from &#x27;./sport-event&#x27;;
-import { TvChannel } from &#x27;./tv-channel&#x27;;
-
-/**
- * A result entry found on a request made by the end-user for search in the index of TV channels grabbed by the system.
- */
-export interface TvSearchResultEntry {
-  /**
-   * The TV channel on which the TS image corresponding to the entry was aired.
-   */
-  tvChannel: TvChannel;
-
-  /**
-   * The sport event shown on the TV channel at the timestamp of the entry.
-   */
-  sportEvent: SportEvent;
-
-  /**
-   * The timestamp when the corresponding TS image was aired.
-   */
-  timestampRef: number;
-
-  /**
-   * The result score of the entry.
-   */
-  score: number;
-}
-</code></pre>
-    </div>
 </div>
+
 
 
 

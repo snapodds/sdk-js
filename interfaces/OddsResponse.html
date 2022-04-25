@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>SnapOdds SDK</title>
+        <title>SnapOdds Builder</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">SnapOdds SDK</a>
+            <a href="../" class="navbar-brand">SnapOdds Builder</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -54,9 +54,6 @@
         <li class="active">
             <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
-        </li>
 </ul>
 
 <div class="tab-content">
@@ -65,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>libs/response/src/lib/typings/odds/odds-response.ts</code>
+            <code>/home/runner/work/sdk-js/sdk-js/libs/response/src/lib/typings/odds/odds-response.ts</code>
         </p>
 
 
@@ -112,9 +109,22 @@
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
+                                        <a href="#oddsOfferOrder" 
+>
+                                            oddsOfferOrder
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#players" 
 >
                                             players
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#sport" 
+>
+                                            sport
                                         </a>
                                 </li>
                                 <li>
@@ -192,7 +202,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>bestOffers:         <code><a href="../interfaces/OddsBestOffer.html" target="_self" >OddsBestOffer[]</a></code>
+                                        <code>bestOffers:     <code>OddsBestOffer[]</code>
 </code>
                                     </td>
                                 </tr>
@@ -200,7 +210,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="../interfaces/OddsBestOffer.html" target="_self" >OddsBestOffer[]</a></code>
+                                            <i>Type : </i>    <code>OddsBestOffer[]</code>
 
                                         </td>
                                     </tr>
@@ -265,6 +275,50 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
+                                        <a name="oddsOfferOrder"></a>
+                                        <span class="name "><b>oddsOfferOrder</b>
+                                            <a href="#oddsOfferOrder">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>oddsOfferOrder:         <code><a href="../interfaces/OddsOffer.html" target="_self" >OddsOfferType[]</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../interfaces/OddsOffer.html" target="_self" >OddsOfferType[]</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>Ordering of odds in the odds list</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
                                         <a name="players"></a>
                                         <span class="name "><b>players</b>
                                             <a href="#players">
@@ -300,6 +354,45 @@
                             <tr>
                                 <td class="col-md-4">
                                     <div class="io-description"><p>The players of the sport event.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="sport"></a>
+                                        <span class="name "><b>sport</b>
+                                            <a href="#sport">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>sport:         <code><a href="../miscellaneous/enumerations.html#Sports" target="_self" >Sports</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#Sports" target="_self" >Sports</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p> Limited list of supported team sports</p>
 </div>
                                 </td>
                             </tr>
@@ -387,49 +480,8 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Link } from &#x27;../link&#x27;;
-import { Competitor } from &#x27;./competitor&#x27;;
-import { OddsBestOffer } from &#x27;./odds-best-offer&#x27;;
-import { Player } from &#x27;./player&#x27;;
-import { SportsBook } from &#x27;./sports-book&#x27;;
-
-/**
- * Represents an odds available for the corresponding sport event.
- */
-export interface OddsResponse {
-  /**
-   * The start time of the sport event.
-   */
-  startTime: string;
-
-  /**
-   * The competitors of the sport event.
-   */
-  competitors: Competitor[];
-
-  /**
-   * The players of the sport event.
-   */
-  players?: Player[];
-
-  /**
-   * The odds available for the sport event.
-   */
-  sportsBooks: SportsBook[];
-
-  /**
-   * The best offers for the sport event.
-   */
-  bestOffers?: OddsBestOffer[];
-
-  _links?: {
-    self?: Link;
-  };
-}
-</code></pre>
-    </div>
 </div>
+
 
 
 

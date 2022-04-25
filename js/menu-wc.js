@@ -15,7 +15,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
         <nav>
             <ul class="list">
                 <li class="title">
-                    <a href="index.html" data-type="index-link">SnapOdds SDK</a>
+                    <a href="index.html" data-type="index-link">SnapOdds Builder</a>
                 </li>
 
                 <li class="divider"></li>
@@ -34,190 +34,56 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </a>
                         </li>
                                 <li class="link">
-                                    <a href="dependencies.html" data-type="chapter-link">
-                                        <span class="icon ion-ios-list"></span>Dependencies
+                                    <a href="properties.html" data-type="chapter-link">
+                                        <span class="icon ion-ios-apps"></span>Properties
                                     </a>
                                 </li>
                     </ul>
-                </li>
-                    <li class="chapter modules">
-                        <a data-type="chapter-link" href="modules.html">
-                            <div class="menu-toggler linked" data-toggle="collapse" ${ isNormalMode ?
-                                'data-target="#modules-links"' : 'data-target="#xs-modules-links"' }>
-                                <span class="icon ion-ios-archive"></span>
-                                <span class="link-name">Modules</span>
-                                <span class="icon ion-ios-arrow-down"></span>
-                            </div>
-                        </a>
-                        <ul class="links collapse " ${ isNormalMode ? 'id="modules-links"' : 'id="xs-modules-links"' }>
-                            <li class="link">
-                                <a href="modules/AppModule.html" data-type="entity-link" >AppModule</a>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-AppModule-dcce50c36f27afaacfb40082ef287640c826466c502597e1c54e3ed51e02e483de9e835a19dd881786792c4f0688a9df95da3c8dd2586da6263aa75f32c90272"' : 'data-target="#xs-components-links-module-AppModule-dcce50c36f27afaacfb40082ef287640c826466c502597e1c54e3ed51e02e483de9e835a19dd881786792c4f0688a9df95da3c8dd2586da6263aa75f32c90272"' }>
-                                            <span class="icon ion-md-cog"></span>
-                                            <span>Components</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-dcce50c36f27afaacfb40082ef287640c826466c502597e1c54e3ed51e02e483de9e835a19dd881786792c4f0688a9df95da3c8dd2586da6263aa75f32c90272"' :
-                                            'id="xs-components-links-module-AppModule-dcce50c36f27afaacfb40082ef287640c826466c502597e1c54e3ed51e02e483de9e835a19dd881786792c4f0688a9df95da3c8dd2586da6263aa75f32c90272"' }>
-                                            <li class="link">
-                                                <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AppComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/ContentComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ContentComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/FooterComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FooterComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/HeaderComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >HeaderComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/HelpComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >HelpComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/OddsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >OddsComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/OddsLineComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >OddsLineComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/SnapComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SnapComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/SpinnerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SpinnerComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/SwitchSvgComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SwitchSvgComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/TriggerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TriggerComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/TriggerSvgComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TriggerSvgComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/UserFeedbackMessageComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UserFeedbackMessageComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/WebcamComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WebcamComponent</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="chapter inner">
-                                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#pipes-links-module-AppModule-dcce50c36f27afaacfb40082ef287640c826466c502597e1c54e3ed51e02e483de9e835a19dd881786792c4f0688a9df95da3c8dd2586da6263aa75f32c90272"' : 'data-target="#xs-pipes-links-module-AppModule-dcce50c36f27afaacfb40082ef287640c826466c502597e1c54e3ed51e02e483de9e835a19dd881786792c4f0688a9df95da3c8dd2586da6263aa75f32c90272"' }>
-                                            <span class="icon ion-md-add"></span>
-                                            <span>Pipes</span>
-                                            <span class="icon ion-ios-arrow-down"></span>
-                                        </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="pipes-links-module-AppModule-dcce50c36f27afaacfb40082ef287640c826466c502597e1c54e3ed51e02e483de9e835a19dd881786792c4f0688a9df95da3c8dd2586da6263aa75f32c90272"' :
-                                            'id="xs-pipes-links-module-AppModule-dcce50c36f27afaacfb40082ef287640c826466c502597e1c54e3ed51e02e483de9e835a19dd881786792c4f0688a9df95da3c8dd2586da6263aa75f32c90272"' }>
-                                            <li class="link">
-                                                <a href="pipes/BestOfferLinePipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >BestOfferLinePipe</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="pipes/NumberFormatPipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >NumberFormatPipe</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                            </li>
-                </ul>
                 </li>
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#classes-links"' :
                             'data-target="#xs-classes-links"' }>
                             <span class="icon ion-ios-paper"></span>
                             <span>Classes</span>
-                            <span class="icon ion-ios-arrow-down"></span>
+                            <span class="icon ion-ios-arrow-up"></span>
                         </div>
-                        <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
+                        <ul class="links collapse in" ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
-                                <a href="classes/FileTranslateLoader.html" data-type="entity-link" >FileTranslateLoader</a>
+                                <a href="classes/OddsSdkBuilder.html" data-type="entity-link" >OddsSdkBuilder</a>
                             </li>
                             <li class="link">
-                                <a href="classes/TvSearchNoResultError.html" data-type="entity-link" >TvSearchNoResultError</a>
+                                <a href="classes/OperatorsSdkBuilder.html" data-type="entity-link" >OperatorsSdkBuilder</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SdkBuilder.html" data-type="entity-link" >SdkBuilder</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SnapoddsSdkWrapper.html" data-type="entity-link" >SnapoddsSdkWrapper</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SportsMediaSdkBuilder.html" data-type="entity-link" >SportsMediaSdkBuilder</a>
                             </li>
                         </ul>
                     </li>
-                        <li class="chapter">
-                            <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#injectables-links"' :
-                                'data-target="#xs-injectables-links"' }>
-                                <span class="icon ion-md-arrow-round-down"></span>
-                                <span>Injectables</span>
-                                <span class="icon ion-ios-arrow-down"></span>
-                            </div>
-                            <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
-                                <li class="link">
-                                    <a href="injectables/ApplicationConfigService.html" data-type="entity-link" >ApplicationConfigService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/AppStateStore.html" data-type="entity-link" >AppStateStore</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/AuthService.html" data-type="entity-link" >AuthService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/GoogleAnalyticsService.html" data-type="entity-link" >GoogleAnalyticsService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/ImageManipulationService.html" data-type="entity-link" >ImageManipulationService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/LoggerService.html" data-type="entity-link" >LoggerService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/MediaDeviceStateStore.html" data-type="entity-link" >MediaDeviceStateStore</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/NotificationService.html" data-type="entity-link" >NotificationService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/OddsService.html" data-type="entity-link" >OddsService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/SnapOddsFacade.html" data-type="entity-link" >SnapOddsFacade</a>
-                                </li>
-                                <li class="link">
-                                    <a href="injectables/TvSearchService.html" data-type="entity-link" >TvSearchService</a>
-                                </li>
-                            </ul>
-                        </li>
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#interfaces-links"' :
                             'data-target="#xs-interfaces-links"' }>
                             <span class="icon ion-md-information-circle-outline"></span>
                             <span>Interfaces</span>
-                            <span class="icon ion-ios-arrow-down"></span>
+                            <span class="icon ion-ios-arrow-up"></span>
                         </div>
-                        <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
+                        <ul class="links collapse in" ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
                                 <a href="interfaces/AccessToken.html" data-type="entity-link" >AccessToken</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/ApplicationConfig.html" data-type="entity-link" >ApplicationConfig</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/BestOfferLineViewModel.html" data-type="entity-link" >BestOfferLineViewModel</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/BestOfferViewModel.html" data-type="entity-link" >BestOfferViewModel</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Competitor.html" data-type="entity-link" >Competitor</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/LineOdds.html" data-type="entity-link" >LineOdds</a>
+                                <a href="interfaces/Customer.html" data-type="entity-link" >Customer</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Link.html" data-type="entity-link" >Link</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/OddsBestOffer.html" data-type="entity-link" >OddsBestOffer</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/OddsBestOfferOutcome.html" data-type="entity-link" >OddsBestOfferOutcome</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/OddsOffer.html" data-type="entity-link" >OddsOffer</a>
@@ -244,15 +110,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/SportsBook.html" data-type="entity-link" >SportsBook</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/SportsBookLineViewModel.html" data-type="entity-link" >SportsBookLineViewModel</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/SportsBookViewModel.html" data-type="entity-link" >SportsBookViewModel</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/TranslationEntries.html" data-type="entity-link" >TranslationEntries</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/TvChannel.html" data-type="entity-link" >TvChannel</a>
                             </li>
                             <li class="link">
@@ -275,24 +132,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="miscellaneous/enumerations.html" data-type="entity-link">Enums</a>
                             </li>
                             <li class="link">
-                                <a href="miscellaneous/functions.html" data-type="entity-link">Functions</a>
-                            </li>
-                            <li class="link">
                                 <a href="miscellaneous/typealiases.html" data-type="entity-link">Type aliases</a>
                             </li>
-                            <li class="link">
-                                <a href="miscellaneous/variables.html" data-type="entity-link">Variables</a>
-                            </li>
                         </ul>
-                    </li>
-                    <li class="chapter">
-                        <a data-type="chapter-link" href="coverage.html"><span class="icon ion-ios-stats"></span>Documentation coverage</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li class="copyright">
-                        Documentation generated using <a href="https://compodoc.app/" target="_blank">
-                            <img data-src="images/compodoc-vectorise.png" class="img-responsive" data-type="compodoc-logo">
-                        </a>
                     </li>
             </ul>
         </nav>

@@ -33,11 +33,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <span class="icon ion-ios-paper"></span>README
                             </a>
                         </li>
-                                <li class="link">
-                                    <a href="properties.html" data-type="chapter-link">
-                                        <span class="icon ion-ios-apps"></span>Properties
-                                    </a>
-                                </li>
                     </ul>
                 </li>
                     <li class="chapter">
@@ -49,6 +44,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse in" ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
+                                <a href="classes/LiveEventsStatusChangedDetector.html" data-type="entity-link" >LiveEventsStatusChangedDetector</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/MissingAccessTokenProviderError.html" data-type="entity-link" >MissingAccessTokenProviderError</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/OddsSdkBuilder.html" data-type="entity-link" >OddsSdkBuilder</a>
                             </li>
                             <li class="link">
@@ -59,6 +60,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/SnapoddsSdkWrapper.html" data-type="entity-link" >SnapoddsSdkWrapper</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SportEvent.html" data-type="entity-link" >SportEvent</a>
                             </li>
                             <li class="link">
                                 <a href="classes/SportsMediaSdkBuilder.html" data-type="entity-link" >SportsMediaSdkBuilder</a>
@@ -81,6 +85,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/Config.html" data-type="entity-link" >Config</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/GeoLocation.html" data-type="entity-link" >GeoLocation</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/Link.html" data-type="entity-link" >Link</a>
@@ -133,6 +140,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="miscellaneous/typealiases.html" data-type="entity-link">Type aliases</a>
+                            </li>
+                            <li class="link">
+                                <a href="miscellaneous/variables.html" data-type="entity-link">Variables</a>
                             </li>
                         </ul>
                     </li>

@@ -95,7 +95,13 @@
                                 <a href="#assignProperties" >assignProperties</a>
                             </li>
                             <li>
+                                <a href="#build" >build</a>
+                            </li>
+                            <li>
                                 <a href="#onClose" >onClose</a>
+                            </li>
+                            <li>
+                                <a href="#onLiveEventsStatusChangedCallback" >onLiveEventsStatusChangedCallback</a>
                             </li>
                             <li>
                                 <a href="#onLog" >onLog</a>
@@ -131,7 +137,13 @@
                                 <a href="#setLogLevel" >setLogLevel</a>
                             </li>
                             <li>
+                                <a href="#setUsState" >setUsState</a>
+                            </li>
+                            <li>
                                 <a href="#setVibrate" >setVibrate</a>
+                            </li>
+                            <li>
+                                <a href="#stopLiveEventsStatusChangedDetector" >stopLiveEventsStatusChangedDetector</a>
                             </li>
                         </ul>
                     </td>
@@ -274,6 +286,39 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="build"></a>
+                    <span class="name">
+                        <span ><b>build</b></span>
+                        <a href="#build"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>build()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The SportEventDetector must be initiated before the sdk is attached to the DOM</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/SdkBuilder.html" target="_self" >SdkBuilder</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="onClose"></a>
                     <span class="name">
                         <span ><b>onClose</b></span>
@@ -307,6 +352,62 @@
                             <tbody>
                                 <tr>
                                     <td>closeCallback</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onLiveEventsStatusChangedCallback"></a>
+                    <span class="name">
+                        <span ><b>onLiveEventsStatusChangedCallback</b></span>
+                        <a href="#onLiveEventsStatusChangedCallback"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onLiveEventsStatusChangedCallback(liveEventsStatusChangedCallback: (isLive: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>) => void)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>liveEventsStatusChangedCallback</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
                                     </td>
@@ -946,6 +1047,62 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="setUsState"></a>
+                    <span class="name">
+                        <span ><b>setUsState</b></span>
+                        <a href="#setUsState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setUsState(usSate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>usSate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="setVibrate"></a>
                     <span class="name">
                         <span ><b>setVibrate</b></span>
@@ -993,6 +1150,37 @@
                         </table>
                     </div>
                     <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="stopLiveEventsStatusChangedDetector"></a>
+                    <span class="name">
+                        <span ><b>stopLiveEventsStatusChangedDetector</b></span>
+                        <a href="#stopLiveEventsStatusChangedDetector"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>stopLiveEventsStatusChangedDetector()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/SdkBuilder.html" target="_self" >SdkBuilder</a></code>
+
                     </div>
                 </td>
             </tr>

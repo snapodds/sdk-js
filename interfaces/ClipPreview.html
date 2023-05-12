@@ -47,7 +47,7 @@
   <li>Interfaces</li>
   <li
   >
-  Point2d</li>
+  ClipPreview</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>/var/lib/jenkins/jobs/SnapOdds/jobs/SnapOdds SDK/workspace/libs/response/src/lib/typings/manipulated-image/point2d.ts</code>
+            <code>/var/lib/jenkins/jobs/SnapOdds/jobs/SnapOdds SDK/workspace/libs/response/src/lib/typings/clip/clip-preview.ts</code>
         </p>
 
 
@@ -70,7 +70,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>A point on 2D plane.</p>
+                <p>An entity represents a preview of the TV clip.</p>
 
             </p>
 
@@ -88,15 +88,33 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#x" 
+                                        <a href="#_embedded" 
 >
-                                            x
+                                            _embedded
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#y" 
+                                        <a href="#_links" 
 >
-                                            y
+                                            _links
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#timestampRefFrom" 
+>
+                                            timestampRefFrom
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#timestampRefTo" 
+>
+                                            timestampRefTo
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#tvChannelId" 
+>
+                                            tvChannelId
                                         </a>
                                 </li>
                             </ul>
@@ -114,9 +132,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="x"></a>
-                                        <span class="name "><b>x</b>
-                                            <a href="#x">
+                                        <a name="_embedded"></a>
+                                        <span class="name "><b>_embedded</b>
+                                            <a href="#_embedded">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -124,7 +142,73 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>x:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                        <code>_embedded:     <code>literal type</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>literal type</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="_links"></a>
+                                        <span class="name "><b>_links</b>
+                                            <a href="#_links">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>_links:     <code>literal type</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>literal type</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="timestampRefFrom"></a>
+                                        <span class="name "><b>timestampRefFrom</b>
+                                            <a href="#timestampRefFrom">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>timestampRefFrom:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -143,7 +227,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The X coordinate value.</p>
+                                    <div class="io-description"><p>The timestamp before which TS videos should start.</p>
 </div>
                                 </td>
                             </tr>
@@ -153,9 +237,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="y"></a>
-                                        <span class="name "><b>y</b>
-                                            <a href="#y">
+                                        <a name="timestampRefTo"></a>
+                                        <span class="name "><b>timestampRefTo</b>
+                                            <a href="#timestampRefTo">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -163,7 +247,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>y:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                        <code>timestampRefTo:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -182,7 +266,46 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The Y coordinate value.</p>
+                                    <div class="io-description"><p>The timestamp after which TS videos should end.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="tvChannelId"></a>
+                                        <span class="name "><b>tvChannelId</b>
+                                            <a href="#tvChannelId">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>tvChannelId:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The id of the TV channel.</p>
 </div>
                                 </td>
                             </tr>
@@ -227,7 +350,7 @@
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'Point2d.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ClipPreview.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

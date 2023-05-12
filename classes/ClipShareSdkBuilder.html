@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >OperatorsSdkBuilder</li>
+  <li >ClipShareSdkBuilder</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -59,7 +59,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/operators-sdk.builder.ts</code>
+            <code>src/app/clip-share-sdk.builder.ts</code>
         </p>
 
 
@@ -67,7 +67,7 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>Closes the SDK after a successful Snap without rendering the OddsPage</p>
+                <p>Renders the ClipShare after a successful Snap.</p>
 
             </p>
 
@@ -84,22 +84,6 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#sdkMode" >sdkMode</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -113,10 +97,16 @@
                                 <a href="#assignProperties" >assignProperties</a>
                             </li>
                             <li>
+                                <a href="#setTvSearchResult" >setTvSearchResult</a>
+                            </li>
+                            <li>
                                 <a href="#appendTo" >appendTo</a>
                             </li>
                             <li>
                                 <a href="#build" >build</a>
+                            </li>
+                            <li>
+                                <a href="#onClipCreated" >onClipCreated</a>
                             </li>
                             <li>
                                 <a href="#onClose" >onClose</a>
@@ -152,10 +142,16 @@
                                 <a href="#setBranding" >setBranding</a>
                             </li>
                             <li>
+                                <a href="#setClipShareApiUrl" >setClipShareApiUrl</a>
+                            </li>
+                            <li>
                                 <a href="#setLanguage" >setLanguage</a>
                             </li>
                             <li>
                                 <a href="#setLogLevel" >setLogLevel</a>
+                            </li>
+                            <li>
+                                <a href="#setSnapTarget" >setSnapTarget</a>
                             </li>
                             <li>
                                 <a href="#setUsState" >setUsState</a>
@@ -178,41 +174,20 @@
     </table>
 </section>
 
-
             <section>
-    
-    <h3 id="inputs">
-        Properties
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="sdkMode"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>sdkMode</b></span>
-                        <a href="#sdkMode"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;operator&#x27;</code>
+<code>constructor()</code>
                     </td>
                 </tr>
 
-
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 </section>
+
 
             <section>
     
@@ -245,6 +220,69 @@
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setTvSearchResult"></a>
+                    <span class="name">
+                        <span ><b>setTvSearchResult</b></span>
+                        <a href="#setTvSearchResult"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setTvSearchResult(tvSearchResult: <a href="../interfaces/TvSearchResultEntry.html" target="_self">TvSearchResultEntry</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>tvSearchResult</td>
+                                    <td>
+                                                <code><a href="../interfaces/TvSearchResultEntry.html" target="_self" >TvSearchResultEntry</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>this</code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -348,6 +386,62 @@
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="../classes/SdkBuilder.html" target="_self" >SdkBuilder</a></code>
 
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onClipCreated"></a>
+                    <span class="name">
+                        <span ><b>onClipCreated</b></span>
+                        <a href="#onClipCreated"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onClipCreated(clipCreatedCallback: (clip: <a href="../interfaces/Clip.html">Clip</a>) => void)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>clipCreatedCallback</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
                     </div>
                 </td>
             </tr>
@@ -926,7 +1020,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>setBranding(branding: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+<code>setBranding(branding: boolean | "snapodds" | "clipshare" | "none")</code>
                 </td>
             </tr>
 
@@ -951,7 +1045,63 @@
                                 <tr>
                                     <td>branding</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            <code>boolean | &quot;snapodds&quot; | &quot;clipshare&quot; | &quot;none&quot;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setClipShareApiUrl"></a>
+                    <span class="name">
+                        <span ><b>setClipShareApiUrl</b></span>
+                        <a href="#setClipShareApiUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setClipShareApiUrl(clipShareApiUrl: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>clipShareApiUrl</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -1064,6 +1214,62 @@
                                     <td>logLevel</td>
                                     <td>
                                             <code>&quot;debug&quot; | &quot;info&quot; | &quot;warn&quot; | &quot;error&quot; | &quot;silent&quot;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setSnapTarget"></a>
+                    <span class="name">
+                        <span ><b>setSnapTarget</b></span>
+                        <a href="#setSnapTarget"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setSnapTarget(target: "sport" | "epg")</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>target</td>
+                                    <td>
+                                            <code>&quot;sport&quot; | &quot;epg&quot;</code>
                                     </td>
 
                                     <td>
@@ -1269,7 +1475,7 @@
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'OperatorsSdkBuilder.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ClipShareSdkBuilder.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

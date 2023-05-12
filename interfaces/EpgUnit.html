@@ -47,7 +47,7 @@
   <li>Interfaces</li>
   <li
   >
-  SportEvent</li>
+  EpgUnit</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>/var/lib/jenkins/jobs/SnapOdds/jobs/SnapOdds SDK/workspace/libs/response/src/lib/typings/tv-search/sport-event.ts</code>
+            <code>/var/lib/jenkins/jobs/SnapOdds/jobs/SnapOdds SDK/workspace/libs/response/src/lib/typings/tv-search/epg-unit.ts</code>
         </p>
 
 
@@ -88,21 +88,29 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#_embedded" 
+>
+                                            _embedded
+                                        </a>
+                                </li>
+                                <li>
                                         <a href="#_links" 
 >
                                             _links
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#category" 
+                                        <a href="#broadcastDate" 
 >
-                                            category
+                                            broadcastDate
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#competitors" 
+                                            <span class="modifier">Optional</span>
+                                        <a href="#description" 
 >
-                                            competitors
+                                            description
                                         </a>
                                 </li>
                                 <li>
@@ -112,9 +120,10 @@
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#externalId" 
+                                            <span class="modifier">Optional</span>
+                                        <a href="#genres" 
 >
-                                            externalId
+                                            genres
                                         </a>
                                 </li>
                                 <li>
@@ -125,27 +134,15 @@
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#league" 
+                                        <a href="#keywords" 
 >
-                                            league
+                                            keywords
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#sport" 
+                                        <a href="#productionDate" 
 >
-                                            sport
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#sportDataProviderCode" 
->
-                                            sportDataProviderCode
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#sportDataProviderMatchId" 
->
-                                            sportDataProviderMatchId
+                                            productionDate
                                         </a>
                                 </li>
                                 <li>
@@ -155,9 +152,16 @@
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#tournament" 
+                                            <span class="modifier">Optional</span>
+                                        <a href="#subtitle" 
 >
-                                            tournament
+                                            subtitle
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#title" 
+>
+                                            title
                                         </a>
                                 </li>
                                 <li>
@@ -177,6 +181,44 @@
 
             <section>
                 <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="_embedded"></a>
+                                        <span class="name "><b>_embedded</b>
+                                            <a href="#_embedded">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>_embedded:     <code>literal type</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>literal type</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
                     <table class="table table-sm table-bordered">
                         <tbody>
                                 <tr>
@@ -214,9 +256,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="category"></a>
-                                        <span class="name "><b>category</b>
-                                            <a href="#category">
+                                        <a name="broadcastDate"></a>
+                                        <span class="name "><b>broadcastDate</b>
+                                            <a href="#broadcastDate">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -224,7 +266,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>category:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>broadcastDate:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -243,7 +285,8 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The category of this sport event.</p>
+                                    <div class="io-description"><p>The date when this EPG unit is broadcast.</p>
+<p>ISO DateTime Format: yyyy-MM-dd</p>
 </div>
                                 </td>
                             </tr>
@@ -253,9 +296,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="competitors"></a>
-                                        <span class="name "><b>competitors</b>
-                                            <a href="#competitors">
+                                        <a name="description"></a>
+                                        <span class="name "><b>description</b>
+                                            <a href="#description">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -263,7 +306,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>competitors:     <code>literal type[]</code>
+                                        <code>description:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -271,18 +314,23 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>    <code>literal type[]</code>
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
                                         </td>
                                     </tr>
 
 
 
 
-
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The competitors participating in this sport event.</p>
+                                    <div class="io-description"><p>The description    of this EPG unit.</p>
 </div>
                                 </td>
                             </tr>
@@ -321,7 +369,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The end time of this sport event.</p>
+                                    <div class="io-description"><p>The date-time when this EPG unit ends to be aired.</p>
 <p>ISO DateTime Format: yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZZ</p>
 </div>
                                 </td>
@@ -332,9 +380,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="externalId"></a>
-                                        <span class="name "><b>externalId</b>
-                                            <a href="#externalId">
+                                        <a name="genres"></a>
+                                        <span class="name "><b>genres</b>
+                                            <a href="#genres">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -342,7 +390,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>externalId:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>genres:     <code>string[]</code>
 </code>
                                     </td>
                                 </tr>
@@ -350,18 +398,23 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <i>Type : </i>    <code>string[]</code>
 
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
                                         </td>
                                     </tr>
 
 
 
 
-
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The id of a match specific for the sport data provider and corresponding to this sport event.</p>
+                                    <div class="io-description"><p>The genres list of this EPG unit.</p>
 </div>
                                 </td>
                             </tr>
@@ -400,7 +453,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The id of the sport event.</p>
+                                    <div class="io-description"><p>The id of an EPG unit.</p>
 </div>
                                 </td>
                             </tr>
@@ -410,9 +463,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="league"></a>
-                                        <span class="name "><b>league</b>
-                                            <a href="#league">
+                                        <a name="keywords"></a>
+                                        <span class="name "><b>keywords</b>
+                                            <a href="#keywords">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -420,7 +473,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>league:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>keywords:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -444,7 +497,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The league of this sport event.</p>
+                                    <div class="io-description"><p>The keywords text of this EPG unit.</p>
 </div>
                                 </td>
                             </tr>
@@ -454,9 +507,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="sport"></a>
-                                        <span class="name "><b>sport</b>
-                                            <a href="#sport">
+                                        <a name="productionDate"></a>
+                                        <span class="name "><b>productionDate</b>
+                                            <a href="#productionDate">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -464,7 +517,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>sport:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>productionDate:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -483,85 +536,8 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The sport discipline of this sport event.</p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="sportDataProviderCode"></a>
-                                        <span class="name "><b>sportDataProviderCode</b>
-                                            <a href="#sportDataProviderCode">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>sportDataProviderCode:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>The unique code of an external sport data provider which is a source of the sport data for this sport event.</p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="sportDataProviderMatchId"></a>
-                                        <span class="name "><b>sportDataProviderMatchId</b>
-                                            <a href="#sportDataProviderMatchId">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>sportDataProviderMatchId:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>The id of a match specific for the sport data provider and corresponding to this sport event.</p>
+                                    <div class="io-description"><p>The date when this EPG unit was produced.</p>
+<p>ISO DateTime Format: yyyy-MM-dd</p>
 </div>
                                 </td>
                             </tr>
@@ -600,7 +576,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The start time of this sport event.</p>
+                                    <div class="io-description"><p>The date-time when this EPG unit starts to be aired.</p>
 <p>ISO DateTime Format: yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZZ</p>
 </div>
                                 </td>
@@ -611,9 +587,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="tournament"></a>
-                                        <span class="name "><b>tournament</b>
-                                            <a href="#tournament">
+                                        <a name="subtitle"></a>
+                                        <span class="name "><b>subtitle</b>
+                                            <a href="#subtitle">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -621,7 +597,51 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>tournament:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>subtitle:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The subtitle of this EPG unit.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="title"></a>
+                                        <span class="name "><b>title</b>
+                                            <a href="#title">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>title:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -640,7 +660,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The tournament of this sport event.</p>
+                                    <div class="io-description"><p>The title of this EPG unit.</p>
 </div>
                                 </td>
                             </tr>
@@ -679,7 +699,7 @@
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The id of a TV channel registered in the system and on which this sport event aired.</p>
+                                    <div class="io-description"><p>The id of a TV channel on which an EPG unit aired.</p>
 </div>
                                 </td>
                             </tr>
@@ -724,7 +744,7 @@
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'SportEvent.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'EpgUnit.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
